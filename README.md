@@ -1,5 +1,5 @@
 # Simponi-Universitas-Jenny
-This is my second project just for my portofolio
+This is my first project just for my portofolio
 
 I'm newbie, i wanna be a full-stack web development and i realized that i have to learn more and more so that i can make 
 other projects myself or with my team later
