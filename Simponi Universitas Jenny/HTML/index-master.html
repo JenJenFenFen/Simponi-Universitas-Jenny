@@ -347,18 +347,13 @@
 
         <br><br>
 
-        <form class="row g-3 needs-validation formnimdosen" novalidate>
-          <div class="row g-3">
-            <div class="col-md-4">
-              <label class="form-label">Masukkan NIM Dosen</label>
-              <input type="text" class="form-control validation0" id="valnimdosen" required>
-            </div>
+        <form class="row row-cols-lg-auto g-3 align-items-center formnidosen">
+          <div class="col-12">
+            <input type="text" class="form-control onoffbuttons" id="valnidosen" placeholder="Masukkan NID" onkeyup="onoffButton()">
           </div>
 
-          <div class="row g-3">
-            <div class="col-12">
-              <button class="btn btn-primary" id="btncaridosen" type="submit">Cari</button>
-            </div>
+          <div class="col-12">
+            <button class="btn btn-primary btncari" type="submit" disabled>Cari</button>
           </div>
         </form>
 
@@ -433,18 +428,13 @@
 
         <br><br>
 
-        <form class="row g-3 needs-validation formnimdosen" novalidate>
-          <div class="row g-3">
-            <div class="col-md-4">
-              <label class="form-label">Masukkan NIM Mahasiswa</label>
-              <input type="text" class="form-control validation0" id="valnimmahasiswa" required>
-            </div>
+        <form class="row row-cols-lg-auto g-3 align-items-center formnimahasiswa">
+          <div class="col-12">
+            <input type="text" class="form-control onoffbuttons" id="valnimahasiswa" placeholder="Masukkan NIM" onkeyup="onoffButton()">
           </div>
 
-          <div class="row g-3">
-            <div class="col-12">
-              <button class="btn btn-primary" id="btncarimahasiswa" type="submit">Cari</button>
-            </div>
+          <div class="col-12">
+            <button class="btn btn-primary btncari" type="submit" disabled>Cari</button>
           </div>
         </form>
 
@@ -537,6 +527,17 @@
                 <option value="Perempuan">Perempuan</option> -->
               </select>
             </div>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-md">
+              <label class="form-label">Mata Kuliah</label>
+              <select class="form-select validation0" id="valmkmahasiswa" required>
+                <!-- <option value="" selected>Pilih</option>
+                <option value="Laki-Laki">Laki-Laki</option>
+                <option value="Perempuan">Perempuan</option> -->
+              </select>
+            </div>
 
             <div class="col-md-2">
               <label class="form-label">Jam</label>
@@ -546,23 +547,23 @@
                 <option value="Perempuan">Perempuan</option> -->
               </select>
             </div>
+          </div>
 
-            <div class="col-md">
-              <label class="form-label">Mata Kuliah</label>
-              <select class="form-select validation0" id="valmkmahasiswa" required>
-                <!-- <option value="" selected>Pilih</option>
-                <option value="Laki-Laki">Laki-Laki</option>
-                <option value="Perempuan">Perempuan</option> -->
-              </select>
+          <div class="row g-3">
+            <div class="col-12">
+              <button class="btn btn-primary" id="btnjadwal" type="submit">Input Jadwal</button>
             </div>
           </div>
         </form>
+      </div>
     </main>
     
     <script src="jquery-3.6.1.js"></script>
     <script src="bootstrap.bundle.min.js"></script>
     <script src="sidebars.js"></script>
     <script src="jbvalidator.min.js"></script>
+    <script src="onoffButton.js"></script>
+
 
     <script>
       //membuat validasi (pastikan form class .needs-validation dan atribut novalidate)
