@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Simponi - Master</title>
 
-    <link href="./library/bootstrap.min.css" rel="stylesheet">
-    <link href="./library/sidebars.css" rel="stylesheet">
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="sidebars.css" rel="stylesheet">
 
     <style>
       .bd-placeholder-img {
@@ -82,7 +82,7 @@
   <body>
 
     <main class="d-flex flex-nowrap">
-      <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
+      <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 290px;">
         <span class="fs-4">SIMPONI UNIVERSITAS JENNY</span>
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
@@ -122,7 +122,7 @@
 
           <li class="rounded list1 lmatakuliah">
             <a class="nav-link text-white">
-              Membuat Jadwal Mata Kuliah
+              <b>Membuat Jadwal Mata Kuliah</b>
             </a>
           </li>
         </ul>
@@ -146,7 +146,7 @@
       <div class="b-example-divider b-example-vr"></div>
 
       <!-- display daftar dosen -->
-      <div class="flex-column flex-shrink-0 p-3 divformdosen" style="width: 1062px; overflow: auto;" hidden>
+      <div class="flex-column flex-shrink-0 p-3 divformdosen" style="width: 1052px; overflow: auto;" hidden>
         <h1>FORMULIR PENDAFTARAN DOSEN</h1>
 
         <br><br>
@@ -230,25 +230,6 @@
           </div>
 
           <div class="row g-3">
-            <label class="form-label">Password</label>
-            <div class="input-group has-validation tipepassword">
-              <input type="password" class="form-control validation0" id="valpassworddosen" placeholder="Password Baru" required>
-              <button class="btn btn-outline-secondary hideseekpass" type="button">
-                <svg class="closeeye" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-slash" viewBox="0 0 16 16">
-                <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z"/>
-                <path d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z"/>
-                <path d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z"/>
-                </svg>
-                <svg class="d-none openeye" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
-                <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
-                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
-                </svg>
-              </button>
-              <input type="password" class="form-control validation0" data-v-equal="#valpassworddosen" placeholder="Konfirmasi Password" required>
-            </div>
-          </div>
-
-          <div class="row g-3">
             <div class="col-12">
               <button class="btn btn-primary" id="btndaftardosen" type="submit">Daftarkan</button>
             </div>
@@ -257,12 +238,12 @@
       </div>
 
       <!-- display daftar mahasiswa -->
-      <div class="flex-column flex-shrink-0 p-3 divformmahasiswa" style="width: 1062px; overflow: auto;" hidden>
+      <div class="flex-column flex-shrink-0 p-3 divformmahasiswa" style="width: 1052px; overflow: auto;" hidden>
         <h1>FORMULIR PENDAFTARAN MAHASISWA</h1>
 
         <br><br>
 
-        <form class="row g-3 needs-validation formdaftarmahasiswa" novalidate>
+        <form class="row g-3 needs-validation formdaftarmahasiswa1" novalidate>
           <div class="row g-3">
             <div class="col-md-9">
               <label class="form-label">Nama Lengkap</label>
@@ -304,7 +285,7 @@
           <div class="row g-3">
             <div class="col-md-2">
               <label class="form-label">Pendidikan Terakhir</label>
-              <select class="form-select validation0" id="valedumahasiswa" required>
+              <select class="form-select validation0 pilihpendidikan" id="valedumahasiswa" required>
                 <option value="" selected>Pilih</option>
                 <option value="SMA/SMK">SMA/SMK</option>
                 <option value="S1">S1</option>
@@ -314,17 +295,7 @@
 
             <div class="col-md-4">
               <label class="form-label">Jurusan</label>
-              <select class="form-select validation0" id="valmajormahasiswa" required>
-                <option value="" selected>Pilih</option>
-                <option value="Teknik Informatika">Teknik Informatika</option>
-                <option value="Sistem Informasi">Sistem Informasi</option>
-                <option value="Teknik Komputer">Teknik Komputer</option>
-              </select>
-            </div>
-
-            <div class="col-md-2">
-              <label class="form-label">Semester</label>
-              <input type="text" readonly class="form-control-plaintext" id="valsemestermahasiswa" value="1">
+              <select class="form-select validation0 pilihjurusan" id="valmajormahasiswa" required></select>
             </div>
 
             <div class="col-sm">
@@ -346,21 +317,19 @@
           </div>
 
           <div class="row g-3">
-            <label class="form-label">Password</label>
-            <div class="input-group has-validation tipepassword">
-              <input type="password" class="form-control validation0" id="valpasswordmahasiswa" placeholder="Password Baru" required>
-              <button class="btn btn-outline-secondary hideseekpass" type="button">
-                <svg class="closeeye" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-slash" viewBox="0 0 16 16">
-                <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z"/>
-                <path d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z"/>
-                <path d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z"/>
-                </svg>
-                <svg class="d-none openeye" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
-                <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
-                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
-                </svg>
-              </button>
-              <input type="password" class="form-control validation0" data-v-equal="#valpasswordmahasiswa" placeholder="Konfirmasi Password" required>
+            <div class="col-md-8">
+              <label class="form-label">Jurusan yang Diambil</label>
+              <select class="form-select validation0" id="valjurusanambilmahasiswa" required>
+                <option value="" selected>Pilih</option>
+                <option value="Teknik Informatika">Teknik Informatika</option>
+                <option value="Sistem Informasi">Sistem Informasi</option>
+                <option value="Teknik Komputer">Teknik Komputer</option>
+              </select>
+            </div>
+
+            <div class="col-md">
+              <label class="form-label">Semester</label>
+              <input type="text" readonly class="form-control-plaintext" id="valsemestermahasiswa" value="1">
             </div>
           </div>
 
@@ -373,7 +342,7 @@
       </div>
 
       <!-- display update data dosen -->
-      <div class="flex-column flex-shrink-0 p-3 divupdatedosen" style="width: 1062px; overflow: auto;" hidden>
+      <div class="flex-column flex-shrink-0 p-3 divupdatedosen" style="width: 1052px; overflow: auto;" hidden>
         <h1>UPDATE DATA DOSEN</h1>
 
         <br><br>
@@ -430,7 +399,7 @@
               <select class="form-select-plaintext canedit editselect" id="hasilstatusdosen" disabled>
                 <option value="Belum Menikah">Belum Menikah</option>
                 <option value="Menikah">Menikah</option>
-                <option value="Duda/Janda">Duda/Janda</option>
+                <option value="Teknik Komputer">Duda/Janda</option>
               </select>
             </div>
           </div>
@@ -459,7 +428,7 @@
       </div>
 
       <!-- display update data mahasiswa -->
-      <div class="flex-column flex-shrink-0 p-3 divupdatemahasiswa" style="width: 1062px; overflow: auto;" hidden>
+      <div class="flex-column flex-shrink-0 p-3 divupdatemahasiswa" style="width: 1052px; overflow: auto;" hidden>
         <h1>UPDATE DATA MAHASISWA</h1>
 
         <br><br>
@@ -542,12 +511,58 @@
       </div>
 
       <!-- display membuat jadwal mata kuliah -->
+      <div class="flex-column flex-shrink-0 p-3 divmakeschedule" style="width: 1052px; overflow: auto;" hidden>
+        <h1>MEMBUAT JADWAL MATA KULIAH</h1>
+
+        <br><br>
+
+        <form class="row g-3 needs-validation formnimdosen" novalidate>
+          <div class="row g-3">
+            <div class="col-md-3">
+              <label class="form-label">Kelas</label>
+              <select class="form-select validation0" id="valkelasjadwal" required>
+                <!-- <option value="" selected>Pilih</option>
+                <option value="Laki-Laki">Laki-Laki</option>
+                <option value="Perempuan">Perempuan</option> -->
+              </select>
+            </div>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-md-2">
+              <label class="form-label">Hari</label>
+              <select class="form-select validation0" id="valharimahasiswa" required>
+                <!-- <option value="" selected>Pilih</option>
+                <option value="Laki-Laki">Laki-Laki</option>
+                <option value="Perempuan">Perempuan</option> -->
+              </select>
+            </div>
+
+            <div class="col-md-2">
+              <label class="form-label">Jam</label>
+              <select class="form-select validation0" id="valjammahasiswa" required>
+                <!-- <option value="" selected>Pilih</option>
+                <option value="Laki-Laki">Laki-Laki</option>
+                <option value="Perempuan">Perempuan</option> -->
+              </select>
+            </div>
+
+            <div class="col-md">
+              <label class="form-label">Mata Kuliah</label>
+              <select class="form-select validation0" id="valmkmahasiswa" required>
+                <!-- <option value="" selected>Pilih</option>
+                <option value="Laki-Laki">Laki-Laki</option>
+                <option value="Perempuan">Perempuan</option> -->
+              </select>
+            </div>
+          </div>
+        </form>
     </main>
     
-    <script src="./library/jquery-3.6.1.js"></script>
-    <script src="./library/bootstrap.bundle.min.js"></script>
-    <script src="./library/sidebars.js"></script>
-    <script src="./library/jbvalidator.min.js"></script>
+    <script src="jquery-3.6.1.js"></script>
+    <script src="bootstrap.bundle.min.js"></script>
+    <script src="sidebars.js"></script>
+    <script src="jbvalidator.min.js"></script>
 
     <script>
       //membuat validasi (pastikan form class .needs-validation dan atribut novalidate)
@@ -558,15 +573,15 @@
           language: "https://emretulek.github.io/jbvalidator/dist/lang/en.json"
         });
 
-        validator.validator.password = function(el, event){
-          if($(el).is('[id=valpassworddosen]') && $(el).val().length < 8){
-              return 'Your password is too weak.';
-          }
+        // validator.validator.password = function(el, event){
+        //   if($(el).is('[id=valpassworddosen]') && $(el).val().length < 8){
+        //       return 'Your password is too weak.';
+        //   }
 
-          else if($(el).is('[id=valpasswordmahasiswa]') && $(el).val().length < 8){
-            return 'Your password is too weak.';
-          }
-        };
+        //   else if($(el).is('[id=valpasswordmahasiswa]') && $(el).val().length < 8){
+        //     return 'Your password is too weak.';
+        //   }
+        // };
       });
 
       $(".bdosen").click(function (e) {
@@ -575,6 +590,7 @@
         $(".divformmahasiswa").attr("hidden", true);
         $(".divupdatedosen").attr("hidden", true);
         $(".divupdatemahasiswa").attr("hidden", true);
+        $(".divmakeschedule").attr("hidden", true);
         $(".validation0").val('');
       });
 
@@ -584,6 +600,7 @@
         $(".divformdosen").attr("hidden", true);
         $(".divupdatedosen").attr("hidden", true);
         $(".divupdatemahasiswa").attr("hidden", true);
+        $(".divmakeschedule").attr("hidden", true);
         $(".validation0").val('');
       });
 
@@ -593,6 +610,7 @@
         $(".divupdatemahasiswa").attr("hidden", true);
         $(".divformdosen").attr("hidden", true);
         $(".divformmahasiswa").attr("hidden", true);
+        $(".divmakeschedule").attr("hidden", true);
         $(".validation0").val('');
       });
 
@@ -602,24 +620,64 @@
         $(".divupdatedosen").attr("hidden", true);
         $(".divformdosen").attr("hidden", true);
         $(".divformmahasiswa").attr("hidden", true);
+        $(".divmakeschedule").attr("hidden", true);
         $(".validation0").val('');
       });
 
-      //membuat fungsi hide and show password
-      $(".hideseekpass").click(function(e) {
-        var jenis = $(".tipepassword input");
-        var openeye = $(".openeye");
-        var closeeye = $(".closeeye");
-        if (jenis.attr("type") == "password") {
-          jenis.attr("type", "text");
-          openeye.removeClass("d-none");
-          closeeye.addClass("d-none");
-        } else if(jenis.attr("type") == "text") {
-          jenis.attr("type", "password");
-          openeye.addClass("d-none");
-          closeeye.removeClass("d-none");
+      $(".lmatakuliah").click(function (e) {  
+        e.preventDefault();
+        $(".divmakeschedule").attr("hidden", false);
+        $(".divupdatemahasiswa").attr("hidden", true);
+        $(".divupdatedosen").attr("hidden", true);
+        $(".divformdosen").attr("hidden", true);
+        $(".divformmahasiswa").attr("hidden", true);
+        $(".validation0").val('');
+      });
+
+      //membuat fungsi pendidikan terakhir dan jurusan
+      $(".pilihpendidikan").change(function (e) {
+        var pilihpendidikan = $(".pilihpendidikan").val();
+        if (pilihpendidikan == 'SMA/SMK'){
+          e.preventDefault();
+          $(".pilihjurusan").empty();
+          $(".pilihjurusan").append(`
+            <option value="">Pilih</option>
+            <option value="Komputer">Komputer</option>
+          `);
+        }
+
+        else if (pilihpendidikan == 'S1' || pilihpendidikan == 'S2'){
+          e.preventDefault();
+          $(".pilihjurusan").empty();
+          $(".pilihjurusan").append(`
+            <option value="">Pilih</option>
+            <option value="Teknik Informatika">Teknik Informatika</option>
+            <option value="Sistem Informasi">Sistem Informasi</option>
+            <option value="Teknik Komputer">Teknik Komputer</option>
+          `);
+        }
+
+        else  {
+          e.preventDefault();
+          $(".pilihjurusan").empty();
         }
       });
+
+      //membuat fungsi hide and show password
+      // $(".hideseekpass").click(function(e) {
+      //   var jenis = $(".tipepassword input");
+      //   var openeye = $(".openeye");
+      //   var closeeye = $(".closeeye");
+      //   if (jenis.attr("type") == "password") {
+      //     jenis.attr("type", "text");
+      //     openeye.removeClass("d-none");
+      //     closeeye.addClass("d-none");
+      //   } else if(jenis.attr("type") == "text") {
+      //     jenis.attr("type", "password");
+      //     openeye.addClass("d-none");
+      //     closeeye.removeClass("d-none");
+      //   }
+      // });
 
       //membuat fungsi tombol "Ubah Data" menjadi tombol "Update" dan merubah tampilan kolom formulir
       $("#btnubahdosen").click(function (e) {

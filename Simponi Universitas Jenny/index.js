@@ -11,27 +11,14 @@ app.use(bodyparser.urlencoded ({
 
 app.use(bodyparser.json());
 
-//css
-app.use("/library", express.static(path.join(__dirname, "node_modules/bootstrap/dist/css")));
-
-//jquery
-app.use("/library", express.static(path.join(__dirname, "node_modules/jquery/dist")));
-
-//bootstrap
-app.use("/library",express.static(path.join(__dirname, "node_modules/bootstrap/dist/js")));
-
-//sidebars
-// app.use("/library", express.static(path.join(__dirname, "node_modules/bootstrap-sidebar/dist/css")));
-// app.use("/library", express.static(path.join(__dirname, "node_modules/bootstrap-sidebar/dist/js")));
-
-//jbvalidator
-app.use("/library", express.static(path.join(__dirname, "node_modules/@emretulek/jbvalidator/dist")));
+//koneksi ke file css dan js
+app.use(express.static(path.join(__dirname, "library")));
 
 app.get('/homepage-master', (req, res) => {
     res.sendFile(path.join(__dirname, '/HTML/index-master.html'));
 });
 
-//membaca server
+//membaca port
 app.listen(port, () => {
     console.log(`Listening port ${port}`);
 });

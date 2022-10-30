@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 25, 2022 at 11:39 AM
--- Server version: 10.4.25-MariaDB
--- PHP Version: 8.1.10
+-- Generation Time: Oct 30, 2022 at 12:45 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,6 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `class` (
   `id` int(11) NOT NULL,
+  `student_identity_id` int(11) NOT NULL,
   `class_name` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -84,7 +85,6 @@ CREATE TABLE `rule` (
 CREATE TABLE `schedule` (
   `id` int(11) NOT NULL,
   `class_id` int(11) NOT NULL,
-  `student_identity_id` int(11) NOT NULL,
   `lecturer_identity_id` int(11) NOT NULL,
   `material_id` int(11) NOT NULL,
   `day` varchar(20) NOT NULL,
@@ -109,6 +109,7 @@ CREATE TABLE `student_identity` (
   `status` varchar(50) NOT NULL,
   `number_phone` varchar(50) NOT NULL,
   `last_education` varchar(50) NOT NULL,
+  `major_last_education` varchar(50) NOT NULL,
   `major` varchar(50) NOT NULL,
   `semester` int(11) NOT NULL,
   `photo` blob DEFAULT NULL
@@ -122,7 +123,6 @@ CREATE TABLE `student_identity` (
 
 CREATE TABLE `task` (
   `id` int(11) NOT NULL,
-  `student_identity_id` int(11) NOT NULL,
   `lecturer_identity_id` int(11) NOT NULL,
   `class_id` int(11) NOT NULL,
   `material_id` int(11) NOT NULL,
@@ -152,7 +152,8 @@ CREATE TABLE `user_login` (
 -- Indexes for table `class`
 --
 ALTER TABLE `class`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `student_identity_id` (`student_identity_id`);
 
 --
 -- Indexes for table `lecturer_identity`
@@ -180,7 +181,6 @@ ALTER TABLE `rule`
 ALTER TABLE `schedule`
   ADD PRIMARY KEY (`id`),
   ADD KEY `class_id` (`class_id`),
-  ADD KEY `student_identity_id` (`student_identity_id`),
   ADD KEY `lecturer_identity_id` (`lecturer_identity_id`),
   ADD KEY `material_id` (`material_id`);
 
@@ -197,7 +197,6 @@ ALTER TABLE `student_identity`
 --
 ALTER TABLE `task`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `student_identity_id` (`student_identity_id`),
   ADD KEY `lecturer_identity_id` (`lecturer_identity_id`),
   ADD KEY `class_id` (`class_id`),
   ADD KEY `material_id` (`material_id`);
@@ -260,6 +259,12 @@ ALTER TABLE `task`
 --
 
 --
+-- Constraints for table `class`
+--
+ALTER TABLE `class`
+  ADD CONSTRAINT `class_ibfk_1` FOREIGN KEY (`student_identity_id`) REFERENCES `student_identity` (`id`);
+
+--
 -- Constraints for table `lecturer_identity`
 --
 ALTER TABLE `lecturer_identity`
@@ -270,7 +275,6 @@ ALTER TABLE `lecturer_identity`
 --
 ALTER TABLE `schedule`
   ADD CONSTRAINT `schedule_ibfk_1` FOREIGN KEY (`class_id`) REFERENCES `class` (`id`),
-  ADD CONSTRAINT `schedule_ibfk_2` FOREIGN KEY (`student_identity_id`) REFERENCES `student_identity` (`id`),
   ADD CONSTRAINT `schedule_ibfk_3` FOREIGN KEY (`lecturer_identity_id`) REFERENCES `lecturer_identity` (`id`),
   ADD CONSTRAINT `schedule_ibfk_4` FOREIGN KEY (`material_id`) REFERENCES `material` (`id`);
 
@@ -284,7 +288,6 @@ ALTER TABLE `student_identity`
 -- Constraints for table `task`
 --
 ALTER TABLE `task`
-  ADD CONSTRAINT `task_ibfk_1` FOREIGN KEY (`student_identity_id`) REFERENCES `student_identity` (`id`),
   ADD CONSTRAINT `task_ibfk_2` FOREIGN KEY (`lecturer_identity_id`) REFERENCES `lecturer_identity` (`id`),
   ADD CONSTRAINT `task_ibfk_3` FOREIGN KEY (`class_id`) REFERENCES `class` (`id`),
   ADD CONSTRAINT `task_ibfk_4` FOREIGN KEY (`material_id`) REFERENCES `material` (`id`);
