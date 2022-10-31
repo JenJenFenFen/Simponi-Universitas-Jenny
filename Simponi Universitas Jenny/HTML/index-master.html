@@ -73,6 +73,10 @@
         background-color: #060af8;
       }
 
+      .bdosen, .bmahasiswa, .udosen, .umahasiswa, .lmatakuliah {
+        cursor: pointer;
+      }
+
       .btn-toggle::before {
         color: #ffffff;
       }
@@ -82,6 +86,7 @@
   <body>
 
     <main class="d-flex flex-nowrap">
+      <!-- sidebar -->
       <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 290px;">
         <span class="fs-4">SIMPONI UNIVERSITAS JENNY</span>
         <hr>
@@ -133,11 +138,9 @@
               <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
               <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
             </svg>
-            <strong>mdo</strong> <!-- user -->
+            <strong>Master 1</strong> <!-- user -->
           </a>
           <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-            <li><a class="dropdown-item" href="#">Profile</a></li>
-            <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#">Sign out</a></li>
           </ul>
         </div>
@@ -349,11 +352,11 @@
 
         <form class="row row-cols-lg-auto g-3 align-items-center formnidosen">
           <div class="col-12">
-            <input type="text" class="form-control onoffbuttons" id="valnidosen" placeholder="Masukkan NID" onkeyup="onoffButton()">
+            <input type="text" class="form-control validation0 onoffbuttons justnumber" id="valnidosen" placeholder="Masukkan NID" maxlength="10" onkeyup="onOffButtonUpdate(this, 'valnid')">
           </div>
 
           <div class="col-12">
-            <button class="btn btn-primary btncari" type="submit" disabled>Cari</button>
+            <button class="btn btn-primary" id="valnid" type="submit" disabled>Cari</button>
           </div>
         </form>
 
@@ -430,11 +433,11 @@
 
         <form class="row row-cols-lg-auto g-3 align-items-center formnimahasiswa">
           <div class="col-12">
-            <input type="text" class="form-control onoffbuttons" id="valnimahasiswa" placeholder="Masukkan NIM" onkeyup="onoffButton()">
+            <input type="text" class="form-control validation0 onoffbuttons justnumber" id="valnimahasiswa" placeholder="Masukkan NIM" maxlength="10" onkeyup="onOffButtonUpdate(this, 'valnim')">
           </div>
 
           <div class="col-12">
-            <button class="btn btn-primary btncari" type="submit" disabled>Cari</button>
+            <button class="btn btn-primary" id="valnim" type="submit" disabled>Cari</button>
           </div>
         </form>
 
@@ -508,46 +511,70 @@
 
         <form class="row g-3 needs-validation formnimdosen" novalidate>
           <div class="row g-3">
-            <div class="col-md-3">
+            <div class="col-md-2">
               <label class="form-label">Kelas</label>
               <select class="form-select validation0" id="valkelasjadwal" required>
-                <!-- <option value="" selected>Pilih</option>
-                <option value="Laki-Laki">Laki-Laki</option>
-                <option value="Perempuan">Perempuan</option> -->
+                <option value="" selected>Pilih</option>
+                <option value="TI11">TI11</option>
+                <option value="TI21">TI21</option>
+                <option value="TI31">TI31</option>
+                <option value="SI11">SI11</option>
+                <option value="SI21">SI21</option>
+                <option value="TK11">TK11</option>
               </select>
             </div>
-          </div>
 
-          <div class="row g-3">
             <div class="col-md-2">
               <label class="form-label">Hari</label>
-              <select class="form-select validation0" id="valharimahasiswa" required>
-                <!-- <option value="" selected>Pilih</option>
-                <option value="Laki-Laki">Laki-Laki</option>
-                <option value="Perempuan">Perempuan</option> -->
+              <select class="form-select validation0" id="valharijadwal" required>
+                <option value="" selected>Pilih</option>
+                <option value="Senin">Senin</option>
+                <option value="Selasa">Selasa</option>
+                <option value="Rabu">Rabu</option>
+                <option value="Kamis">Kamis</option>
+                <option value="Jumat">Jumat</option>
+                <option value="Sabtu">Sabtu</option>
               </select>
             </div>
-          </div>
 
-          <div class="row g-3">
             <div class="col-md">
               <label class="form-label">Mata Kuliah</label>
-              <select class="form-select validation0" id="valmkmahasiswa" required>
-                <!-- <option value="" selected>Pilih</option>
-                <option value="Laki-Laki">Laki-Laki</option>
-                <option value="Perempuan">Perempuan</option> -->
+              <select class="form-select validation0" id="valmkjadwal" required>
+                <option value="" selected>Pilih</option>
+                <option value="Pendidikan Agama">Pendidikan Agama</option>
+                <option value="Kalkulus I">Kalkulus I</option>
+                <option value="Kalkulus II">Kalkulus II</option>
+                <option value="Pengolahan Basis Data">Pengolahan Basis Data</option>
+                <option value="Pengolahan Website">Pengolahan Website</option>
               </select>
             </div>
 
             <div class="col-md-2">
               <label class="form-label">Jam</label>
-              <select class="form-select validation0" id="valjammahasiswa" required>
-                <!-- <option value="" selected>Pilih</option>
-                <option value="Laki-Laki">Laki-Laki</option>
-                <option value="Perempuan">Perempuan</option> -->
+              <select class="form-select validation0" id="valjamjadwal" required>
+                <option value="" selected>Pilih</option>
+                <option value="08.00">08.00</option>
+                <option value="10.00">10.00</option>
+                <option value="12.00">12.00</option>
+                <option value="14.00">14.00</option>
+                <option value="16.00">16.00</option>
+                <option value="19.00">19.00</option>
               </select>
             </div>
           </div>
+
+          <div class="row g-3">
+            <div class="col-md-5">
+              <label class="form-label">Dosen</label>
+              <select class="form-select validation0" id="valdosenjadwal" required>
+                <option value="" selected>Pilih</option>
+                <option value="Derry Alamsyah">Derry Alamsyah</option>
+                <option value="Tinalia">Tinalia</option>
+                <option value="Rusman Hadi">Rusman Hadi</option>
+                <option value="Maria Limasta">Maria Limasta</option>
+                <option value="Dewi Sari">Dewi Sari</option>
+              </select>
+            </div>
 
           <div class="row g-3">
             <div class="col-12">
@@ -556,14 +583,38 @@
           </div>
         </form>
       </div>
+
+      <br>
+
+      <table class="table" id="tablejadwal">
+        <thead class="table-dark">
+          <tr>
+            <th>No</th>
+            <th>Kelas</th>
+            <th>Hari</th>
+            <th>Mata Kuliah</th>
+            <th>Jam</th>
+            <th>Dosen</th>
+          </tr>
+        </thead>
+        <tbody id="edittable">
+          <tr>
+            <td colspan="6">Kosong</td>
+          </tr>
+        </tbody>
+      </table>
+      
     </main>
     
     <script src="jquery-3.6.1.js"></script>
     <script src="bootstrap.bundle.min.js"></script>
     <script src="sidebars.js"></script>
     <script src="jbvalidator.min.js"></script>
-    <script src="onoffButton.js"></script>
-
+    <script src="onoffbuttonupdate.js"></script>
+    <script src="justnumber.js"></script>
+    <script src="sidebarsbutton.js"></script>
+    <script src="dropdownpendidikan.js"></script>
+    <script src="tableeditable.js"></script>
 
     <script>
       //membuat validasi (pastikan form class .needs-validation dan atribut novalidate)
@@ -585,85 +636,6 @@
         // };
       });
 
-      $(".bdosen").click(function (e) {
-        e.preventDefault();
-        $(".divformdosen").attr("hidden", false);
-        $(".divformmahasiswa").attr("hidden", true);
-        $(".divupdatedosen").attr("hidden", true);
-        $(".divupdatemahasiswa").attr("hidden", true);
-        $(".divmakeschedule").attr("hidden", true);
-        $(".validation0").val('');
-      });
-
-      $(".bmahasiswa").click(function (e) {
-        e.preventDefault();
-        $(".divformmahasiswa").attr("hidden", false);
-        $(".divformdosen").attr("hidden", true);
-        $(".divupdatedosen").attr("hidden", true);
-        $(".divupdatemahasiswa").attr("hidden", true);
-        $(".divmakeschedule").attr("hidden", true);
-        $(".validation0").val('');
-      });
-
-      $(".udosen").click(function (e) {
-        e.preventDefault();
-        $(".divupdatedosen").attr("hidden", false);
-        $(".divupdatemahasiswa").attr("hidden", true);
-        $(".divformdosen").attr("hidden", true);
-        $(".divformmahasiswa").attr("hidden", true);
-        $(".divmakeschedule").attr("hidden", true);
-        $(".validation0").val('');
-      });
-
-      $(".umahasiswa").click(function (e) {
-        e.preventDefault();
-        $(".divupdatemahasiswa").attr("hidden", false);
-        $(".divupdatedosen").attr("hidden", true);
-        $(".divformdosen").attr("hidden", true);
-        $(".divformmahasiswa").attr("hidden", true);
-        $(".divmakeschedule").attr("hidden", true);
-        $(".validation0").val('');
-      });
-
-      $(".lmatakuliah").click(function (e) {  
-        e.preventDefault();
-        $(".divmakeschedule").attr("hidden", false);
-        $(".divupdatemahasiswa").attr("hidden", true);
-        $(".divupdatedosen").attr("hidden", true);
-        $(".divformdosen").attr("hidden", true);
-        $(".divformmahasiswa").attr("hidden", true);
-        $(".validation0").val('');
-      });
-
-      //membuat fungsi pendidikan terakhir dan jurusan
-      $(".pilihpendidikan").change(function (e) {
-        var pilihpendidikan = $(".pilihpendidikan").val();
-        if (pilihpendidikan == 'SMA/SMK'){
-          e.preventDefault();
-          $(".pilihjurusan").empty();
-          $(".pilihjurusan").append(`
-            <option value="">Pilih</option>
-            <option value="Komputer">Komputer</option>
-          `);
-        }
-
-        else if (pilihpendidikan == 'S1' || pilihpendidikan == 'S2'){
-          e.preventDefault();
-          $(".pilihjurusan").empty();
-          $(".pilihjurusan").append(`
-            <option value="">Pilih</option>
-            <option value="Teknik Informatika">Teknik Informatika</option>
-            <option value="Sistem Informasi">Sistem Informasi</option>
-            <option value="Teknik Komputer">Teknik Komputer</option>
-          `);
-        }
-
-        else  {
-          e.preventDefault();
-          $(".pilihjurusan").empty();
-        }
-      });
-
       //membuat fungsi hide and show password
       // $(".hideseekpass").click(function(e) {
       //   var jenis = $(".tipepassword input");
@@ -681,29 +653,29 @@
       // });
 
       //membuat fungsi tombol "Ubah Data" menjadi tombol "Update" dan merubah tampilan kolom formulir
-      $("#btnubahdosen").click(function (e) {
-        e.preventDefault();
-        $("#btnupdatedosen").attr("hidden", false);
-        $("#btnubahdosen").attr("hidden", true);
-        $(".canedit").attr("readonly", false);
-        $(".canedit").attr("disabled", false);
-        $(".edittext").removeClass("form-control-plaintext");
-        $(".edittext").addClass("form-control");
-        $(".editselect").removeClass("form-select-plaintext");
-        $(".editselect").addClass("form-select");
-      });
+      // $("#btnubahdosen").click(function (e) {
+      //   e.preventDefault();
+      //   $("#btnupdatedosen").attr("hidden", false);
+      //   $("#btnubahdosen").attr("hidden", true);
+      //   $(".canedit").attr("readonly", false);
+      //   $(".canedit").attr("disabled", false);
+      //   $(".edittext").removeClass("form-control-plaintext");
+      //   $(".edittext").addClass("form-control");
+      //   $(".editselect").removeClass("form-select-plaintext");
+      //   $(".editselect").addClass("form-select");
+      // });
 
-      $("#btnubahmahasiswa").click(function (e) {
-        e.preventDefault();
-        $("#btnupdatemahasiswa").attr("hidden", false);
-        $("#btnubahmahasiswa").attr("hidden", true);
-        $(".canedit").attr("readonly", false);
-        $(".canedit").attr("disabled", false);
-        $(".edittext").removeClass("form-control-plaintext");
-        $(".edittext").addClass("form-control");
-        $(".editselect").removeClass("form-select-plaintext");
-        $(".editselect").addClass("form-select");
-      });
+      // $("#btnubahmahasiswa").click(function (e) {
+      //   e.preventDefault();
+      //   $("#btnupdatemahasiswa").attr("hidden", false);
+      //   $("#btnubahmahasiswa").attr("hidden", true);
+      //   $(".canedit").attr("readonly", false);
+      //   $(".canedit").attr("disabled", false);
+      //   $(".edittext").removeClass("form-control-plaintext");
+      //   $(".edittext").addClass("form-control");
+      //   $(".editselect").removeClass("form-select-plaintext");
+      //   $(".editselect").addClass("form-select");
+      // });
 
 
 

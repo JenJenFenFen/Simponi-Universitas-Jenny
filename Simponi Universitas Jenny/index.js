@@ -15,8 +15,14 @@ app.use(bodyparser.json());
 app.use(express.static(path.join(__dirname, "library")));
 app.use(express.static(path.join(__dirname, "function")));
 
+//HTML master
 app.get('/homepage-master', (req, res) => {
     res.sendFile(path.join(__dirname, '/HTML/index-master.html'));
+});
+
+//HTML dosen
+app.get('/homepage-lecturer', (req, res) => {
+    res.sendFile(path.join(__dirname, '/HTML/index-dosen.html'));
 });
 
 //membaca port

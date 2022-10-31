@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Simponi - Dosen</title>
+    <title>Simponi - Master</title>
 
-    <link href="/simponi universitas jenny/library/bootstrap.min.css" rel="stylesheet">
-    <link href="/simponi universitas jenny/library/sidebars.css" rel="stylesheet">
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="sidebars.css" rel="stylesheet">
 
     <style>
       .bd-placeholder-img {
@@ -69,8 +69,16 @@
         background-color: #060af8;
       }
 
-      li:hover {
+      .list1:hover {
         background-color: #060af8;
+      }
+
+      .bdosen, .bmahasiswa, .udosen, .umahasiswa, .lmatakuliah {
+        cursor: pointer;
+      }
+
+      .btn-toggle::before {
+        color: #ffffff;
       }
     </style>
     
@@ -78,25 +86,31 @@
   <body>
 
     <main class="d-flex flex-nowrap">
-      <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
+      <!-- sidebar -->
+      <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 290px;">
         <span class="fs-4">SIMPONI UNIVERSITAS JENNY</span>
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
-          <li class="nav-item rounded">
-            <a href="#" class="nav-link text-white">
-              Jadwal Mata Kuliah
+          <li class="rounded list1">
+            <a class="nav-link text-white">
+              <b>Jadwal Mata Kuliah</b>
             </a>
           </li>
-          <li class="rounded">
-            <a href="#" class="nav-link text-white">
-              Membuat Tugas
+
+          <li class="rounded list1">
+            <a class="nav-link text-white">
+              <b>Membuat Tugas</b>
             </a>
           </li>
         </ul>
         <hr>
         <div class="dropdown">
           <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            <strong>mdo</strong> <!-- user -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-person-circle me-2" viewBox="0 0 16 16">
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+              <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+            </svg>
+            <strong id="users">Dosen 1</strong> <!-- user -->
           </a>
           <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
             <li><a class="dropdown-item" href="#">Profile</a></li>
@@ -108,15 +122,494 @@
 
       <div class="b-example-divider b-example-vr"></div>
 
-      <div class="d-flex flex-column flex-shrink-0 p-3 result0" style="width: 1062px;">
-        <h1 class="fs-4" style="text-align: center; margin-top: auto; margin-bottom: auto;">HALO, SELAMAT DATANG DI SIMPONI UNIVERSITAS JENNY</h1>
+      <!-- display daftar dosen -->
+      <div class="flex-column flex-shrink-0 p-3 divformdosen" style="width: 1052px; overflow: auto;" hidden>
+        <h1>FORMULIR PENDAFTARAN DOSEN</h1>
 
+        <br><br>
 
+        <form class="row g-3 needs-validation formdaftardosen" novalidate>
+          <div class="row g-3">
+            <div class="col-md-9">
+              <label class="form-label">Nama Lengkap</label>
+              <input type="text" class="form-control validation0" id="valnamadosen" required>
+            </div>
+
+            <div class="col-md">
+              <label class="form-label">Gender</label>
+              <select class="form-select validation0" id="valgenderdosen" required>
+                <option value="" selected>Pilih</option>
+                <option value="Laki-Laki">Laki-Laki</option>
+                <option value="Perempuan">Perempuan</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-md">
+              <label class="form-label">Tempat Lahir</label>
+              <input type="text" class="form-control validation0" id="valtempatdosen" required>
+            </div>
+
+            <div class="col-md">
+              <label class="form-label">Tanggal Lahir</label>
+              <input type="date" class="form-control validation0" id="valtanggaldosen" required>
+            </div>
+
+            <div class="col-md">
+              <label class="form-label">Status</label>
+              <select class="form-select validation0" id="valsttsdosen" required>
+                <option value="" selected>Pilih</option>
+                <option value="Belum Menikah">Belum Menikah</option>
+                <option value="Menikah">Menikah</option>
+                <option value="Duda/Janda">Duda/Janda</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-md-2">
+              <label class="form-label">Pendidikan Terakhir</label>
+              <select class="form-select validation0" id="valedudosen" required>
+                <option value="" selected>Pilih</option>
+                <option value="S1">S1</option>
+                <option value="S2">S2</option>
+                <option value="S3">S3</option>
+              </select>
+            </div>
+
+            <div class="col-md-4">
+              <label class="form-label">Jurusan</label>
+              <select class="form-select validation0" id="valmajordosen" required>
+                <option value="" selected>Pilih</option>
+                <option value="Teknik Informatika">Teknik Informatika</option>
+                <option value="Sistem Informasi">Sistem Informasi</option>
+                <option value="Teknik Komputer">Teknik Komputer</option>
+              </select>
+            </div>
+
+            <div class="col-sm">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control validation0" id="valemaildosen" required>
+            </div>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-md-9">
+              <label class="form-label">Alamat</label>
+              <input type="text" class="form-control validation0" id="valalamatdosen" required>
+            </div>
+
+            <div class="col-md">
+              <label class="form-label">Nomor Handphone</label>
+              <input type="text" class="form-control validation0" id="valnhpdosen" required>
+            </div>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-12">
+              <button class="btn btn-primary" id="btndaftardosen" type="submit">Daftarkan</button>
+            </div>
+          </div>
+        </form>
       </div>
-    </main>
 
-    <script src="/simponi universitas jenny/library/bootstrap.bundle.min.js"></script>
-    <script src="/simponi universitas jenny/library/sidebars.js"></script>
+      <!-- display daftar mahasiswa -->
+      <div class="flex-column flex-shrink-0 p-3 divformmahasiswa" style="width: 1052px; overflow: auto;" hidden>
+        <h1>FORMULIR PENDAFTARAN MAHASISWA</h1>
+
+        <br><br>
+
+        <form class="row g-3 needs-validation formdaftarmahasiswa1" novalidate>
+          <div class="row g-3">
+            <div class="col-md-9">
+              <label class="form-label">Nama Lengkap</label>
+              <input type="text" class="form-control validation0" id="valnamamahasiswa" required>
+            </div>
+
+            <div class="col-md">
+              <label class="form-label">Gender</label>
+              <select class="form-select validation0" id="valgendermahasiswa" required>
+                <option value="" selected>Pilih</option>
+                <option value="Laki-Laki">Laki-Laki</option>
+                <option value="Perempuan">Perempuan</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-md">
+              <label class="form-label">Tempat Lahir</label>
+              <input type="text" class="form-control validation0" id="valtempatmahasiswa" required>
+            </div>
+
+            <div class="col-md">
+              <label class="form-label">Tanggal Lahir</label>
+              <input type="date" class="form-control validation0" id="valtanggalmahasiswa" required>
+            </div>
+
+            <div class="col-md">
+              <label class="form-label">Status</label>
+              <select class="form-select validation0" id="valsttsmahasiswa" required>
+                <option value="" selected>Pilih</option>
+                <option value="Belum Menikah">Belum Menikah</option>
+                <option value="Menikah">Menikah</option>
+                <option value="Duda/Janda">Duda/Janda</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-md-2">
+              <label class="form-label">Pendidikan Terakhir</label>
+              <select class="form-select validation0 pilihpendidikan" id="valedumahasiswa" required>
+                <option value="" selected>Pilih</option>
+                <option value="SMA/SMK">SMA/SMK</option>
+                <option value="S1">S1</option>
+                <option value="S2">S2</option>
+              </select>
+            </div>
+
+            <div class="col-md-4">
+              <label class="form-label">Jurusan</label>
+              <select class="form-select validation0 pilihjurusan" id="valmajormahasiswa" required></select>
+            </div>
+
+            <div class="col-sm">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control validation0" id="valemailmahasiswa" required>
+            </div>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-md-9">
+              <label class="form-label">Alamat</label>
+              <input type="text" class="form-control validation0" id="valalamatmahasiswa" required>
+            </div>
+
+            <div class="col-md">
+              <label class="form-label">Nomor Handphone</label>
+              <input type="text" class="form-control validation0" id="valnhpmahasiswa" required>
+            </div>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-md-8">
+              <label class="form-label">Jurusan yang Diambil</label>
+              <select class="form-select validation0" id="valjurusanambilmahasiswa" required>
+                <option value="" selected>Pilih</option>
+                <option value="Teknik Informatika">Teknik Informatika</option>
+                <option value="Sistem Informasi">Sistem Informasi</option>
+                <option value="Teknik Komputer">Teknik Komputer</option>
+              </select>
+            </div>
+
+            <div class="col-md">
+              <label class="form-label">Semester</label>
+              <input type="text" readonly class="form-control-plaintext" id="valsemestermahasiswa" value="1">
+            </div>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-12">
+              <button class="btn btn-primary" id="btndaftarmahasiswa" type="submit">Daftarkan</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- display update data dosen -->
+      <div class="flex-column flex-shrink-0 p-3 divupdatedosen" style="width: 1052px; overflow: auto;" hidden>
+        <h1>UPDATE DATA DOSEN</h1>
+
+        <br><br>
+
+        <form class="row row-cols-lg-auto g-3 align-items-center formnidosen">
+          <div class="col-12">
+            <input type="text" class="form-control validation0 onoffbuttons justnumber" id="valnidosen" placeholder="Masukkan NID" maxlength="10" onkeyup="onOffButtonUpdate(this, 'valnid')">
+          </div>
+
+          <div class="col-12">
+            <button class="btn btn-primary" id="valnid" type="submit" disabled>Cari</button>
+          </div>
+        </form>
+
+        <br><br>
+
+        <form class="row g-6 formupdatedosen">
+          <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label">Nama Dosen</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control-plaintext canedit edittext" id="hasilnamadosen" value="Jenny" readonly>
+            </div>
+          </div>
+
+          <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label">Jurusan</label>
+            <div class="col-sm-10">
+              <select class="form-select-plaintext canedit editselect" id="hasiljurusandosen" disabled>
+                <option value="Teknik Informatika">Teknik Informatika</option>
+                <option value="Sistem Informasi">Sistem Informasi</option>
+                <option value="Teknik Komputer">Teknik Komputer</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label">Pendidikan Terakhir</label>
+            <div class="col-sm-10">
+              <select class="form-select-plaintext canedit editselect" id="hasilpendidikandosen" disabled>
+                <option value="S2">S2</option>
+                <option value="S3">S3</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label">Status</label>
+            <div class="col-sm-10">
+              <select class="form-select-plaintext canedit editselect" id="hasilstatusdosen" disabled>
+                <option value="Belum Menikah">Belum Menikah</option>
+                <option value="Menikah">Menikah</option>
+                <option value="Teknik Komputer">Duda/Janda</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label">Alamat</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control-plaintext canedit edittext" id="hasilalamatdosen" value="Haji Alim No.1" readonly>
+            </div>
+          </div>
+
+          <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label">Nomor Handphone</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control-plaintext canedit edittext" id="hasilhpdosen" value="082282017085" readonly>
+            </div>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-12">
+              <button class="btn btn-primary" id="btnubahdosen" type="submit">Ubah Data</button>
+              <button class="btn btn-primary" id="btnupdatedosen" type="submit" hidden>Update</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- display update data mahasiswa -->
+      <div class="flex-column flex-shrink-0 p-3 divupdatemahasiswa" style="width: 1052px; overflow: auto;" hidden>
+        <h1>UPDATE DATA MAHASISWA</h1>
+
+        <br><br>
+
+        <form class="row row-cols-lg-auto g-3 align-items-center formnimahasiswa">
+          <div class="col-12">
+            <input type="text" class="form-control validation0 onoffbuttons justnumber" id="valnimahasiswa" placeholder="Masukkan NIM" maxlength="10" onkeyup="onOffButtonUpdate(this, 'valnim')">
+          </div>
+
+          <div class="col-12">
+            <button class="btn btn-primary" id="valnim" type="submit" disabled>Cari</button>
+          </div>
+        </form>
+
+        <br><br>
+
+        <form class="row g-6 formupdatemahasiswa">
+          <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label">Nama Mahasiswa</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control-plaintext canedit edittext" id="hasilnamamahasiswa" value="Jenny" readonly>
+            </div>
+          </div>
+
+          <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label">Jurusan</label>
+            <div class="col-sm-10">
+              <select class="form-select-plaintext canedit editselect" id="hasiljurusanmahasiswa" disabled>
+                <option value="Teknik Informatika">Teknik Informatika</option>
+                <option value="Sistem Informasi">Sistem Informasi</option>
+                <option value="Teknik Komputer">Teknik Komputer</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label">Semester</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control-plaintext canedit edittext" id="hasilalamatmahasiswa" value="1" readonly>
+            </div>
+          </div>
+
+          <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label">Status</label>
+            <div class="col-sm-10">
+              <select class="form-select-plaintext canedit editselect" id="hasilstatusmahasiswa" disabled>
+                <option value="Belum Menikah">Belum Menikah</option>
+                <option value="Menikah">Menikah</option>
+                <option value="Duda/Janda">Duda/Janda</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label">Alamat</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control-plaintext canedit edittext" id="hasilalamatmahasiswa" value="Haji Alim No.1" readonly>
+            </div>
+          </div>
+
+          <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label">Nomor Handphone</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control-plaintext canedit edittext" id="hasilhpmahasiswa" value="082282017085" readonly>
+            </div>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-12">
+              <button class="btn btn-primary" id="btnubahmahasiswa" type="submit">Ubah Data</button>
+              <button class="btn btn-primary" id="btnupdatemahasiswa" type="submit" hidden>Update</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- display membuat jadwal mata kuliah -->
+      <div class="flex-column flex-shrink-0 p-3 divmakeschedule" style="width: 1052px; overflow: auto;" hidden>
+        <h1>MEMBUAT JADWAL MATA KULIAH</h1>
+
+        <br><br>
+
+        <form class="row g-3 needs-validation formnimdosen" novalidate>
+          <div class="row g-3">
+            <div class="col-md-2">
+              <label class="form-label">Kelas</label>
+              <select class="form-select validation0" id="valkelasjadwal" required>
+                <option value="" selected>Pilih</option>
+                <option value="TI11">TI11</option>
+                <option value="TI21">TI21</option>
+                <option value="TI31">TI31</option>
+                <option value="SI11">SI11</option>
+                <option value="SI21">SI21</option>
+                <option value="TK11">TK11</option>
+              </select>
+            </div>
+
+            <div class="col-md-2">
+              <label class="form-label">Hari</label>
+              <select class="form-select validation0" id="valharijadwal" required>
+                <option value="" selected>Pilih</option>
+                <option value="Senin">Senin</option>
+                <option value="Selasa">Selasa</option>
+                <option value="Rabu">Rabu</option>
+                <option value="Kamis">Kamis</option>
+                <option value="Jumat">Jumat</option>
+                <option value="Sabtu">Sabtu</option>
+              </select>
+            </div>
+
+            <div class="col-md">
+              <label class="form-label">Mata Kuliah</label>
+              <select class="form-select validation0" id="valmkjadwal" required>
+                <option value="" selected>Pilih</option>
+                <option value="Pendidikan Agama">Pendidikan Agama</option>
+                <option value="Kalkulus I">Kalkulus I</option>
+                <option value="Kalkulus II">Kalkulus II</option>
+                <option value="Pengolahan Basis Data">Pengolahan Basis Data</option>
+                <option value="Pengolahan Website">Pengolahan Website</option>
+              </select>
+            </div>
+
+            <div class="col-md-2">
+              <label class="form-label">Jam</label>
+              <select class="form-select validation0" id="valjamjadwal" required>
+                <option value="" selected>Pilih</option>
+                <option value="08.00">08.00</option>
+                <option value="10.00">10.00</option>
+                <option value="12.00">12.00</option>
+                <option value="14.00">14.00</option>
+                <option value="16.00">16.00</option>
+                <option value="19.00">19.00</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-md-5">
+              <label class="form-label">Dosen</label>
+              <select class="form-select validation0" id="valdosenjadwal" required>
+                <option value="" selected>Pilih</option>
+                <option value="Derry Alamsyah">Derry Alamsyah</option>
+                <option value="Tinalia">Tinalia</option>
+                <option value="Rusman Hadi">Rusman Hadi</option>
+                <option value="Maria Limasta">Maria Limasta</option>
+                <option value="Dewi Sari">Dewi Sari</option>
+              </select>
+            </div>
+
+          <div class="row g-3">
+            <div class="col-12">
+              <button class="btn btn-primary" id="btnjadwal" type="submit">Input Jadwal</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <br>
+
+      <table class="table" id="tablejadwal">
+        <thead class="table-dark">
+          <tr>
+            <th>No</th>
+            <th>Kelas</th>
+            <th>Hari</th>
+            <th>Mata Kuliah</th>
+            <th>Jam</th>
+            <th>Dosen</th>
+          </tr>
+        </thead>
+        <tbody id="edittable">
+          <tr>
+            <td colspan="6">Kosong</td>
+          </tr>
+        </tbody>
+      </table>
+      
+    </main>
+    
+    <script src="jquery-3.6.1.js"></script>
+    <script src="bootstrap.bundle.min.js"></script>
+    <script src="sidebars.js"></script>
+    <script src="jbvalidator.min.js"></script>
+    <script src="onoffbuttonupdate.js"></script>
+    <script src="justnumber.js"></script>
+    <script src="sidebarsbutton.js"></script>
+    <script src="dropdownpendidikan.js"></script>
+    <script src="tableeditable.js"></script>
+
+    <script>
+      //membuat validasi (pastikan form class .needs-validation dan atribut novalidate)
+      $(function (){
+        var validator = $(".needs-validation").jbvalidator({
+          errorMessage: true,
+          successClass: true,
+          language: "https://emretulek.github.io/jbvalidator/dist/lang/en.json"
+        });
+
+        // validator.validator.password = function(el, event){
+        //   if($(el).is('[id=valpassworddosen]') && $(el).val().length < 8){
+        //       return 'Your password is too weak.';
+        //   }
+
+        //   else if($(el).is('[id=valpasswordmahasiswa]') && $(el).val().length < 8){
+        //     return 'Your password is too weak.';
+        //   }
+        // };
+      });
+    </script>
 
 
   </body>
