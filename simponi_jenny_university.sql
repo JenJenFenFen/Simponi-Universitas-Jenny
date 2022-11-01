@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 31, 2022 at 11:02 AM
+-- Generation Time: Nov 01, 2022 at 10:56 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -30,6 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `class` (
   `id` int(11) NOT NULL,
   `student_identity_id` int(11) NOT NULL,
+  `material_id` int(11) NOT NULL,
   `class_name` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -62,9 +63,7 @@ CREATE TABLE `lecturer_identity` (
 
 CREATE TABLE `major` (
   `id` int(11) NOT NULL,
-  `major_name` varchar(255) NOT NULL,
-  `material_id` int(11) NOT NULL,
-  `class_id` int(11) NOT NULL
+  `major_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -107,7 +106,7 @@ INSERT INTO `rule` (`id`, `rule_name`) VALUES
 CREATE TABLE `schedule` (
   `id` int(11) NOT NULL,
   `lecturer_identity_id` int(11) NOT NULL,
-  `major_id` int(11) NOT NULL,
+  `class_id` int(11) NOT NULL,
   `day` varchar(20) NOT NULL,
   `clock` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -139,17 +138,30 @@ CREATE TABLE `student_identity` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `task`
+-- Table structure for table `task_lecturer`
 --
 
-CREATE TABLE `task` (
+CREATE TABLE `task_lecturer` (
   `id` int(11) NOT NULL,
   `lecturer_identity_id` int(11) NOT NULL,
-  `major_id` int(11) NOT NULL,
+  `class_id` int(11) NOT NULL,
   `task_name` varchar(100) NOT NULL,
+  `description` varchar(500) DEFAULT NULL,
   `task_file` blob NOT NULL,
   `deadline` datetime NOT NULL,
-  `score` int(11) NOT NULL
+  `score` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `task_student`
+--
+
+CREATE TABLE `task_student` (
+  `id` int(11) NOT NULL,
+  `task_lecturer_id` int(11) NOT NULL,
+  `task_file` blob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -173,7 +185,8 @@ CREATE TABLE `user_login` (
 --
 ALTER TABLE `class`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `student_identity_id` (`student_identity_id`);
+  ADD KEY `student_identity_id` (`student_identity_id`),
+  ADD KEY `material_id` (`material_id`);
 
 --
 -- Indexes for table `lecturer_identity`
@@ -187,9 +200,7 @@ ALTER TABLE `lecturer_identity`
 -- Indexes for table `major`
 --
 ALTER TABLE `major`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `material_id` (`material_id`),
-  ADD KEY `class_id` (`class_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `material`
@@ -209,7 +220,7 @@ ALTER TABLE `rule`
 ALTER TABLE `schedule`
   ADD PRIMARY KEY (`id`),
   ADD KEY `lecturer_identity_id` (`lecturer_identity_id`),
-  ADD KEY `major_id` (`major_id`);
+  ADD KEY `class_id` (`class_id`);
 
 --
 -- Indexes for table `student_identity`
@@ -221,12 +232,19 @@ ALTER TABLE `student_identity`
   ADD KEY `major_id` (`major_id`);
 
 --
--- Indexes for table `task`
+-- Indexes for table `task_lecturer`
 --
-ALTER TABLE `task`
+ALTER TABLE `task_lecturer`
   ADD PRIMARY KEY (`id`),
   ADD KEY `lecturer_identity_id` (`lecturer_identity_id`),
-  ADD KEY `major_id` (`major_id`);
+  ADD KEY `class_id` (`class_id`);
+
+--
+-- Indexes for table `task_student`
+--
+ALTER TABLE `task_student`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `task_lecturer_id` (`task_lecturer_id`);
 
 --
 -- Indexes for table `user_login`
@@ -282,9 +300,15 @@ ALTER TABLE `student_identity`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `task`
+-- AUTO_INCREMENT for table `task_lecturer`
 --
-ALTER TABLE `task`
+ALTER TABLE `task_lecturer`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `task_student`
+--
+ALTER TABLE `task_student`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -295,7 +319,8 @@ ALTER TABLE `task`
 -- Constraints for table `class`
 --
 ALTER TABLE `class`
-  ADD CONSTRAINT `class_ibfk_1` FOREIGN KEY (`student_identity_id`) REFERENCES `student_identity` (`id`);
+  ADD CONSTRAINT `class_ibfk_1` FOREIGN KEY (`student_identity_id`) REFERENCES `student_identity` (`id`),
+  ADD CONSTRAINT `class_ibfk_2` FOREIGN KEY (`material_id`) REFERENCES `material` (`id`);
 
 --
 -- Constraints for table `lecturer_identity`
@@ -304,18 +329,11 @@ ALTER TABLE `lecturer_identity`
   ADD CONSTRAINT `lecturer_identity_ibfk_1` FOREIGN KEY (`user_login_email`) REFERENCES `user_login` (`email`);
 
 --
--- Constraints for table `major`
---
-ALTER TABLE `major`
-  ADD CONSTRAINT `major_ibfk_1` FOREIGN KEY (`material_id`) REFERENCES `material` (`id`),
-  ADD CONSTRAINT `major_ibfk_2` FOREIGN KEY (`class_id`) REFERENCES `class` (`id`);
-
---
 -- Constraints for table `schedule`
 --
 ALTER TABLE `schedule`
   ADD CONSTRAINT `schedule_ibfk_3` FOREIGN KEY (`lecturer_identity_id`) REFERENCES `lecturer_identity` (`id`),
-  ADD CONSTRAINT `schedule_ibfk_4` FOREIGN KEY (`major_id`) REFERENCES `major` (`id`);
+  ADD CONSTRAINT `schedule_ibfk_4` FOREIGN KEY (`class_id`) REFERENCES `class` (`id`);
 
 --
 -- Constraints for table `student_identity`
@@ -325,11 +343,17 @@ ALTER TABLE `student_identity`
   ADD CONSTRAINT `student_identity_ibfk_2` FOREIGN KEY (`major_id`) REFERENCES `major` (`id`);
 
 --
--- Constraints for table `task`
+-- Constraints for table `task_lecturer`
 --
-ALTER TABLE `task`
-  ADD CONSTRAINT `task_ibfk_2` FOREIGN KEY (`lecturer_identity_id`) REFERENCES `lecturer_identity` (`id`),
-  ADD CONSTRAINT `task_ibfk_3` FOREIGN KEY (`major_id`) REFERENCES `major` (`id`);
+ALTER TABLE `task_lecturer`
+  ADD CONSTRAINT `task_lecturer_ibfk_2` FOREIGN KEY (`lecturer_identity_id`) REFERENCES `lecturer_identity` (`id`),
+  ADD CONSTRAINT `task_lecturer_ibfk_3` FOREIGN KEY (`class_id`) REFERENCES `class` (`id`);
+
+--
+-- Constraints for table `task_student`
+--
+ALTER TABLE `task_student`
+  ADD CONSTRAINT `task_student_ibfk_1` FOREIGN KEY (`task_lecturer_id`) REFERENCES `task_lecturer` (`id`);
 
 --
 -- Constraints for table `user_login`

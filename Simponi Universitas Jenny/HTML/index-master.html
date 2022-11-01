@@ -77,6 +77,23 @@
         cursor: pointer;
       }
 
+      .homepage-layer {
+        text-align: center;
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 60%;
+        transform: translate(-50%, -50%);
+      }
+      
+      .b-example-vr {
+        width: 0.5rem;
+      }
+
+      #tablejadwal {
+        margin: 20px 8px;
+      }
+
       .btn-toggle::before {
         color: #ffffff;
       }
@@ -131,7 +148,9 @@
             </a>
           </li>
         </ul>
+
         <hr>
+        
         <div class="dropdown">
           <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-person-circle me-2" viewBox="0 0 16 16">
@@ -147,6 +166,14 @@
       </div>
 
       <div class="b-example-divider b-example-vr"></div>
+
+      <!-- display homepage -->
+      <div class="flex-column flex-shrink-0 p-3 homepage" style="width: 1052px;">
+        <div class="homepage-layer">
+          <h1>SELAMAT DATANG</h1>
+          <h1>MASTER 1</h1>
+        </div>
+      </div>
 
       <!-- display daftar dosen -->
       <div class="flex-column flex-shrink-0 p-3 divformdosen" style="width: 1052px; overflow: auto;" hidden>
@@ -509,7 +536,8 @@
 
         <br><br>
 
-        <form class="row g-3 needs-validation formnimdosen" novalidate>
+        <form class="row g-3 formnimdosen">
+          <!-- needs-validation novalidate -->
           <div class="row g-3">
             <div class="col-md-2">
               <label class="form-label">Kelas</label>
@@ -582,42 +610,41 @@
             </div>
           </div>
         </form>
+
+        <br>
+
+        <table class="table" id="tablejadwal">
+          <thead class="table-dark">
+            <tr>
+              <th>No</th>
+              <th>Kelas</th>
+              <th>Hari</th>
+              <th>Mata Kuliah</th>
+              <th>Jam</th>
+              <th>Dosen</th>
+            </tr>
+          </thead>
+          <tbody id="edittable">
+            <tr>
+              <td colspan="6" style="text-align: center;">Kosong</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-
-      <br>
-
-      <table class="table" id="tablejadwal">
-        <thead class="table-dark">
-          <tr>
-            <th>No</th>
-            <th>Kelas</th>
-            <th>Hari</th>
-            <th>Mata Kuliah</th>
-            <th>Jam</th>
-            <th>Dosen</th>
-          </tr>
-        </thead>
-        <tbody id="edittable">
-          <tr>
-            <td colspan="6">Kosong</td>
-          </tr>
-        </tbody>
-      </table>
-      
     </main>
     
     <script src="jquery-3.6.1.js"></script>
     <script src="bootstrap.bundle.min.js"></script>
     <script src="sidebars.js"></script>
     <script src="jbvalidator.min.js"></script>
-    <script src="onoffbuttonupdate.js"></script>
+    <script src="master-onoffbuttonupdate.js"></script>
     <script src="justnumber.js"></script>
-    <script src="sidebarsbutton.js"></script>
-    <script src="dropdownpendidikan.js"></script>
-    <script src="tableeditable.js"></script>
+    <script src="master-sidebarsbutton.js"></script>
+    <script src="master-dropdownpendidikan.js"></script>
+    <script src="master-tableeditable.js"></script>
 
     <script>
-      //membuat validasi (pastikan form class .needs-validation dan atribut novalidate)
+      //membuat validasi (pastikan form class .needs-validation, atribut novalidate di div dan atribut require di setiap input)
       $(function (){
         var validator = $(".needs-validation").jbvalidator({
           errorMessage: true,

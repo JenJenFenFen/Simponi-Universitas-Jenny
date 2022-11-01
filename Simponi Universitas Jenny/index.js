@@ -12,8 +12,8 @@ app.use(bodyparser.urlencoded ({
 app.use(bodyparser.json());
 
 //koneksi ke file css dan js
-app.use(express.static(path.join(__dirname, "library")));
-app.use(express.static(path.join(__dirname, "function")));
+app.use(express.static(path.join(__dirname, 'library')));
+app.use(express.static(path.join(__dirname, 'function')));
 
 //HTML master
 app.get('/homepage-master', (req, res) => {
@@ -23,6 +23,11 @@ app.get('/homepage-master', (req, res) => {
 //HTML dosen
 app.get('/homepage-lecturer', (req, res) => {
     res.sendFile(path.join(__dirname, '/HTML/index-dosen.html'));
+});
+
+//HTML mahasiswa
+app.get('/homepage-student', (req, res) => {
+    res.sendFile(path.join(__dirname, '/HTML/index-mahasiswa.html'));
 });
 
 //membaca port

@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Simponi - Master</title>
+    <title>Simponi - Student</title>
 
-    <link href="/simponi universitas jenny/library/bootstrap.min.css" rel="stylesheet">
-    <link href="/simponi universitas jenny/library/sidebars.css" rel="stylesheet">
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="sidebars.css" rel="stylesheet">
 
     <style>
       .bd-placeholder-img {
@@ -69,8 +69,33 @@
         background-color: #060af8;
       }
 
-      li:hover {
+      .list1:hover {
         background-color: #060af8;
+      }
+
+      .mtugas, .dtugas, .jmatakuliah {
+        cursor: pointer;
+      }
+
+      .homepage-layer {
+        text-align: center;
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 60%;
+        transform: translate(-50%, -50%);
+      }
+
+      .b-example-vr {
+        width: 0.5rem;
+      }
+
+      .stylea:hover {
+        color: #060af8;
+      }
+
+      .btn-toggle::before {
+        color: #ffffff;
       }
     </style>
     
@@ -78,25 +103,44 @@
   <body>
 
     <main class="d-flex flex-nowrap">
-      <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
+      <!-- sidebar -->
+      <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 290px;">
         <span class="fs-4">SIMPONI UNIVERSITAS JENNY</span>
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
-          <li class="nav-item rounded">
-            <a href="#" class="nav-link text-white">
-              Jadwal Mata Kuliah
+          <li class="rounded list1 jmatakuliah">
+            <a class="nav-link text-white">
+              <b>Jadwal Mata Kuliah</b>
             </a>
           </li>
-          <li class="rounded">
-            <a href="#" class="nav-link text-white">
+
+          <li class="nav-item">
+            <button class="btn btn-toggle text-white d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#daftar-collapse" aria-expanded="false">
               Daftar Tugas
-            </a>
+            </button>
+            <div class="collapse" id="daftar-collapse">
+              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                <li class="rounded list1 mtugas"><a class="link-white text-white d-inline-flex text-decoration-none">
+                  Belum Selesai
+                </a></li>
+
+                <li class="rounded list1 dtugas"><a class="link-white text-white d-inline-flex text-decoration-none">
+                  Sudah Selesai
+                </a></li>
+              </ul>
+            </div>
           </li>
         </ul>
+
         <hr>
+
         <div class="dropdown">
           <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            <strong>mdo</strong> <!-- user -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-person-circle me-2" viewBox="0 0 16 16">
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+              <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+            </svg>
+            <strong id="users">Mahasiswa 1</strong> <!-- user -->
           </a>
           <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
             <li><a class="dropdown-item" href="#">Profile</a></li>
@@ -108,15 +152,91 @@
 
       <div class="b-example-divider b-example-vr"></div>
 
-      <div class="d-flex flex-column flex-shrink-0 p-3 result0" style="width: 1062px;">
-        <h1 class="fs-4" style="text-align: center; margin-top: auto; margin-bottom: auto;">HALO, SELAMAT DATANG DI SIMPONI UNIVERSITAS JENNY</h1>
+      <!-- display homepage -->
+      <div class="flex-column flex-shrink-0 p-3 homepage" style="width: 1052px;" hidden>
+        <div class="homepage-layer">
+          <h1>SELAMAT DATANG</h1>
+          <h1>MAHASISWA 1</h1>
+        </div>
+      </div>
 
+      <!-- display jadwal mata kuliah -->
+      <div class="flex-column flex-shrink-0 p-3 divmatakuliah" style="width: 1052px; overflow: auto;" hidden>
+        <h1>JADWAL MATA KULIAH</h1>
 
+        <br><br>
+
+        <h4 class="title-kelas"></h4>
+
+        <table class="table" id="tabledaftarjadwalmahasiswa">
+          <thead class="table-dark">
+            <tr>
+              <th>No</th>
+              <th>Hari</th>
+              <th>Mata Kuliah</th>
+              <th>Jam</th>
+            </tr>
+          </thead>
+          <tbody id="edittable">
+            <tr>
+              <td colspan="4" style="text-align: center;">Kosong</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- display daftar tugas yang belum selesai -->
+      <div class="flex-column flex-shrink-0 p-3 div" style="width: 1052px; overflow: auto;">
+        <h1>TUGAS YANG BELUM SELESAI</h1>
+
+        <br><br>
+
+        <table class="table" id="tabledaftartugasbsmahasiswa">
+          <thead class="table-dark">
+            <tr>
+              <th>No</th>
+              <th>Kelas</th>
+              <th>Mata Kuliah</th>
+              <th>Deskripsi</th>
+              <th>Deadline</th>
+              <th>File</th>
+            </tr>
+          </thead>
+          <tbody id="edittable">
+            <tr>
+              <td colspan="6" style="text-align: center;">Kosong</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </main>
+    
+    <script src="jquery-3.6.1.js"></script>
+    <script src="bootstrap.bundle.min.js"></script>
+    <script src="sidebars.js"></script>
+    <script src="jbvalidator.min.js"></script>
+    <script src="mahasiswa-sidebarsbutton.js"></script>
 
-    <script src="/simponi universitas jenny/library/bootstrap.bundle.min.js"></script>
-    <script src="/simponi universitas jenny/library/sidebars.js"></script>
+    <script>
+      //membuat validasi (pastikan form class .needs-validation dan atribut novalidate)
+      $(function (){
+        var validator = $(".needs-validation").jbvalidator({
+          errorMessage: true,
+          successClass: true,
+          language: "https://emretulek.github.io/jbvalidator/dist/lang/en.json"
+        });
+
+        // validator.validator.password = function(el, event){
+        //   if($(el).is('[id=valpassworddosen]') && $(el).val().length < 8){
+        //       return 'Your password is too weak.';
+        //   }
+
+        //   else if($(el).is('[id=valpasswordmahasiswa]') && $(el).val().length < 8){
+        //     return 'Your password is too weak.';
+        //   }
+        // };
+      });
+    </script>
 
 
   </body>
