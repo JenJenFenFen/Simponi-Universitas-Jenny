@@ -7,6 +7,7 @@ $(".bdosen").click(function (e) {
     $(".divupdatemahasiswa").attr("hidden", true);
     $(".divmakeschedule").attr("hidden", true);
     $(".homepage").attr("hidden", true);
+    $(".divmakeclass").attr("hidden", true);
     $(".validation0").val('');
   });
 
@@ -18,6 +19,7 @@ $(".bdosen").click(function (e) {
     $(".divupdatemahasiswa").attr("hidden", true);
     $(".divmakeschedule").attr("hidden", true);
     $(".homepage").attr("hidden", true);
+    $(".divmakeclass").attr("hidden", true);
     $(".validation0").val('');
   });
 
@@ -31,6 +33,7 @@ $(".bdosen").click(function (e) {
     $(".validation0").val('');
     $("#valnim").attr("disabled", true);
     $(".homepage").attr("hidden", true);
+    $(".divmakeclass").attr("hidden", true);
   });
 
   $(".umahasiswa").click(function (e) {
@@ -43,6 +46,19 @@ $(".bdosen").click(function (e) {
     $(".validation0").val('');
     $("#valnid").attr("disabled", true);
     $(".homepage").attr("hidden", true);
+    $(".divmakeclass").attr("hidden", true);
+  });
+
+  $(".mclass").click(function (e) {  
+    e.preventDefault();
+    $(".divmakeclass").attr("hidden", false);
+    $(".divmakeschedule").attr("hidden", true);
+    $(".divupdatemahasiswa").attr("hidden", true);
+    $(".divupdatedosen").attr("hidden", true);
+    $(".divformdosen").attr("hidden", true);
+    $(".divformmahasiswa").attr("hidden", true);
+    $(".homepage").attr("hidden", true);
+    $(".validation0").val('');
   });
 
   $(".lmatakuliah").click(function (e) {  
@@ -53,5 +69,6 @@ $(".bdosen").click(function (e) {
     $(".divformdosen").attr("hidden", true);
     $(".divformmahasiswa").attr("hidden", true);
     $(".homepage").attr("hidden", true);
+    $(".divmakeclass").attr("hidden", true);
     $(".validation0").val('');
   });

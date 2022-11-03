@@ -161,7 +161,7 @@
       </div>
 
       <!-- display jadwal mata kuliah -->
-      <div class="flex-column flex-shrink-0 p-3 divmatakuliah" style="width: 1052px; overflow: auto;" hidden>
+      <div class="flex-column flex-shrink-0 p-3 overflow-auto divmatakuliah" style="width: 1052px;" hidden>
         <h1>JADWAL MATA KULIAH</h1>
 
         <br><br>
@@ -177,20 +177,119 @@
               <a class="list-group-item list-group-item-action stylea" href="#list-item-4">Sabtu</a>
             </div>
           </div>
-          <div class="col-8">
+
+          <br>
+
+          <div class="col-9">
             <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-smooth-scroll="true" class="scrollspy-example" tabindex="0">
-              <h4 id="list-item-1">Senin</h4>
-              <h6>Test</h6>
-              <h4 id="list-item-2">Selasa</h4>
-              <h6>Test</h6>
-              <h4 id="list-item-3">Rabu</h4>
-              <h6>Test</h6>
-              <h4 id="list-item-4">Kamis</h4>
-              <h6>Test</h6>
-              <h4 id="list-item-3">Jumat</h4>
-              <h6>Test</h6>
-              <h4 id="list-item-4">Sabtu</h4>
-              <h6>Test</h6>
+              <h3 id="list-item-1">Senin</h3>
+              <table class="table table-jadwal-dosen-senin">
+                <thead class="table-dark">
+                  <tr>
+                    <th>Kelas</th>
+                    <th>Mata Kuliah</th>
+                    <th>Jam</th>
+                  </tr>
+                </thead>
+                <tbody class="table-secondary">
+                  <tr>
+                    <td colspan="3" style="text-align: center;">Kosong</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <br>
+              
+              <h3 id="list-item-2">Selasa</h3>
+              <table class="table table-jadwal-dosen-selasa">
+                <thead class="table-dark">
+                  <tr>
+                    <th>Kelas</th>
+                    <th>Mata Kuliah</th>
+                    <th>Jam</th>
+                  </tr>
+                </thead>
+                <tbody class="table-secondary">
+                  <tr>
+                    <td colspan="3" style="text-align: center;">Kosong</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <br>
+
+              <h3 id="list-item-3">Rabu</h3>
+              <table class="table table-jadwal-dosen-rabu">
+                <thead class="table-dark">
+                  <tr>
+                    <th>Kelas</th>
+                    <th>Mata Kuliah</th>
+                    <th>Jam</th>
+                  </tr>
+                </thead>
+                <tbody class="table-secondary">
+                  <tr>
+                    <td colspan="3" style="text-align: center;">Kosong</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <br>
+              
+              <h3 id="list-item-4">Kamis</h3>
+              <table class="table table-jadwal-dosen-kamis">
+                <thead class="table-dark">
+                  <tr>
+                    <th>Kelas</th>
+                    <th>Mata Kuliah</th>
+                    <th>Jam</th>
+                  </tr>
+                </thead>
+                <tbody class="table-secondary">
+                  <tr>
+                    <td colspan="3" style="text-align: center;">Kosong</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <br>
+              
+              <h3 id="list-item-3">Jumat</h3>
+              <table class="table table-jadwal-dosen-jumat">
+                <thead class="table-dark">
+                  <tr>
+                    <th>Kelas</th>
+                    <th>Mata Kuliah</th>
+                    <th>Jam</th>
+                  </tr>
+                </thead>
+                <tbody class="table-secondary">
+                  <tr>
+                    <td colspan="3" style="text-align: center;">Kosong</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <br>
+              
+              <h3 id="list-item-4">Sabtu</h3>
+              <table class="table table-jadwal-dosen-sabtu">
+                <thead class="table-dark">
+                  <tr>
+                    <th>Kelas</th>
+                    <th>Mata Kuliah</th>
+                    <th>Jam</th>
+                  </tr>
+                </thead>
+                <tbody class="table-secondary">
+                  <tr>
+                    <td colspan="3" style="text-align: center;">Kosong</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <br>
+              
             </div>
           </div>
         </div>
@@ -239,7 +338,7 @@
           <div class="row g-3">
             <div class="col-md-5">
               <label class="form-label">Deskripsi</label>
-              <textarea class="form-control"  id="valdeskripsitugas" style="width: 500px; height: 150px;"></textarea>
+              <textarea class="form-control"  id="valdeskripsitugas" style="width: 500px; height: 150px;" required></textarea>
             </div>
           </div>
 

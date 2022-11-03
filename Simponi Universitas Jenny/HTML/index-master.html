@@ -73,7 +73,7 @@
         background-color: #060af8;
       }
 
-      .bdosen, .bmahasiswa, .udosen, .umahasiswa, .lmatakuliah {
+      .bdosen, .bmahasiswa, .udosen, .umahasiswa, .lmatakuliah, .mclass {
         cursor: pointer;
       }
 
@@ -94,7 +94,7 @@
         margin: 20px 8px;
       }
 
-      #tbjadwal th {
+      #tbjadwal th, #tbkelas th {
         text-align: center;
       }
 
@@ -146,6 +146,12 @@
             </div>
           </li>
 
+          <li class="rounded list1 mclass">
+            <a class="nav-link text-white">
+              <b>Membuat Kelas</b>
+            </a>
+          </li>
+
           <li class="rounded list1 lmatakuliah">
             <a class="nav-link text-white">
               <b>Membuat Jadwal Mata Kuliah</b>
@@ -189,7 +195,7 @@
           <div class="row g-3">
             <div class="col-md-9">
               <label class="form-label">Nama Lengkap</label>
-              <input type="text" class="form-control validation0" name="namadosen" id="valnamadosen" required>
+              <input type="text" class="form-control validation0 validation1" name="namadosen" id="valnamadosen" required>
             </div>
 
             <div class="col-md">
@@ -260,6 +266,13 @@
             <div class="col-md">
               <label class="form-label">Nomor Handphone</label>
               <input type="text" class="form-control validation0" name="hp" id="valnhpdosen" required>
+            </div>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-md-5">
+              <label class="form-label">Foto</label>
+              <input type="file" accept=".png, .jpg, .jpeg" class="form-control validation0" name="foto" id="valfotodosen" required>
             </div>
           </div>
 
@@ -351,7 +364,7 @@
           </div>
 
           <div class="row g-3">
-            <div class="col-md-8">
+            <div class="col-md-5">
               <label class="form-label">Jurusan yang Diambil</label>
               <select class="form-select validation0" name="jurusanambil" id="valjurusanambilmahasiswa" required>
                 <option value="" selected>Pilih</option>
@@ -361,9 +374,14 @@
               </select>
             </div>
 
-            <div class="col-md">
+            <div class="col-md-2">
               <label class="form-label">Semester</label>
               <input type="text" readonly class="form-control-plaintext" name="semester" id="valsemestermahasiswa" value="1">
+            </div>
+
+            <div class="col-md">
+              <label class="form-label">Foto</label>
+              <input type="file" accept=".png, .jpg, .jpeg" class="form-control validation0" name="foto" id="valfotomahasiswa" required>
             </div>
           </div>
 
@@ -534,6 +552,62 @@
         </form>
       </div>
 
+      <!-- display membuat kelas dan menginput mahasiswa di dalam kelas -->
+      <div class="flex-column flex-shrink-0 p-3 divmakeclass" style="width: 1052px; overflow: auto;" hidden>
+        <h1>MEMBUAT KELAS</h1>
+
+        <br><br>
+
+        <form class="row g-3 needs-validation formclassm" novalidate>
+          <div class="row g-3">
+            <div class="col-md-3">
+              <label class="form-label">Kelas</label>
+              <input type="text" class="form-control validation0" name="kelas" id="valkelasinput">
+            </div>
+
+            <div class="col-md">
+              <label class="form-label">Nama Mahasiswa</label>
+              <select class="form-select validation0 validation1" name="mahasiswa" id="valmahasiswainput" required>
+                <option value="" selected>Pilih</option>
+                <option value="Jenny">Jenny</option>
+                <option value="Rusdie">Rusdie</option>
+                <option value="Erfandi">Erfandi</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-12">
+              <button class="btn btn-primary" id="btnkelas" type="button">Input ke Kelas</button>
+            </div>
+          </div>
+        </form>
+
+        <br>
+
+        <table class="table table-striped tablekelas" id="tbkelas" hidden>
+          <thead class="table-dark">
+            <tr>
+              <th class="tablekelas deleterow" hidden>No</th>
+              <th class="tablekelas">Kelas</th>
+              <th class="tablekelas">Nama Mahasiswa</th>
+              <th class="tablekelas deleterow">Option</th>
+            </tr>
+          </thead>
+          <tbody class="table-secondary">
+            <tr id="edittableclass">
+              <td colspan="4" class="tablekelas" style="text-align: center;">Inputan masih kosong</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="row g-3 proseskls" hidden>
+          <div class="col-12">
+            <button class="btn btn-primary" id="proseskelas" type="button">Proses</button>
+          </div>
+        </div>
+      </div>
+
       <!-- display membuat jadwal mata kuliah -->
       <div class="flex-column flex-shrink-0 p-3 divmakeschedule" style="width: 1052px; overflow: auto;" hidden>
         <h1>MEMBUAT JADWAL MATA KULIAH</h1>
@@ -570,7 +644,7 @@
 
             <div class="col-md">
               <label class="form-label">Mata Kuliah</label>
-              <select class="form-select validation0" name="mk" id="valmkjadwal" required>
+              <select class="form-select validation0 validation1" name="mk" id="valmkjadwal" required>
                 <option value="" selected>Pilih</option>
                 <option value="Pendidikan Agama">Pendidikan Agama</option>
                 <option value="Kalkulus I">Kalkulus I</option>
@@ -582,7 +656,7 @@
 
             <div class="col-md-2">
               <label class="form-label">Jam</label>
-              <select class="form-select validation0" name="jam" id="valjamjadwal" required>
+              <select class="form-select validation0 validation1" name="jam" id="valjamjadwal" required>
                 <option value="" selected>Pilih</option>
                 <option value="08.00">08.00</option>
                 <option value="10.00">10.00</option>
@@ -597,7 +671,7 @@
           <div class="row g-3">
             <div class="col-md-5">
               <label class="form-label">Dosen</label>
-              <select class="form-select validation0" name="dosen" id="valdosenjadwal" required>
+              <select class="form-select validation0 validation1" name="dosen" id="valdosenjadwal" required>
                 <option value="" selected>Pilih</option>
                 <option value="Derry Alamsyah">Derry Alamsyah</option>
                 <option value="Tinalia">Tinalia</option>
@@ -616,7 +690,7 @@
 
         <br>
 
-        <table class="table tablejadwal" id="tbjadwal" hidden>
+        <table class="table table-striped tablejadwal" id="tbjadwal" hidden>
           <thead class="table-dark">
             <tr>
               <th class="tablejadwal deleterow" hidden>No</th>
@@ -628,7 +702,7 @@
               <th class="tablejadwal deleterow">Option</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody class="table-secondary">
             <tr id="edittable">
               <td colspan="6" class="tablejadwal" style="text-align: center;">Tidak ada jadwal yang masuk</td>
             </tr>
@@ -651,7 +725,8 @@
     <script src="justnumber.js"></script>
     <script src="master-sidebarsbutton.js"></script>
     <script src="master-dropdownpendidikan.js"></script>
-    <script src="master-tableeditable.js"></script>
+    <script src="master-tableeditable-kelas.js"></script>
+    <script src="master-tableeditable-jadwal.js"></script>
 
     <script>
       //membuat validasi (pastikan form class .needs-validation, atribut novalidate di div dan atribut require di setiap input)

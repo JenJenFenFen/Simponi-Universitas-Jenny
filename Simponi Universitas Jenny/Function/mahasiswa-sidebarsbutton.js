@@ -3,23 +3,26 @@ $(".jmatakuliah").click(function (e) {
     e.preventDefault();
     $(".divmatakuliah").attr("hidden", false);
     $(".homepage").attr("hidden", true);
-    $(".divmaketask").attr("hidden", true);
-    $(".divdaftartugas1").attr("hidden", true);
+    $(".divtugasbs").attr("hidden", true);
+    $(".divtugasss").attr("hidden", true);
+    $(".validation0").val('');
 });
 
-$(".mtugas").click(function (e) {
+$(".tugasbs").click(function (e) {
     e.preventDefault();
-    $(".divmaketask").attr("hidden", false);
+    $(".divtugasbs").attr("hidden", false);
     $(".divmatakuliah").attr("hidden", true);
     $(".homepage").attr("hidden", true);
-    $(".divdaftartugas1").attr("hidden", true);
+    $(".divtugasss").attr("hidden", true);
+    $(".validation0").val('');
 });
 
-$(".dtugas").click(function (e) {
+$(".tugasss").click(function (e) {
     e.preventDefault();
-    $(".divdaftartugas1").attr("hidden", false);
-    $(".divmaketask").attr("hidden", true);
+    $(".divtugasss").attr("hidden", false);
+    $(".divtugasbs").attr("hidden", true);
     $(".divmatakuliah").attr("hidden", true);
     $(".homepage").attr("hidden", true);
+    $(".validation0").val('');
 });
 

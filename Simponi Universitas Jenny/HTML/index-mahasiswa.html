@@ -90,8 +90,8 @@
         width: 0.5rem;
       }
 
-      .stylea:hover {
-        color: #060af8;
+      #tabledaftartugasbsmahasiswa th, #tabledaftartugasssmahasiswa th {
+        text-align: center;
       }
 
       .btn-toggle::before {
@@ -120,11 +120,11 @@
             </button>
             <div class="collapse" id="daftar-collapse">
               <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <li class="rounded list1 mtugas"><a class="link-white text-white d-inline-flex text-decoration-none">
+                <li class="rounded list1 tugasbs"><a class="link-white text-white d-inline-flex text-decoration-none">
                   Belum Selesai
                 </a></li>
 
-                <li class="rounded list1 dtugas"><a class="link-white text-white d-inline-flex text-decoration-none">
+                <li class="rounded list1 tugasss"><a class="link-white text-white d-inline-flex text-decoration-none">
                   Sudah Selesai
                 </a></li>
               </ul>
@@ -153,7 +153,7 @@
       <div class="b-example-divider b-example-vr"></div>
 
       <!-- display homepage -->
-      <div class="flex-column flex-shrink-0 p-3 homepage" style="width: 1052px;" hidden>
+      <div class="flex-column flex-shrink-0 p-3 homepage" style="width: 1052px;">
         <div class="homepage-layer">
           <h1>SELAMAT DATANG</h1>
           <h1>MAHASISWA 1</h1>
@@ -175,21 +175,71 @@
               <th>Hari</th>
               <th>Mata Kuliah</th>
               <th>Jam</th>
+              <th>Dosen</th>
             </tr>
           </thead>
           <tbody id="edittable">
-            <tr>
-              <td colspan="4" style="text-align: center;">Kosong</td>
+            <tr class="table-secondary">
+              <td colspan="5" style="text-align: center;">Kosong</td>
             </tr>
           </tbody>
         </table>
       </div>
 
       <!-- display daftar tugas yang belum selesai -->
-      <div class="flex-column flex-shrink-0 p-3 div" style="width: 1052px; overflow: auto;">
+      <div class="flex-column flex-shrink-0 p-3 divtugasbs" style="width: 1052px; overflow: auto;" hidden>
         <h1>TUGAS YANG BELUM SELESAI</h1>
 
         <br><br>
+
+        <form class="row g-3 needs-validation formtugasbs" novalidate>
+          <div class="row g-3">
+            <div class="col-md-2">
+              <label class="form-label">Kelas</label>
+              <select class="form-select validation0" name="kelas" id="valkelastugasbs" required>
+                <option value="" selected>Pilih</option>
+                <option value="TI11">TI11</option>
+                <option value="TI21">TI21</option>
+                <option value="TI31">TI31</option>
+                <option value="SI11">SI11</option>
+                <option value="SI21">SI21</option>
+                <option value="TK11">TK11</option>
+              </select>
+            </div>
+
+            <div class="col-md">
+              <label class="form-label">Mata Kuliah</label>
+              <select class="form-select validation0 validation1" name="mk" id="valmktugasbs" required>
+                <option value="" selected>Pilih</option>
+                <option value="Pendidikan Agama">Pendidikan Agama</option>
+                <option value="Kalkulus I">Kalkulus I</option>
+                <option value="Kalkulus II">Kalkulus II</option>
+                <option value="Pengolahan Basis Data">Pengolahan Basis Data</option>
+                <option value="Pengolahan Website">Pengolahan Website</option>
+              </select>
+            </div>
+
+            <div class="col-md-5">
+              <label class="form-label">Dosen</label>
+              <select class="form-select validation0 validation1" name="dosen" id="valdosentugasbs" required>
+                <option value="" selected>Pilih</option>
+                <option value="Derry Alamsyah">Derry Alamsyah</option>
+                <option value="Tinalia">Tinalia</option>
+                <option value="Rusman Hadi">Rusman Hadi</option>
+                <option value="Maria Limasta">Maria Limasta</option>
+                <option value="Dewi Sari">Dewi Sari</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-12">
+              <button class="btn btn-primary" id="btnjadwal" type="button">Cari</button>
+            </div>
+          </div>
+        </form>
+
+        <br>
 
         <table class="table" id="tabledaftartugasbsmahasiswa">
           <thead class="table-dark">
@@ -199,12 +249,87 @@
               <th>Mata Kuliah</th>
               <th>Deskripsi</th>
               <th>Deadline</th>
-              <th>File</th>
+              <th>Keterangan</th>
             </tr>
           </thead>
-          <tbody id="edittable">
+          <tbody class="table-secondary">
             <tr>
               <td colspan="6" style="text-align: center;">Kosong</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- display daftar tugas yang sudah selesai -->
+      <div class="flex-column flex-shrink-0 p-3 divtugasss" style="width: 1052px; overflow: auto;" hidden>
+        <h1>TUGAS YANG SUDAH SELESAI</h1>
+
+        <br><br>
+
+        <form class="row g-3 needs-validation formtugasss" novalidate>
+          <div class="row g-3">
+            <div class="col-md-2">
+              <label class="form-label">Kelas</label>
+              <select class="form-select validation0" name="kelas" id="valkelastugasss" required>
+                <option value="" selected>Pilih</option>
+                <option value="TI11">TI11</option>
+                <option value="TI21">TI21</option>
+                <option value="TI31">TI31</option>
+                <option value="SI11">SI11</option>
+                <option value="SI21">SI21</option>
+                <option value="TK11">TK11</option>
+              </select>
+            </div>
+
+            <div class="col-md">
+              <label class="form-label">Mata Kuliah</label>
+              <select class="form-select validation0 validation1" name="mk" id="valmktugasss" required>
+                <option value="" selected>Pilih</option>
+                <option value="Pendidikan Agama">Pendidikan Agama</option>
+                <option value="Kalkulus I">Kalkulus I</option>
+                <option value="Kalkulus II">Kalkulus II</option>
+                <option value="Pengolahan Basis Data">Pengolahan Basis Data</option>
+                <option value="Pengolahan Website">Pengolahan Website</option>
+              </select>
+            </div>
+
+            <div class="col-md-5">
+              <label class="form-label">Dosen</label>
+              <select class="form-select validation0 validation1" name="dosen" id="valdosentugasss" required>
+                <option value="" selected>Pilih</option>
+                <option value="Derry Alamsyah">Derry Alamsyah</option>
+                <option value="Tinalia">Tinalia</option>
+                <option value="Rusman Hadi">Rusman Hadi</option>
+                <option value="Maria Limasta">Maria Limasta</option>
+                <option value="Dewi Sari">Dewi Sari</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-12">
+              <button class="btn btn-primary" id="btncari" type="button">Cari</button>
+            </div>
+          </div>
+        </form>
+
+        <br>
+
+        <table class="table" id="tabledaftartugasssmahasiswa">
+          <thead class="table-dark">
+            <tr>
+              <th>No</th>
+              <th>Kelas</th>
+              <th>Mata Kuliah</th>
+              <th>Deskripsi</th>
+              <th>Deadline</th>
+              <th>File</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <tbody class="table-secondary">
+            <tr>
+              <td colspan="7" style="text-align: center;">Kosong</td>
             </tr>
           </tbody>
         </table>
