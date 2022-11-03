@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 01, 2022 at 10:56 AM
+-- Generation Time: Nov 03, 2022 at 10:58 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -30,7 +30,6 @@ SET time_zone = "+00:00";
 CREATE TABLE `class` (
   `id` int(11) NOT NULL,
   `student_identity_id` int(11) NOT NULL,
-  `material_id` int(11) NOT NULL,
   `class_name` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -185,8 +184,7 @@ CREATE TABLE `user_login` (
 --
 ALTER TABLE `class`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `student_identity_id` (`student_identity_id`),
-  ADD KEY `material_id` (`material_id`);
+  ADD KEY `student_identity_id` (`student_identity_id`);
 
 --
 -- Indexes for table `lecturer_identity`
@@ -319,8 +317,7 @@ ALTER TABLE `task_student`
 -- Constraints for table `class`
 --
 ALTER TABLE `class`
-  ADD CONSTRAINT `class_ibfk_1` FOREIGN KEY (`student_identity_id`) REFERENCES `student_identity` (`id`),
-  ADD CONSTRAINT `class_ibfk_2` FOREIGN KEY (`material_id`) REFERENCES `material` (`id`);
+  ADD CONSTRAINT `class_ibfk_1` FOREIGN KEY (`student_identity_id`) REFERENCES `student_identity` (`id`);
 
 --
 -- Constraints for table `lecturer_identity`
