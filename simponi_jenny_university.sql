@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 03, 2022 at 10:58 AM
+-- Generation Time: Nov 04, 2022 at 10:53 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -64,6 +64,15 @@ CREATE TABLE `major` (
   `id` int(11) NOT NULL,
   `major_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `major`
+--
+
+INSERT INTO `major` (`id`, `major_name`) VALUES
+(1, 'Teknik Informatika'),
+(2, 'Sistem Informasi'),
+(3, 'Teknik Komputer');
 
 -- --------------------------------------------------------
 
@@ -131,7 +140,7 @@ CREATE TABLE `student_identity` (
   `major_last_education` varchar(50) NOT NULL,
   `major_id` int(11) NOT NULL,
   `semester` int(11) NOT NULL,
-  `photo` blob DEFAULT NULL
+  `photo` blob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -271,7 +280,7 @@ ALTER TABLE `lecturer_identity`
 -- AUTO_INCREMENT for table `major`
 --
 ALTER TABLE `major`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `material`

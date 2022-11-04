@@ -191,7 +191,7 @@
 
         <br><br>
 
-        <form class="row g-3 needs-validation formdaftardosen" novalidate>
+        <form class="row g-3 needs-validation formdaftardosen" action="/homepage-master-addlecturer" method="post" novalidate>
           <div class="row g-3">
             <div class="col-md-9">
               <label class="form-label">Nama Lengkap</label>
@@ -265,7 +265,7 @@
 
             <div class="col-md">
               <label class="form-label">Nomor Handphone</label>
-              <input type="text" class="form-control validation0" name="hp" id="valnhpdosen" required>
+              <input type="text" class="form-control validation0 justnumber" name="hp" id="valnhpdosen" maxlength="15" required>
             </div>
           </div>
 
@@ -278,7 +278,7 @@
 
           <div class="row g-3">
             <div class="col-12">
-              <button class="btn btn-primary" id="btndaftardosen" type="button">Daftarkan</button>
+              <button class="btn btn-primary" id="btndaftardosen" type="submit">Daftarkan</button>
             </div>
           </div>
         </form>
@@ -290,7 +290,7 @@
 
         <br><br>
 
-        <form class="row g-3 needs-validation formdaftarmahasiswa1" novalidate>
+        <form class="row g-3 needs-validation formdaftarmahasiswa1" action="/homepage-master-addstudent" method="post" novalidate>
           <div class="row g-3">
             <div class="col-md-9">
               <label class="form-label">Nama Lengkap</label>
@@ -359,7 +359,7 @@
 
             <div class="col-md">
               <label class="form-label">Nomor Handphone</label>
-              <input type="text" class="form-control validation0" name="hp" id="valnhpmahasiswa" required>
+              <input type="text" class="form-control validation0 justnumber" name="hp" id="valnhpmahasiswa" maxlength="15" required>
             </div>
           </div>
 
@@ -387,7 +387,7 @@
 
           <div class="row g-3">
             <div class="col-12">
-              <button class="btn btn-primary" id="btndaftarmahasiswa" type="button">Daftarkan</button>
+              <button class="btn btn-primary" id="btndaftarmahasiswa" type="submit">Daftarkan</button>
             </div>
           </div>
         </form>
@@ -721,6 +721,7 @@
     <script src="bootstrap.bundle.min.js"></script>
     <script src="sidebars.js"></script>
     <script src="jbvalidator.min.js"></script>
+    <script src="socket.io-4.5.3.js"></script>
     <script src="master-onoffbuttonupdate.js"></script>
     <script src="justnumber.js"></script>
     <script src="master-sidebarsbutton.js"></script>
@@ -729,7 +730,7 @@
     <script src="master-tableeditable-jadwal.js"></script>
 
     <script>
-      //membuat validasi (pastikan form class .needs-validation, atribut novalidate di div dan atribut require di setiap input)
+      //membuat validasi untuk nomor handphone (pastikan form class .needs-validation, atribut novalidate di div dan atribut require di setiap input)
       $(function (){
         var validator = $(".needs-validation").jbvalidator({
           errorMessage: true,
@@ -737,15 +738,15 @@
           language: "https://emretulek.github.io/jbvalidator/dist/lang/en.json"
         });
 
-        // validator.validator.password = function(el, event){
-        //   if($(el).is('[id=valpassworddosen]') && $(el).val().length < 8){
-        //       return 'Your password is too weak.';
-        //   }
+        validator.validator.password = function(el, event){
+          if($(el).is('[id=valnhpdosen]') && $(el).val().length < 11){
+              return 'Your number phone is too short.';
+          }
 
-        //   else if($(el).is('[id=valpasswordmahasiswa]') && $(el).val().length < 8){
-        //     return 'Your password is too weak.';
-        //   }
-        // };
+          else if($(el).is('[id=valnhpmahasiswa]') && $(el).val().length < 11){
+            return 'Your number phone is too short.';
+          }
+        };
       });
 
       //membuat fungsi hide and show password

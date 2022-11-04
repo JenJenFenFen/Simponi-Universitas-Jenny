@@ -1,34 +1,28 @@
-const express = require('express');
-const app = express();
-const bodyparser = require('body-parser');
-const path = require('path');
-const db = require('./connection');
+// const express = require('express');
+// const app = express();
+// const bodyparser = require('body-parser');
+// const path = require('path');
+const app = require('./button-function');
 const port = 3000;
 
-app.use(bodyparser.urlencoded ({ 
-    extended: false //kirim form dari html, pakai false 
-}));
+// // koneksi ke file css dan js
+// app.use(express.static(path.join(__dirname, 'library')));
+// app.use(express.static(path.join(__dirname, 'function')));
 
-app.use(bodyparser.json());
+// // HTML master
+// app.get('/homepage-master', (req, res) => {
+//     res.sendFile(path.join(__dirname, '/HTML/index-master.html'));
+// });
 
-// koneksi ke file css dan js
-app.use(express.static(path.join(__dirname, 'library')));
-app.use(express.static(path.join(__dirname, 'function')));
+// // HTML dosen
+// app.get('/homepage-lecturer', (req, res) => {
+//     res.sendFile(path.join(__dirname, '/HTML/index-dosen.html'));
+// });
 
-// HTML master
-app.get('/homepage-master', (req, res) => {
-    res.sendFile(path.join(__dirname, '/HTML/index-master.html'));
-});
-
-// HTML dosen
-app.get('/homepage-lecturer', (req, res) => {
-    res.sendFile(path.join(__dirname, '/HTML/index-dosen.html'));
-});
-
-// HTML mahasiswa
-app.get('/homepage-student', (req, res) => {
-    res.sendFile(path.join(__dirname, '/HTML/index-mahasiswa.html'));
-});
+// // HTML mahasiswa
+// app.get('/homepage-student', (req, res) => {
+//     res.sendFile(path.join(__dirname, '/HTML/index-mahasiswa.html'));
+// });
 
 // membaca port
 app.listen(port, () => {

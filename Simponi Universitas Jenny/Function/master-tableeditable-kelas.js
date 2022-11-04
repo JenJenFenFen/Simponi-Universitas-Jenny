@@ -46,7 +46,7 @@ $("#btnkelas").click(function (e) {
         delete kelaslist[$(element.children('td')[0]).text()];
         element.remove();
 
-        console.log(kelaslist);
+        // console.log(kelaslist);
 
         if (Object.keys(kelaslist).length <= 0) {
             $("#edittableclass").show();
