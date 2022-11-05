@@ -2,7 +2,7 @@
 // const app = express();
 // const bodyparser = require('body-parser');
 // const path = require('path');
-const app = require('./button-function');
+const app = require('./action');
 const port = 3000;
 
 // // koneksi ke file css dan js
