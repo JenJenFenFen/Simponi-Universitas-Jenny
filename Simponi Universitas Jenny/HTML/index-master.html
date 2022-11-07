@@ -101,6 +101,14 @@
       .btn-toggle::before {
         color: #ffffff;
       }
+
+    .form-check-input.is-valid:checked, .was-validated .form-check-input:valid:checked {
+      background-color: #0d6efd;
+    }
+
+    .form-check-input.is-valid~.form-check-label, .was-validated .form-check-input:valid~.form-check-label {
+      color: black;
+    }
     </style>
     
   </head>
@@ -394,13 +402,13 @@
 
         <br><br>
 
-        <form class="row row-cols-lg-auto g-3 align-items-center formnidosen">
+        <form class="row row-cols-lg-auto g-3 align-items-center needs-validation formnidosen" novalidate>
           <div class="col-12">
-            <input type="text" class="form-control validation0 onoffbuttons justnumber" name="nid" id="valnidosen" placeholder="Masukkan NID" maxlength="10" onkeyup="onOffButtonUpdate(this, 'valnid')">
+            <input type="text" class="form-control validation0 onoffbuttons justnumber" name="nid" id="valnidosen" placeholder="Masukkan NID" maxlength="10">
           </div>
 
           <div class="col-12">
-            <button class="btn btn-primary" id="valnid" type="button" disabled>Cari</button>
+            <button class="btn btn-primary" id="valnid" type="submit">Cari</button>
           </div>
         </form>
 
@@ -475,13 +483,13 @@
 
         <br><br>
 
-        <form class="row row-cols-lg-auto g-3 align-items-center formnimahasiswa">
+        <form class="row row-cols-lg-auto g-3 align-items-center needs-validation formnimahasiswa" novalidate>
           <div class="col-12">
-            <input type="text" class="form-control validation0 onoffbuttons justnumber" name="nim" id="valnimahasiswa" placeholder="Masukkan NIM" maxlength="10" onkeyup="onOffButtonUpdate(this, 'valnim')">
+            <input type="text" class="form-control validation0 onoffbuttons justnumber" name="nim" id="valnimahasiswa" placeholder="Masukkan NIM" maxlength="10">
           </div>
 
           <div class="col-12">
-            <button class="btn btn-primary" id="valnim" type="button" disabled>Cari</button>
+            <button class="btn btn-primary" id="valnim" type="submit">Cari</button>
           </div>
         </form>
 
@@ -557,13 +565,13 @@
           <div class="row g-3">
             <div class="col-md-3">
               <label class="form-label">Kelas</label>
-              <input type="text" class="form-control validation0" name="kelas" id="valkelasinput">
+              <input type="text" class="form-control validation0" name="kelas" id="valkelasinput" required>
             </div>
 
             <div class="col-md">
               <label class="form-label">Nama Mahasiswa</label>
               <select class="form-select validation0 validation1" name="mahasiswa" id="valmahasiswainput" required>
-                <option value="" selected>Pilih</option>
+                <option value="">Pilih</option>
                 <option value="Jenny">Jenny</option>
                 <option value="Rusdie">Rusdie</option>
                 <option value="Erfandi">Erfandi</option>
@@ -573,7 +581,7 @@
 
           <div class="row g-3">
             <div class="col-12">
-              <button class="btn btn-primary" id="btnkelas" type="button">Input ke Kelas</button>
+              <button class="btn btn-primary" id="btnkelas" type="submit">Input ke Kelas</button>
             </div>
           </div>
         </form>
@@ -596,9 +604,18 @@
           </tbody>
         </table>
 
+        <div class="col-12 checkproseskelas" hidden>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="checkproseskelas">
+            <label class="form-check-label">Semua data sudah sesuai</label>
+          </div>
+        </div>
+
+        <br>
+
         <div class="row g-3 proseskls" hidden>
           <div class="col-12">
-            <button class="btn btn-primary" id="proseskelas" type="button">Proses</button>
+            <button class="btn btn-primary" id="proseskelas" type="submit" disabled>Proses</button>
           </div>
         </div>
       </div>
@@ -678,7 +695,7 @@
 
           <div class="row g-3">
             <div class="col-12">
-              <button class="btn btn-primary" id="btnjadwal" type="button">Input Jadwal</button>
+              <button class="btn btn-primary" id="btnjadwal" type="submit">Input Jadwal</button>
             </div>
           </div>
         </form>
@@ -704,9 +721,16 @@
           </tbody>
         </table>
 
+        <div class="col-12 checkprosesjadwal" hidden>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="checkprosesjadwal">
+            <label class="form-check-label">Semua data sudah sesuai</label>
+          </div>
+        </div>
+
         <div class="row g-3 prosesjdwl" hidden>
           <div class="col-12">
-            <button class="btn btn-primary" id="prosesjadwal" type="button">Proses</button>
+            <button class="btn btn-primary" id="prosesjadwal" type="submit" disabled>Proses</button>
           </div>
         </div>
       </div>
@@ -716,34 +740,10 @@
     <script src="bootstrap.bundle.min.js"></script>
     <script src="sidebars.js"></script>
     <script src="jbvalidator.min.js"></script>
-    <script src="master-onoffbuttonupdate.js"></script>
     <script src="justnumber.js"></script>
-    <script src="master-sidebarsbutton.js"></script>
-    <script src="master-dropdownpendidikan.js"></script>
-    <script src="master-dropdownjurusanmhs.js"></script>
-    <script src="master-tableeditable-kelas.js"></script>
-    <script src="master-tableeditable-jadwal.js"></script>
+    <script src="master-functions.js"></script>
 
     <script>
-      //membuat validasi untuk nomor handphone (pastikan form class .needs-validation, atribut novalidate di div dan atribut require di setiap input)
-      $(function (){
-        var validator = $(".needs-validation").jbvalidator({
-          errorMessage: true,
-          successClass: true,
-          language: "https://emretulek.github.io/jbvalidator/dist/lang/en.json"
-        });
-
-        validator.validator.password = function(el, event){
-          if($(el).is('[id=valnhpdosen]') && $(el).val().length < 11){
-              return 'Your number phone is too short.';
-          }
-
-          else if($(el).is('[id=valnhpmahasiswa]') && $(el).val().length < 11){
-            return 'Your number phone is too short.';
-          }
-        };
-      });
-
       //membuat fungsi hide and show password
       // $(".hideseekpass").click(function(e) {
       //   var jenis = $(".tipepassword input");

@@ -1,4 +1,4 @@
-//membuat fungsi tombol di sidebars
+// membuat fungsi tombol di sidebars
 $(".jmatakuliah").click(function (e) {
     e.preventDefault();
     $(".divmatakuliah").attr("hidden", false);
