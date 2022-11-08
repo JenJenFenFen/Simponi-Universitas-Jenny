@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 04, 2022 at 10:53 AM
--- Server version: 10.4.25-MariaDB
--- PHP Version: 8.1.10
+-- Generation Time: Nov 08, 2022 at 02:53 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -139,6 +139,7 @@ CREATE TABLE `student_identity` (
   `last_education` varchar(50) NOT NULL,
   `major_last_education` varchar(50) NOT NULL,
   `major_id` int(11) NOT NULL,
+  `study_program` varchar(10) NOT NULL,
   `semester` int(11) NOT NULL,
   `photo` blob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -304,7 +305,7 @@ ALTER TABLE `schedule`
 -- AUTO_INCREMENT for table `student_identity`
 --
 ALTER TABLE `student_identity`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `task_lecturer`
