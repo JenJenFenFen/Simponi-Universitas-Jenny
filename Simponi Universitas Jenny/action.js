@@ -20,7 +20,7 @@ app.get('/homepage-master', (req, res) => {
 });
 
 // HTML frontend untuk menampilkan select 'jurusan yang dipilih' - master
-app.get('/', (req, res) => {
+app.get('/homepage-master-getmajoradd', (req, res) => {
     const syntax = `
         SELECT * FROM major
     `;
@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
     db.query(syntax, (error, result) => {
         if (error) console.log('Error: ' + error);
         res.send(result);
-        console.log(`Data 'major' berhasil ditampilkan`);
+        console.log(`Data 'major' berhasil ditampilkan!`);
     });
 });
 
@@ -47,6 +47,7 @@ app.post('/', (req, res) => {
     const address = req.body.alamat;
     const handphone = req.body.hp;
     const takenmajor = req.body.jurusanambil;
+    const sp = req.body.programstudi;
     const smstr = req.body.semester;
     const photo = req.body.foto;
     const year = new Date().getFullYear();
@@ -72,7 +73,7 @@ app.post('/', (req, res) => {
     });
 
     const syntax2 = `
-    INSERT INTO student_identity (user_login_email, nim, name, gender, country, date_birth, address, status, number_phone, last_education, major_last_education, major_id, semester, photo) 
+    INSERT INTO student_identity (user_login_email, nim, name, gender, country, date_birth, address, status, number_phone, last_education, major_last_education, major_id, study_program, semester, photo) 
     VALUES ( 
         '${emailm}',
         (CONCAT(${year}, ${numberjur})*10000) +
@@ -95,6 +96,7 @@ app.post('/', (req, res) => {
         '${pendidikant}',
         '${lastmajor}',
         '${takenmajor}',
+        '${sp}',
         '${smstr}',
         '${photo}'
     )`;

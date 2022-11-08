@@ -349,7 +349,7 @@
             </div>
 
             <div class="col-md-4">
-              <label class="form-label">Jurusan</label>
+              <label class="form-label">Jurusan Terakhir</label>
               <select class="form-select validation0 pilihjurusan" name="jurusanpterakhir" id="valmajormahasiswa" required></select>
             </div>
 
@@ -372,9 +372,18 @@
           </div>
 
           <div class="row g-3">
-            <div class="col-md-5">
+            <div class="col-md-3">
               <label class="form-label">Jurusan yang Diambil</label>
               <select class="form-select validation0" name="jurusanambil" id="valjurusanambilmahasiswa" required></select>
+            </div>
+
+            <div class="col-md-2">
+              <label class="form-label">Program Studi</label>
+              <select class="form-select validation0" name="programstudi" id="valprogramstudimahasiswa" required>
+                <option value="" selected>Pilih</option>
+                <option value="S1">S1</option>
+                <option value="S2">S2</option>
+              </select>
             </div>
 
             <div class="col-md-2">

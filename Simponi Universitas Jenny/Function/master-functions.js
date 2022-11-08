@@ -125,7 +125,7 @@ $(".pilihpendidikan").change(function () {
 $("#valjurusanambilmahasiswa").ready(function () {
   $("#valjurusanambilmahasiswa").empty();
     $.ajax({
-      url:'/',
+      url:'/homepage-master-getmajoradd',
       type:'GET',
       success: function (reply) {
         $("#valjurusanambilmahasiswa").append('<option value="" selected>Pilih</option>');
