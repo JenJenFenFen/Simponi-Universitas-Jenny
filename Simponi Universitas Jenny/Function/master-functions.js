@@ -7,7 +7,6 @@ $(function (){
   });
 
   validator.validator.justnumber = function(el, event){
-    console.log(event);
     if ($(el).is('[id=valnhpdosen]') && $(el).val().length < 11) {
         return 'Your number phone is too short.';
     }

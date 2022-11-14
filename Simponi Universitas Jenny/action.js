@@ -34,8 +34,6 @@ app.get('/homepage-master-getmajoradd', (req, res) => {
 
 // HTML mengirim data mahasiswa ke database - master
 app.post('/', (req, res) => {
-    // res.sendFile(path.join(__dirname, '/HTML/index-master.html'));
-
     const nama = req.body.namamahasiswa;
     const jk = req.body.gender;
     const tempatlahir = req.body.tempatl;

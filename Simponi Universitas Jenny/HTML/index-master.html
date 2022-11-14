@@ -109,6 +109,11 @@
     .form-check-input.is-valid~.form-check-label, .was-validated .form-check-input:valid~.form-check-label {
       color: black;
     }
+
+    .form-check-input.is-valid, .was-validated .form-check-input:valid {
+      border-color: #adb5bd;
+    }
+
     </style>
     
   </head>
@@ -298,7 +303,7 @@
 
         <br><br>
 
-        <form class="row g-3 needs-validation formdaftarmahasiswa1" action="/" method="post" novalidate>
+        <form class="row g-3 needs-validation formdaftarmahasiswa" action="/" method="post" novalidate>
           <div class="row g-3">
             <div class="col-md-9">
               <label class="form-label">Nama Lengkap</label>
@@ -399,10 +404,25 @@
 
           <div class="row g-3">
             <div class="col-12">
-              <button class="btn btn-primary" id="btndaftarmahasiswa" type="submit">Daftarkan</button>
+              <button class="btn btn-primary" id="btndaftarmahasiswa" data-bs-toggle="modal" data-bs-target="#staticBackdrop" type="submit">Daftarkan</button>
             </div>
           </div>
         </form>
+
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Periksa kembali</h1>
+              </div>
+              <div class="modal-body isi-mahasiswa-baru"></div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
+                <button type="button" class="btn btn-primary">Daftarkan</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- display update data dosen -->
