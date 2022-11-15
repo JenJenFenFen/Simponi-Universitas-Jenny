@@ -142,6 +142,12 @@ $("#valjurusanambilmahasiswa").ready(function () {
     });
 });
 
+// membuat fungsi button (input mahasiswa baru)
+$("#btndaftarmahasiswa").click(function () {
+  var isiform = $(".formdaftarmahasiswa").serializeArray();
+  
+});
+
 // menginput hasil jadwal ke tabel (kelas untuk mahasiswa)
 var kelaslist = {};
 
