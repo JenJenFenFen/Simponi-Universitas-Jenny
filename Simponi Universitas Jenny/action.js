@@ -65,10 +65,10 @@ app.post('/', (req, res) => {
         INSERT INTO user_login (email, password, rule_id) VALUES ('${emailm}', 'simponi123', 3)
     `;
 
-    db.query(syntax1, (error) => {
-        if (error) console.log('Error: ' + error); 
-        console.log('Data user_login berhasil diinput!');
-    });
+    // db.query(syntax1, (error) => {
+    //     if (error) console.log('Error: ' + error); 
+    //     console.log('Data user_login berhasil diinput!');
+    // });
 
     const syntax2 = `
     INSERT INTO student_identity (user_login_email, nim, name, gender, country, date_birth, address, status, number_phone, last_education, major_last_education, major_id, study_program, semester, photo) 
@@ -99,10 +99,10 @@ app.post('/', (req, res) => {
         '${photo}'
     )`;
 
-    db.query(syntax2, (error) => {
-        if (error) console.log('Error: ' + error); 
-        console.log('Data student_identity berhasil diinput!');
-    });
+    // db.query(syntax2, (error) => {
+    //     if (error) console.log('Error: ' + error); 
+    //     console.log('Data student_identity berhasil diinput!');
+    // });
 });
 
 // HTML dosen

@@ -115,9 +115,8 @@ $(".pilihpendidikan").change(function () {
     `);
   }
   
-  else  {
-    $(".pilihjurusan").empty();
-  }
+  else $(".pilihjurusan").empty();
+  
   });
 
 // select jurusan untuk mahasiswa
@@ -143,9 +142,47 @@ $("#valjurusanambilmahasiswa").ready(function () {
 });
 
 // membuat fungsi button (input mahasiswa baru)
-$("#btndaftarmahasiswa").click(function () {
-  var isiform = $(".formdaftarmahasiswa").serializeArray();
-  
+$("#btndaftarmahasiswa").click(function (e) {
+  var isiformraw = $(".formdaftarmahasiswa").serializeArray();
+  var isiformdone = {};
+  var isikolom = true;
+
+  $.map(isiformraw, function(n, i){
+    isiformdone[n['name']] = n['value'];
+  });
+
+  // console.log(isiformdone);
+
+  $(".validation2").each(function () {
+    if ($(this).val() == '') isikolom = false;
+  });
+
+  console.log(isikolom);
+
+  if (isikolom) {
+    $("#btndaftarmahasiswa").removeAttr("data-bs-toggle");
+    $("#btndaftarmahasiswa").removeAttr("data-bs-target");
+  }
+  else {
+    $(".isi-mahasiswa-baru").append(`
+      <p>Nama Lengkap : `+ isiformdone.namamahasiswa +`</p>
+      <p>Gender : `+ isiformdone.gender +`</p>
+      <p>Tempat Lahir : `+ isiformdone.tempatl +`</p>
+      <p>Tanggal Lahir : `+ isiformdone.tanggall +`</p>
+      <p>Status : `+ isiformdone.status +`</p>
+      <p>Pendidikan Terakhir : `+ isiformdone.pterakhir +`</p>
+      <p>Jurusan Terakhir : `+ isiformdone.jurusanpterakhir +`</p>
+      <p>Email : `+ isiformdone.email +`</p>
+      <p>Alamat : `+ isiformdone.alamat +`</p>
+      <p>Nomor Handphone : `+ isiformdone.hp +`</p>
+      <p>Jurusan yang Diambil : `+ isiformdone.jurusanambil  +`</p>
+      <p>Program Studi : `+ isiformdone.programstudi +`</p>
+      <p>Semester : `+ isiformdone.semester +`</p>
+      <p>Foto :</p>
+      <p>`+ isiformdone.foto +`</p>
+    `)
+  }
+
 });
 
 // menginput hasil jadwal ke tabel (kelas untuk mahasiswa)
