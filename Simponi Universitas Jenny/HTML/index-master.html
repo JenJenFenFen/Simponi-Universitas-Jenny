@@ -307,12 +307,12 @@
           <div class="row g-3">
             <div class="col-md-9">
               <label class="form-label">Nama Lengkap</label>
-              <input type="text" class="form-control validation2" name="namamahasiswa" id="valnamamahasiswa" required>
+              <input type="text" class="form-control validation2" name="namamahasiswa" id="valnamamahasiswa" onkeyup="cekisi()" required>
             </div>
 
             <div class="col-md">
               <label class="form-label">Gender</label>
-              <select class="form-select validation2" name="gender" id="valgendermahasiswa" required>
+              <select class="form-select validation2" name="gender" id="valgendermahasiswa" onchange="cekisi()" required>
                 <option value="" selected>Pilih</option>
                 <option value="Laki-Laki">Laki-Laki</option>
                 <option value="Perempuan">Perempuan</option>
@@ -323,17 +323,17 @@
           <div class="row g-3">
             <div class="col-md">
               <label class="form-label">Tempat Lahir</label>
-              <input type="text" class="form-control validation2" name="tempatl" id="valtempatmahasiswa" required>
+              <input type="text" class="form-control validation2" name="tempatl" id="valtempatmahasiswa" onkeyup="cekisi()" required>
             </div>
 
             <div class="col-md">
               <label class="form-label">Tanggal Lahir</label>
-              <input type="date" class="form-control validation2" name="tanggall" id="valtanggalmahasiswa" required>
+              <input type="date" class="form-control validation2" name="tanggall" id="valtanggalmahasiswa" onkeyup="cekisi()" required>
             </div>
 
             <div class="col-md">
               <label class="form-label">Status</label>
-              <select class="form-select validation2" name="status" id="valsttsmahasiswa" required>
+              <select class="form-select validation2" name="status" id="valsttsmahasiswa" onchange="cekisi()" required>
                 <option value="" selected>Pilih</option>
                 <option value="Belum Menikah">Belum Menikah</option>
                 <option value="Menikah">Menikah</option>
@@ -345,7 +345,7 @@
           <div class="row g-3">
             <div class="col-md-2">
               <label class="form-label">Pendidikan Terakhir</label>
-              <select class="form-select validation2 pilihpendidikan" name="pterakhir" id="valedumahasiswa" required>
+              <select class="form-select validation2 pilihpendidikan" name="pterakhir" id="valedumahasiswa" onchange="cekisi()" required>
                 <option value="" selected>Pilih</option>
                 <option value="SMA/SMK">SMA/SMK</option>
                 <option value="S1">S1</option>
@@ -355,36 +355,36 @@
 
             <div class="col-md-4">
               <label class="form-label">Jurusan Terakhir</label>
-              <select class="form-select validation2 pilihjurusan" name="jurusanpterakhir" id="valmajormahasiswa" required></select>
+              <select class="form-select validation2 pilihjurusan" name="jurusanpterakhir" id="valmajormahasiswa" onchange="cekisi()" required></select>
             </div>
 
             <div class="col-sm">
               <label class="form-label">Email</label>
-              <input type="email" class="form-control validation2" name="email" id="valemailmahasiswa" required>
+              <input type="email" class="form-control validation2" name="email" id="valemailmahasiswa" onkeyup="cekisi()" required>
             </div>
           </div>
 
           <div class="row g-3">
             <div class="col-md-9">
               <label class="form-label">Alamat</label>
-              <input type="text" class="form-control validation2" name="alamat" id="valalamatmahasiswa" required>
+              <input type="text" class="form-control validation2" name="alamat" id="valalamatmahasiswa" onkeyup="cekisi()" required>
             </div>
 
             <div class="col-md">
               <label class="form-label">Nomor Handphone</label>
-              <input type="text" class="form-control validation2 justnumber" name="hp" id="valnhpmahasiswa" maxlength="15" required>
+              <input type="text" class="form-control validation2 justnumber" name="hp" id="valnhpmahasiswa" maxlength="15" onkeyup="cekisi()" required>
             </div>
           </div>
 
           <div class="row g-3">
             <div class="col-md-3">
               <label class="form-label">Jurusan yang Diambil</label>
-              <select class="form-select validation2" name="jurusanambil" id="valjurusanambilmahasiswa" required></select>
+              <select class="form-select validation2" name="jurusanambil" id="valjurusanambilmahasiswa" onchange="cekisi()" required></select>
             </div>
 
             <div class="col-md-2">
               <label class="form-label">Program Studi</label>
-              <select class="form-select validation2" name="programstudi" id="valprogramstudimahasiswa" required>
+              <select class="form-select validation2" name="programstudi" id="valprogramstudimahasiswa" onchange="cekisi()" required>
                 <option value="" selected>Pilih</option>
                 <option value="S1">S1</option>
                 <option value="S2">S2</option>
@@ -398,7 +398,7 @@
 
             <div class="col-md">
               <label class="form-label">Foto</label>
-              <input type="file" accept=".png, .jpg, .jpeg" class="form-control validation2" name="foto" id="valfotomahasiswa" required>
+              <input type="file" accept=".png, .jpg, .jpeg" class="form-control validation2" name="foto" id="valfotomahasiswa" onchange="cekisi()" required>
             </div>
           </div>
 
@@ -410,8 +410,9 @@
         </form>
 
         <!-- modal -->
-        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-          <!-- <div class="modal-dialog modal-dialog-scrollable">
+        <div id="isi-validasi-modal"></div>
+        <!-- <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
               <div class="modal-header">
                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Periksa kembali</h1>

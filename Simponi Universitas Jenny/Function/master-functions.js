@@ -141,17 +141,17 @@ $("#valjurusanambilmahasiswa").ready(function () {
     });
 });
 
-// membuat fungsi button (input mahasiswa baru)
-$("#btndaftarmahasiswa").click(function (e) {
+// membuat fungsi cek validasi (mahasiswa baru)
+function cekisi() {
+  var isikolom = true;
   var isiformraw = $(".formdaftarmahasiswa").serializeArray();
   var isiformdone = {};
-  var isikolom = true;
 
   $.map(isiformraw, function(n, i){
     isiformdone[n['name']] = n['value'];
   });
 
-  // console.log(isiformdone);
+  console.log(isiformdone);
 
   $(".validation2").each(function () {
     if ($(this).val() == '') isikolom = false;
@@ -159,31 +159,51 @@ $("#btndaftarmahasiswa").click(function (e) {
 
   console.log(isikolom);
 
-  if (isikolom) {
-    $("#btndaftarmahasiswa").removeAttr("data-bs-toggle");
-    $("#btndaftarmahasiswa").removeAttr("data-bs-target");
-  }
-  else {
-    $(".isi-mahasiswa-baru").append(`
-      <p>Nama Lengkap : `+ isiformdone.namamahasiswa +`</p>
-      <p>Gender : `+ isiformdone.gender +`</p>
-      <p>Tempat Lahir : `+ isiformdone.tempatl +`</p>
-      <p>Tanggal Lahir : `+ isiformdone.tanggall +`</p>
-      <p>Status : `+ isiformdone.status +`</p>
-      <p>Pendidikan Terakhir : `+ isiformdone.pterakhir +`</p>
-      <p>Jurusan Terakhir : `+ isiformdone.jurusanpterakhir +`</p>
-      <p>Email : `+ isiformdone.email +`</p>
-      <p>Alamat : `+ isiformdone.alamat +`</p>
-      <p>Nomor Handphone : `+ isiformdone.hp +`</p>
-      <p>Jurusan yang Diambil : `+ isiformdone.jurusanambil  +`</p>
-      <p>Program Studi : `+ isiformdone.programstudi +`</p>
-      <p>Semester : `+ isiformdone.semester +`</p>
-      <p>Foto :</p>
-      <p>`+ isiformdone.foto +`</p>
-    `)
+  if (isikolom == false) {
+    $("#btndaftarmahasiswa").click(function (e) {
+      e.preventDefault();
+      return false;
+    });
   }
 
-});
+  else {
+    $("#btndaftarmahasiswa").click(function (e) {
+      e.preventDefault();
+      $("#isi-validasi-modal").append(`
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Periksa kembali</h1>
+              </div>
+              <div class="modal-body">
+                <p>Nama Lengkap : `+ isiformdone.namamahasiswa +`</p>
+                <p>Gender : `+ isiformdone.gender +`</p>
+                <p>Tempat Lahir : `+ isiformdone.tempatl +`</p>
+                <p>Tanggal Lahir : `+ isiformdone.tanggall +`</p>
+                <p>Status : `+ isiformdone.status +`</p>
+                <p>Pendidikan Terakhir : `+ isiformdone.pterakhir +`</p>
+                <p>Jurusan Terakhir : `+ isiformdone.jurusanpterakhir +`</p>
+                <p>Email : `+ isiformdone.email +`</p>
+                <p>Alamat : `+ isiformdone.alamat +`</p>
+                <p>Nomor Handphone : `+ isiformdone.hp +`</p>
+                <p>Jurusan yang Diambil : `+ isiformdone.jurusanambil  +`</p>
+                <p>Program Studi : `+ isiformdone.programstudi +`</p>
+                <p>Semester : `+ isiformdone.semester +`</p>
+                <p>Foto :</p>
+                <p>`+ isiformdone.foto +`</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
+                <button type="button" class="btn btn-primary">Daftarkan</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `)
+    });
+  }
+}
 
 // menginput hasil jadwal ke tabel (kelas untuk mahasiswa)
 var kelaslist = {};
