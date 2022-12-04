@@ -303,9 +303,9 @@
 
         <br><br>
 
-        <form class="row g-3 needs-validation formdaftarmahasiswa" action="/" method="post" novalidate>
+        <form id="formmahasiswa" class="row g-3 needs-validation formdaftarmahasiswa" action="/" method="post" novalidate>
           <div class="row g-3">
-            <div class="col-md-9">
+            <div class="col-md">
               <label class="form-label">Nama Lengkap</label>
               <input type="text" class="form-control validation2" name="namamahasiswa" id="valnamamahasiswa" onkeyup="cekisi()" required>
             </div>
@@ -404,27 +404,43 @@
 
           <div class="row g-3">
             <div class="col-12">
-              <button class="btn btn-primary" id="btndaftarmahasiswa" data-bs-toggle="modal" data-bs-target="#staticBackdrop" type="submit">Daftarkan</button>
+              <button class="btn btn-primary" id="btndaftarmahasiswa" type="submit">Daftarkan</button>
             </div>
           </div>
         </form>
 
         <!-- modal -->
         <div id="isi-validasi-modal"></div>
-        <!-- <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
               <div class="modal-header">
                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Periksa kembali</h1>
               </div>
-              <div class="modal-body isi-mahasiswa-baru"></div>
+              <div class="modal-body">
+                <p>Nama Lengkap : <span id="i1"></sppan></p>
+                <p>Gender : <span id="i2"></sppan></p>
+                <p>Tempat Lahir : <span id="i3"></sppan></p>
+                <p>Tanggal Lahir : <span id="i4"></sppan></p>
+                <p>Status : <span id="i5"></sppan></p>
+                <p>Pendidikan Terakhir : <span id="i6"></sppan></p>
+                <p>Jurusan Terakhir : <span id="i7"></sppan></p>
+                <p>Email : <span id="i8"></sppan></p>
+                <p>Alamat : <span id="i9"></sppan></p>
+                <p>Nomor Handphone : <span id="i10"></sppan></p>
+                <p>Jurusan yang Diambil : <span id="i11"></sppan></p>
+                <p>Program Studi : <span id="i12"></sppan></p>
+                <p>Semester : <span id="i13"></sppan></p>
+                <p>Foto :</p>
+                <p><span id="i14"></sppan></p>
+              </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
                 <button type="button" class="btn btn-primary">Daftarkan</button>
               </div>
             </div>
           </div>
-        </div> -->
+        </div>
       </div>
 
       <!-- display update data dosen -->

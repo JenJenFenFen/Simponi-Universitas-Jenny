@@ -1,4 +1,7 @@
 // membuat validasi untuk nomor handphone (pastikan form class .needs-validation, atribut novalidate di div dan atribut require di setiap input)
+var phonenip = true;
+var isikolom = true;
+var isiformdone = {};
 $(function (){
   var validator = $(".needs-validation").jbvalidator({
     errorMessage: true,
@@ -143,67 +146,61 @@ $("#valjurusanambilmahasiswa").ready(function () {
 
 // membuat fungsi cek validasi (mahasiswa baru)
 function cekisi() {
-  var isikolom = true;
-  var isiformraw = $(".formdaftarmahasiswa").serializeArray();
-  var isiformdone = {};
 
+  isikolom = true; /*Inisialisasi isikolom selalu bernilai true, jika ada yang kosong akan diperiksa di for loop dan di beri nilai false tanpa ada opsi untuk memberikan nilai true kembali di kolom setelahnya*/
+
+  var isiformraw = $(".formdaftarmahasiswa").serializeArray();
   $.map(isiformraw, function(n, i){
     isiformdone[n['name']] = n['value'];
   });
 
-  console.log(isiformdone);
+  var x = $("form#formmahasiswa :input");
 
-  $(".validation2").each(function () {
-    if ($(this).val() == '') isikolom = false;
-  });
 
-  console.log(isikolom);
-
-  if (isikolom == false) {
-    $("#btndaftarmahasiswa").click(function (e) {
-      e.preventDefault();
-      return false;
-    });
+  for (var i = 0; i < 14; i++) { /*Nilai 14 didapat dari 13 input didalam form + 1 button submit, karena 14 kita sudah tau kalau index ke-14 itu button submit, jadi looping jangan sampai index ke-14*/
+    if ($(x[i]).val() == "" || $(x[i]).val() == null) {
+      isikolom = false;
+    } 
   }
 
-  else {
-    $("#btndaftarmahasiswa").click(function (e) {
-      e.preventDefault();
-      $("#isi-validasi-modal").append(`
-        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-scrollable">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Periksa kembali</h1>
-              </div>
-              <div class="modal-body">
-                <p>Nama Lengkap : `+ isiformdone.namamahasiswa +`</p>
-                <p>Gender : `+ isiformdone.gender +`</p>
-                <p>Tempat Lahir : `+ isiformdone.tempatl +`</p>
-                <p>Tanggal Lahir : `+ isiformdone.tanggall +`</p>
-                <p>Status : `+ isiformdone.status +`</p>
-                <p>Pendidikan Terakhir : `+ isiformdone.pterakhir +`</p>
-                <p>Jurusan Terakhir : `+ isiformdone.jurusanpterakhir +`</p>
-                <p>Email : `+ isiformdone.email +`</p>
-                <p>Alamat : `+ isiformdone.alamat +`</p>
-                <p>Nomor Handphone : `+ isiformdone.hp +`</p>
-                <p>Jurusan yang Diambil : `+ isiformdone.jurusanambil  +`</p>
-                <p>Program Studi : `+ isiformdone.programstudi +`</p>
-                <p>Semester : `+ isiformdone.semester +`</p>
-                <p>Foto :</p>
-                <p>`+ isiformdone.foto +`</p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
-                <button type="button" class="btn btn-primary">Daftarkan</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      `)
-    });
-  }
+  if ( $('#valnhpmahasiswa').val().length < 11 ) phonenip = false;
+  else phonenip = true;
+
+  console.log('isikolom = '+isikolom);
+  console.log('phonenip = '+phonenip);
 }
+
+$("#btndaftarmahasiswa").click(function (e) {
+  // e.preventDefault();
+
+  phonenip = ( $('#valnhpmahasiswa').val().length < 11 ) ? false : true;
+
+  if (isikolom) {
+
+    if (phonenip) {
+      $('#i1').text(isiformdone.namamahasiswa);
+      $('#i2').text(isiformdone.gender);
+      $('#i3').text(isiformdone.tempatl);
+      $('#i4').text(isiformdone.tanggall);
+      $('#i5').text(isiformdone.status);
+      $('#i6').text(isiformdone.pterakhir);
+      $('#i7').text(isiformdone.jurusanpterakhir);
+      $('#i8').text(isiformdone.email);
+      $('#i9').text(isiformdone.alamat);
+      $('#i10').text(isiformdone.hp);
+      $('#i11').text(isiformdone.jurusanambil);
+      $('#i12').text(isiformdone.programstudi);
+      $('#i13').text(isiformdone.semester);
+      $('#i14').text(isiformdone.foto);
+
+      $('#staticBackdrop').modal('show');
+    }
+
+
+  }
+    
+
+});
 
 // menginput hasil jadwal ke tabel (kelas untuk mahasiswa)
 var kelaslist = {};
