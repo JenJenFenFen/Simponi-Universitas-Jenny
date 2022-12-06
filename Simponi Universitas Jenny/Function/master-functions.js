@@ -1,7 +1,9 @@
-// membuat validasi untuk nomor handphone (pastikan form class .needs-validation, atribut novalidate di div dan atribut require di setiap input)
-var phonenip = true;
-var isikolom = true;
+// variabel global
+var phoneinpmhs = true;
+// var isikolom = true;
 var isiformdone = {};
+
+// membuat validasi untuk nomor handphone (pastikan form class .needs-validation, atribut novalidate di div dan atribut require di setiap input)
 $(function (){
   var validator = $(".needs-validation").jbvalidator({
     errorMessage: true,
@@ -104,7 +106,7 @@ $(".pilihpendidikan").change(function () {
     $(".pilihjurusan").empty();
     $(".pilihjurusan").append(`
         <option value="">Pilih</option>
-        <option value="Komputer">Komputer</option>
+        <option value="Komputer">IPA/Komputer</option>
     `);
   }
   
@@ -147,7 +149,7 @@ $("#valjurusanambilmahasiswa").ready(function () {
 // membuat fungsi cek validasi (mahasiswa baru)
 function cekisi() {
 
-  isikolom = true; /*Inisialisasi isikolom selalu bernilai true, jika ada yang kosong akan diperiksa di for loop dan di beri nilai false tanpa ada opsi untuk memberikan nilai true kembali di kolom setelahnya*/
+  isikolom = true; /*inisialisasi isikolom selalu bernilai true, jika ada yang kosong akan diperiksa di for loop dan di beri nilai false tanpa ada opsi untuk memberikan nilai true kembali di kolom setelahnya*/
 
   var isiformraw = $(".formdaftarmahasiswa").serializeArray();
   $.map(isiformraw, function(n, i){
@@ -157,27 +159,26 @@ function cekisi() {
   var x = $("form#formmahasiswa :input");
 
 
-  for (var i = 0; i < 14; i++) { /*Nilai 14 didapat dari 13 input didalam form + 1 button submit, karena 14 kita sudah tau kalau index ke-14 itu button submit, jadi looping jangan sampai index ke-14*/
+  for (var i = 0; i < 14; i++) { /*nilai 14 didapat dari 13 input didalam form + 1 button submit, karena 14 kita sudah tau kalau index ke-14 itu button submit, jadi looping jangan sampai index ke-14*/
     if ($(x[i]).val() == "" || $(x[i]).val() == null) {
       isikolom = false;
     } 
   }
 
-  if ( $('#valnhpmahasiswa').val().length < 11 ) phonenip = false;
-  else phonenip = true;
+  if ($('#valnhpmahasiswa').val().length < 11 ) phoneinpmhs = false;
+  
+  else phoneinpmhs = true;
 
   console.log('isikolom = '+isikolom);
-  console.log('phonenip = '+phonenip);
+  console.log('phoneinpmhs = '+phoneinpmhs);
 }
 
 $("#btndaftarmahasiswa").click(function (e) {
-  // e.preventDefault();
-
-  phonenip = ( $('#valnhpmahasiswa').val().length < 11 ) ? false : true;
+  phoneinpmhs = ($('#valnhpmahasiswa').val().length < 11 ) ? false : true;
 
   if (isikolom) {
-
-    if (phonenip) {
+    if (phoneinpmhs) {
+      e.preventDefault();
       $('#i1').text(isiformdone.namamahasiswa);
       $('#i2').text(isiformdone.gender);
       $('#i3').text(isiformdone.tempatl);
@@ -195,11 +196,7 @@ $("#btndaftarmahasiswa").click(function (e) {
 
       $('#staticBackdrop').modal('show');
     }
-
-
   }
-    
-
 });
 
 // menginput hasil jadwal ke tabel (kelas untuk mahasiswa)
