@@ -1,6 +1,6 @@
 // variabel global
 var phoneinpmhs = true;
-// var isikolom = true;
+var isikolom = true;
 var isiformdone = {};
 
 // membuat validasi untuk nomor handphone (pastikan form class .needs-validation, atribut novalidate di div dan atribut require di setiap input)
@@ -146,13 +146,13 @@ $("#valjurusanambilmahasiswa").ready(function () {
     });
 });
 
-// membuat fungsi cek validasi (mahasiswa baru)
-function cekisi() {
+// membuat fungsi cek validasi (daftar mahasiswa baru)
+function cekisidm() {
 
   isikolom = true; /*inisialisasi isikolom selalu bernilai true, jika ada yang kosong akan diperiksa di for loop dan di beri nilai false tanpa ada opsi untuk memberikan nilai true kembali di kolom setelahnya*/
-
   var isiformraw = $(".formdaftarmahasiswa").serializeArray();
-  $.map(isiformraw, function(n, i){
+
+  $.map(isiformraw, function(n, i) {
     isiformdone[n['name']] = n['value'];
   });
 
@@ -169,12 +169,33 @@ function cekisi() {
   
   else phoneinpmhs = true;
 
-  console.log('isikolom = '+isikolom);
-  console.log('phoneinpmhs = '+phoneinpmhs);
+  // console.log('isikolom = '+isikolom);
+  // console.log('phoneinpmhs = '+phoneinpmhs);
 }
 
-$("#btndaftarmahasiswa").click(function (e) {
+// munculkan foto di modal (daftar mahasiswa baru)
+function readURLPic(u) { /* fungsi membaca URL picture */
+  if (/*u.files && */u.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+      $("#picurl").attr("src", e.target.result);
+    }
+
+    reader.readAsDataURL(u.files[0]);
+  }
+}
+
+$("#valfotomahasiswa").change(function () {
+  readURLPic(this);
+});
+
+// button (daftar mahasiswa baru)
+$("#btnrevdaftarmahasiswa").click(function (e) {
   phoneinpmhs = ($('#valnhpmahasiswa').val().length < 11 ) ? false : true;
+  var isijurusanambil = $("#valjurusanambilmahasiswa :selected").text();
+
+  // console.log(isijurusanambil);
 
   if (isikolom) {
     if (phoneinpmhs) {
@@ -189,10 +210,9 @@ $("#btndaftarmahasiswa").click(function (e) {
       $('#i8').text(isiformdone.email);
       $('#i9').text(isiformdone.alamat);
       $('#i10').text(isiformdone.hp);
-      $('#i11').text(isiformdone.jurusanambil);
+      $('#i11').text(isijurusanambil);
       $('#i12').text(isiformdone.programstudi);
       $('#i13').text(isiformdone.semester);
-      $('#i14').text(isiformdone.foto);
 
       $('#staticBackdrop').modal('show');
     }

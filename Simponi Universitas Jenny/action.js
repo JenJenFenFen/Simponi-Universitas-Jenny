@@ -19,6 +19,36 @@ app.get('/homepage-master', (req, res) => {
     res.sendFile(path.join(__dirname, '/HTML/index-master.html'));
 });
 
+// HTML frontend master - add lecturer
+app.get('/homepage-master-addlecturer', (req, res) => {
+    res.sendFile(path.join(__dirname, '/HTML/index-master-daftardosen.html'))
+});
+
+// HTML frontend master - add student
+app.get('/homepage-master-addstudent', (req, res) => {
+    res.sendFile(path.join(__dirname, '/HTML/index-master-daftarmahasiswa.html'))
+});
+
+// HTML frontend master - update student
+app.get('/homepage-master-updatestudent', (req, res) => {
+    res.sendFile(path.join(__dirname, '/HTML/index-master-updatemahasiswa.html'))
+});
+
+// HTML frontend master - update lecturer
+app.get('/homepage-master-updatelecturer', (req, res) => {
+    res.sendFile(path.join(__dirname, '/HTML/index-master-updatedosen.html'))
+});
+
+// HTML frontend master - add class
+app.get('/homepage-master-addclass', (req, res) => {
+    res.sendFile(path.join(__dirname, '/HTML/index-master-membuatkelas.html'))
+});
+
+// HTML frontend master - add material schedule
+app.get('/homepage-master-addmaterialsch', (req, res) => {
+    res.sendFile(path.join(__dirname, '/HTML/index-master-membuatmk.html'))
+});
+
 // HTML frontend untuk menampilkan select 'jurusan yang dipilih' - master
 app.get('/homepage-master-getmajoradd', (req, res) => {
     const syntax = `
@@ -33,7 +63,7 @@ app.get('/homepage-master-getmajoradd', (req, res) => {
 });
 
 // HTML mengirim data mahasiswa ke database - master
-app.post('/', (req, res) => {
+app.post('/homepage-master-inputnewmhs', (req, res) => {
     const nama = req.body.namamahasiswa;
     const jk = req.body.gender;
     const tempatlahir = req.body.tempatl;
@@ -65,10 +95,10 @@ app.post('/', (req, res) => {
         INSERT INTO user_login (email, password, rule_id) VALUES ('${emailm}', 'simponi123', 3)
     `;
 
-    // db.query(syntax1, (error) => {
-    //     if (error) console.log('Error: ' + error); 
-    //     console.log('Data user_login berhasil diinput!');
-    // });
+    db.query(syntax1, (error) => {
+        if (error) console.log('Error: ' + error); 
+        console.log('Data user_login berhasil diinput!');
+    });
 
     const syntax2 = `
     INSERT INTO student_identity (user_login_email, nim, name, gender, country, date_birth, address, status, number_phone, last_education, major_last_education, major_id, study_program, semester, photo) 
@@ -99,10 +129,10 @@ app.post('/', (req, res) => {
         '${photo}'
     )`;
 
-    // db.query(syntax2, (error) => {
-    //     if (error) console.log('Error: ' + error); 
-    //     console.log('Data student_identity berhasil diinput!');
-    // });
+    db.query(syntax2, (error) => {
+        if (error) console.log('Error: ' + error); 
+        console.log('Data student_identity berhasil diinput!');
+    });
 });
 
 // HTML dosen
