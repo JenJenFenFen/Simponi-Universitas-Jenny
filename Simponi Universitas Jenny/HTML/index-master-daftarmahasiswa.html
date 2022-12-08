@@ -297,7 +297,7 @@
 
             <div class="col-md">
               <label class="form-label">Foto</label>
-              <input type="file" accept=".png, .jpg, .jpeg" class="form-control validation0" name="foto" id="valfotomahasiswa" onchange="cekisidm()" required>
+              <input type="file" accept=".png, .jpg, .jpeg" class="form-control validation0" name="foto" id="valfotomahasiswa" onchange="cekisidm(); readURLPic(this)" required>
             </div>
           </div>
 
@@ -347,54 +347,7 @@
     <script src="sidebars.js"></script>
     <script src="jbvalidator.min.js"></script>
     <script src="justnumber.js"></script>
+    <script src="readurlpic.js"></script>
     <script src="master-function-daftarmahasiswa.js"></script>
-
-    <script>
-      //membuat fungsi hide and show password
-      // $(".hideseekpass").click(function(e) {
-      //   var jenis = $(".tipepassword input");
-      //   var openeye = $(".openeye");
-      //   var closeeye = $(".closeeye");
-      //   if (jenis.attr("type") == "password") {
-      //     jenis.attr("type", "text");
-      //     openeye.removeClass("d-none");
-      //     closeeye.addClass("d-none");
-      //   } else if(jenis.attr("type") == "text") {
-      //     jenis.attr("type", "password");
-      //     openeye.addClass("d-none");
-      //     closeeye.removeClass("d-none");
-      //   }
-      // });
-
-      //membuat fungsi tombol "Ubah Data" menjadi tombol "Update" dan merubah tampilan kolom formulir
-      // $("#btnubahdosen").click(function (e) {
-      //   e.preventDefault();
-      //   $("#btnupdatedosen").attr("hidden", false);
-      //   $("#btnubahdosen").attr("hidden", true);
-      //   $(".canedit").attr("readonly", false);
-      //   $(".canedit").attr("disabled", false);
-      //   $(".edittext").removeClass("form-control-plaintext");
-      //   $(".edittext").addClass("form-control");
-      //   $(".editselect").removeClass("form-select-plaintext");
-      //   $(".editselect").addClass("form-select");
-      // });
-
-      // $("#btnubahmahasiswa").click(function (e) {
-      //   e.preventDefault();
-      //   $("#btnupdatemahasiswa").attr("hidden", false);
-      //   $("#btnubahmahasiswa").attr("hidden", true);
-      //   $(".canedit").attr("readonly", false);
-      //   $(".canedit").attr("disabled", false);
-      //   $(".edittext").removeClass("form-control-plaintext");
-      //   $(".edittext").addClass("form-control");
-      //   $(".editselect").removeClass("form-select-plaintext");
-      //   $(".editselect").addClass("form-select");
-      // });
-
-
-
-    </script>
-
-
   </body>
 </html>
