@@ -19,85 +19,77 @@ $(function (){
     else if ($(el).is('[id=valnhpmahasiswa]') && $(el).val().length < 11) {
       return 'Your number phone is too short.';
     }
-
-    else if ($(el).is('[id=valnidosen]') && $(el).val().length < 10) {
-      return 'Your nid is too short.';
-    }
-
-    else if ($(el).is('[id=valnimahasiswa]') && $(el).val().length < 10) {
-      return 'Your nim is too short.';
-    }
   };
 });
 
 // membuat fungsi tombol di sidebars
-$(".bdosen").click(function () {
-  $(".divformdosen").attr("hidden", false);
-  $(".divformmahasiswa").attr("hidden", true);
-  $(".divupdatedosen").attr("hidden", true);
-  $(".divupdatemahasiswa").attr("hidden", true);
-  $(".divmakeschedule").attr("hidden", true);
-  $(".homepage").attr("hidden", true);
-  $(".divmakeclass").attr("hidden", true);
-  $(".validation0").val('');
-});
+// $(".bdosen").click(function () {
+//   $(".divformdosen").attr("hidden", false);
+//   $(".divformmahasiswa").attr("hidden", true);
+//   $(".divupdatedosen").attr("hidden", true);
+//   $(".divupdatemahasiswa").attr("hidden", true);
+//   $(".divmakeschedule").attr("hidden", true);
+//   $(".homepage").attr("hidden", true);
+//   $(".divmakeclass").attr("hidden", true);
+//   $(".validation0").val('');
+// });
 
-$(".bmahasiswa").click(function () {
-  $(".divformmahasiswa").attr("hidden", false);
-  $(".divformdosen").attr("hidden", true);
-  $(".divupdatedosen").attr("hidden", true);
-  $(".divupdatemahasiswa").attr("hidden", true);
-  $(".divmakeschedule").attr("hidden", true);
-  $(".homepage").attr("hidden", true);
-  $(".divmakeclass").attr("hidden", true);
-  $(".validation0").val('');
-});
+// $(".bmahasiswa").click(function () {
+//   $(".divformmahasiswa").attr("hidden", false);
+//   $(".divformdosen").attr("hidden", true);
+//   $(".divupdatedosen").attr("hidden", true);
+//   $(".divupdatemahasiswa").attr("hidden", true);
+//   $(".divmakeschedule").attr("hidden", true);
+//   $(".homepage").attr("hidden", true);
+//   $(".divmakeclass").attr("hidden", true);
+//   $(".validation0").val('');
+// });
 
-$(".udosen").click(function () {
-  $(".divupdatedosen").attr("hidden", false);
-  $(".divupdatemahasiswa").attr("hidden", true);
-  $(".divformdosen").attr("hidden", true);
-  $(".divformmahasiswa").attr("hidden", true);
-  $(".divmakeschedule").attr("hidden", true);
-  $(".validation0").val('');
-  $("#valnim").attr("disabled", true);
-  $(".homepage").attr("hidden", true);
-  $(".divmakeclass").attr("hidden", true);
-});
+// $(".udosen").click(function () {
+//   $(".divupdatedosen").attr("hidden", false);
+//   $(".divupdatemahasiswa").attr("hidden", true);
+//   $(".divformdosen").attr("hidden", true);
+//   $(".divformmahasiswa").attr("hidden", true);
+//   $(".divmakeschedule").attr("hidden", true);
+//   $(".validation0").val('');
+//   $("#valnim").attr("disabled", true);
+//   $(".homepage").attr("hidden", true);
+//   $(".divmakeclass").attr("hidden", true);
+// });
 
-$(".umahasiswa").click(function () {
-  $(".divupdatemahasiswa").attr("hidden", false);
-  $(".divupdatedosen").attr("hidden", true);
-  $(".divformdosen").attr("hidden", true);
-  $(".divformmahasiswa").attr("hidden", true);
-  $(".divmakeschedule").attr("hidden", true);
-  $(".validation0").val('');
-  $("#valnid").attr("disabled", true);
-  $(".homepage").attr("hidden", true);
-  $(".divmakeclass").attr("hidden", true);
-});
+// $(".umahasiswa").click(function () {
+//   $(".divupdatemahasiswa").attr("hidden", false);
+//   $(".divupdatedosen").attr("hidden", true);
+//   $(".divformdosen").attr("hidden", true);
+//   $(".divformmahasiswa").attr("hidden", true);
+//   $(".divmakeschedule").attr("hidden", true);
+//   $(".validation0").val('');
+//   $("#valnid").attr("disabled", true);
+//   $(".homepage").attr("hidden", true);
+//   $(".divmakeclass").attr("hidden", true);
+// });
 
-$(".mclass").click(function () {  
-  $(".divmakeclass").attr("hidden", false);
-  $(".divmakeschedule").attr("hidden", true);
-  $(".divupdatemahasiswa").attr("hidden", true);
-  $(".divupdatedosen").attr("hidden", true);
-  $(".divformdosen").attr("hidden", true);
-  $(".divformmahasiswa").attr("hidden", true);
-  $(".homepage").attr("hidden", true);
-  $(".validation0").val('');
-});
+// $(".mclass").click(function () {  
+//   $(".divmakeclass").attr("hidden", false);
+//   $(".divmakeschedule").attr("hidden", true);
+//   $(".divupdatemahasiswa").attr("hidden", true);
+//   $(".divupdatedosen").attr("hidden", true);
+//   $(".divformdosen").attr("hidden", true);
+//   $(".divformmahasiswa").attr("hidden", true);
+//   $(".homepage").attr("hidden", true);
+//   $(".validation0").val('');
+// });
 
-$(".lmatakuliah").click(function () {  
-  $(".divmakeschedule").attr("hidden", false);
-  $(".divupdatemahasiswa").attr("hidden", true);
-  $(".divupdatedosen").attr("hidden", true);
-  $(".divformdosen").attr("hidden", true);
-  $(".divformmahasiswa").attr("hidden", true);
-  $(".homepage").attr("hidden", true);
-  $(".divmakeclass").attr("hidden", true);
-  $(".validation0").val('');
-});
+// $(".lmatakuliah").click(function () {  
+//   $(".divmakeschedule").attr("hidden", false);
+//   $(".divupdatemahasiswa").attr("hidden", true);
+//   $(".divupdatedosen").attr("hidden", true);
+//   $(".divformdosen").attr("hidden", true);
+//   $(".divformmahasiswa").attr("hidden", true);
+//   $(".homepage").attr("hidden", true);
+//   $(".divmakeclass").attr("hidden", true);
+//   $(".validation0").val('');
+// });
 
 // membuat isi dropdown pendidikan terakhir dan jurusan
 $(".pilihpendidikan").change(function () {
