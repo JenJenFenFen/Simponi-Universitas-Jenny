@@ -3,7 +3,7 @@ var phoneinpmhs = true;
 var isikolom = true;
 var isiformdone = {};
 
-// membuat validasi untuk nomor handphone (pastikan form class .needs-validation, atribut novalidate di div dan atribut require di setiap input)
+// validasi untuksemua dan nomor handphone (pastikan form class .needs-validation, atribut novalidate di div dan atribut require di setiap input)
 $(function (){
   var validator = $(".needs-validation").jbvalidator({
     errorMessage: true,
@@ -66,9 +66,9 @@ $("#valjurusanambilmahasiswa").ready(function () {
 });
 
 // membuat fungsi cek validasi (daftar mahasiswa baru)
-function cekisidm() {
+function cekisi() {
 
-  isikolom = true; /*inisialisasi isikolom selalu bernilai true, jika ada yang kosong akan diperiksa di for loop dan di beri nilai false tanpa ada opsi untuk memberikan nilai true kembali di kolom setelahnya*/
+  isikolom = true; // inisialisasi isikolom selalu bernilai true, jika ada yang kosong akan diperiksa di for loop dan di beri nilai false tanpa ada opsi untuk memberikan nilai true kembali di kolom setelahnya
   var isiformraw = $(".formdaftarmahasiswa").serializeArray();
 
   $.map(isiformraw, function(n, i) {
@@ -78,7 +78,7 @@ function cekisidm() {
   var x = $("form#formmahasiswa :input");
 
 
-  for (var i = 0; i < 14; i++) { /*nilai 14 didapat dari 13 input didalam form + 1 button submit, karena 14 kita sudah tau kalau index ke-14 itu button submit, jadi looping jangan sampai index ke-14*/
+  for (var i = 0; i < 14; i++) { // nilai 14 didapat dari 13 input didalam form + 1 button submit, karena 14 kita sudah tau kalau index ke-14 itu button submit, jadi looping jangan sampai index ke-14
     if ($(x[i]).val() == "" || $(x[i]).val() == null) {
       isikolom = false;
     } 

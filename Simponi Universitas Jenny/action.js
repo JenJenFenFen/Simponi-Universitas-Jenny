@@ -16,7 +16,7 @@ app.use(express.static(path.join(__dirname, 'function')));
 
 // HTML frontend master
 app.get('/homepage-master', (req, res) => {
-    res.sendFile(path.join(__dirname, '/HTML/index-master.html'));
+    res.sendFile(path.join(__dirname, '/HTML/index-master-homepage.html'));
 });
 
 // HTML frontend master - add lecturer
@@ -57,8 +57,10 @@ app.get('/homepage-master-getmajoradd', (req, res) => {
 
     db.query(syntax, (error, result) => {
         if (error) console.log('Error: ' + error);
-        res.send(result);
-        console.log(`Data 'major' berhasil ditampilkan!`);
+        else {
+            res.send(result);
+            console.log(`Data 'major' berhasil ditampilkan!`);
+        }
     });
 });
 
@@ -97,7 +99,7 @@ app.post('/homepage-master-inputnewmhs', (req, res) => {
 
     db.query(syntax1, (error) => {
         if (error) console.log('Error: ' + error); 
-        console.log('Data user_login berhasil diinput!');
+        else console.log('Data user_login berhasil diinput!');
     });
 
     const syntax2 = `
@@ -130,8 +132,27 @@ app.post('/homepage-master-inputnewmhs', (req, res) => {
     )`;
 
     db.query(syntax2, (error) => {
-        if (error) console.log('Error: ' + error); 
-        console.log('Data student_identity berhasil diinput!');
+        if (error) console.log('Error: ' + error);
+        else {
+            console.log('Data student_identity berhasil diinput!');
+        } 
+    });
+});
+
+// HTML frontend untuk menampilkan select 'mahasiswa untuk penambahan kelas' - master
+app.get('/homepage-master-getmhsadd', (req, res) => {
+    const majorid = req.query.jurusan;
+    // console.log(majorid);
+    const syntax = `
+        SELECT id, name FROM student_identity WHERE major_id = ${majorid} 
+    `;
+
+    db.query(syntax, (error, result) => {
+        if (error) console.log('Error: ' + error);
+        else {
+            res.send(result);
+            console.log(`Data 'mahasiswa' berhasil ditampilkan!`);
+        }
     });
 });
 
