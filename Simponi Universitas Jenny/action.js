@@ -49,17 +49,35 @@ app.get('/homepage-master-addmaterialsch', (req, res) => {
     res.sendFile(path.join(__dirname, '/HTML/index-master-membuatmk.html'))
 });
 
-// HTML frontend untuk menampilkan select 'jurusan yang dipilih' - master
-app.get('/homepage-master-getmajoradd', (req, res) => {
+// HTML frontend untuk menampilkan select 'program studi' - master
+app.get('/homepage-master-getstudyprogramadd', (req, res) => {
     const syntax = `
-        SELECT * FROM major
+        SELECT * FROM study_program
     `;
 
     db.query(syntax, (error, result) => {
         if (error) console.log('Error: ' + error);
         else {
             res.send(result);
-            console.log(`Data 'major' berhasil ditampilkan!`);
+            console.log(`Data 'Program Studi' berhasil ditampilkan!`);
+        }
+    });
+});
+
+// HTML frontend untuk menampilkan select 'jurusan yang diambil' - master
+app.get('/homepage-master-getmajoradd', (req, res) => {
+    const studyid = req.query.programstudi;
+    const syntax = `
+        SELECT id, major_name FROM major WHERE study_program_id = ${studyid}
+    `;
+
+    // console.log(studyid);
+
+    db.query(syntax, (error, result) => {
+        if (error) console.log('Error: ' + error);
+        else {
+            res.send(result);
+            console.log(`Data 'Jurusan yang Diambil' berhasil ditampilkan!`);
         }
     });
 });
@@ -142,10 +160,11 @@ app.post('/homepage-master-inputnewmhs', (req, res) => {
 // HTML frontend untuk menampilkan select 'mahasiswa untuk penambahan kelas' - master
 app.get('/homepage-master-getmhsadd', (req, res) => {
     const majorid = req.query.jurusan;
-    // console.log(majorid);
     const syntax = `
         SELECT id, name FROM student_identity WHERE major_id = ${majorid} 
     `;
+
+    // console.log(majorid);
 
     db.query(syntax, (error, result) => {
         if (error) console.log('Error: ' + error);

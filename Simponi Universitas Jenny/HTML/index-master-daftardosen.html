@@ -196,22 +196,22 @@
 
       <div class="b-example-divider b-example-vr"></div>
 
-      <!-- display daftar mahasiswa -->
-      <div class="flex-column flex-shrink-0 p-3 divformmahasiswa" style="width: 1068px; overflow: auto;">
-        <h1>FORMULIR PENDAFTARAN MAHASISWA</h1>
+      <!-- display daftar dosen -->
+      <div class="flex-column flex-shrink-0 p-3 divformdosen" style="width: 1068px; overflow: auto;">
+        <h1>FORMULIR PENDAFTARAN DOSEN</h1>
 
         <br><br>
 
-        <form id="formmahasiswa" class="row g-3 needs-validation formdaftarmahasiswa" action="/homepage-master-inputnewmhs" method="post" novalidate>
+        <form class="row g-3 needs-validation formdaftardosen" action="/homepage-master-addlecturer" method="post" novalidate>
           <div class="row g-3">
             <div class="col-md-9">
               <label class="form-label">Nama Lengkap</label>
-              <input type="text" class="form-control validation0" name="namamahasiswa" id="valnamamahasiswa" onkeyup="cekisi()" required>
+              <input type="text" class="form-control validation0" name="namadosen" id="valnamadosen" onkeyup="cekisi()" required>
             </div>
 
             <div class="col-md">
               <label class="form-label">Gender</label>
-              <select class="form-select validation0" name="gender" id="valgendermahasiswa" onchange="cekisi()" required>
+              <select class="form-select validation0" name="gender" id="valgenderdosen" onchange="cekisi()" required>
                 <option value="" selected>Pilih</option>
                 <option value="Laki-Laki">Laki-Laki</option>
                 <option value="Perempuan">Perempuan</option>
@@ -222,17 +222,17 @@
           <div class="row g-3">
             <div class="col-md">
               <label class="form-label">Tempat Lahir</label>
-              <input type="text" class="form-control validation0" name="tempatl" id="valtempatmahasiswa" onkeyup="cekisi()" required>
+              <input type="text" class="form-control validation0" name="tempatl" id="valtempatdosen" onkeyup="cekisi()" required>
             </div>
 
             <div class="col-md">
               <label class="form-label">Tanggal Lahir</label>
-              <input type="date" class="form-control validation0" name="tanggall" id="valtanggalmahasiswa" onkeyup="cekisi()" required>
+              <input type="date" class="form-control validation0" name="tanggall" id="valtanggaldosen" onchange="cekisi()" required>
             </div>
 
             <div class="col-md">
               <label class="form-label">Status</label>
-              <select class="form-select validation0" name="status" id="valsttsmahasiswa" onchange="cekisi()" required>
+              <select class="form-select validation0" name="status" id="valsttsdosen" onchange="cekisi()" required>
                 <option value="" selected>Pilih</option>
                 <option value="Belum Menikah">Belum Menikah</option>
                 <option value="Menikah">Menikah</option>
@@ -244,62 +244,52 @@
           <div class="row g-3">
             <div class="col-md-2">
               <label class="form-label">Pendidikan Terakhir</label>
-              <select class="form-select validation0 pilihpendidikan" name="pterakhir" id="valedumahasiswa" onchange="cekisi()" required>
+              <select class="form-select validation0" name="pterakhir" id="valedudosen" onchange="cekisi()" required>
                 <option value="" selected>Pilih</option>
-                <option value="SMA/SMK">SMA/SMK</option>
                 <option value="S1">S1</option>
                 <option value="S2">S2</option>
+                <option value="S3">S3</option>
               </select>
             </div>
 
             <div class="col-md-4">
-              <label class="form-label">Jurusan Terakhir</label>
-              <select class="form-select validation0 pilihjurusan" name="jurusanpterakhir" id="valmajormahasiswa" onchange="cekisi()" required></select>
+              <label class="form-label">Jurusan</label>
+              <select class="form-select validation0" name="jurusan" id="valmajordosen" onchange="cekisi()" required>
+                <option value="" selected>Pilih</option>
+                <option value="Teknik Informatika">Teknik Informatika</option>
+                <option value="Sistem Informasi">Sistem Informasi</option>
+                <option value="Teknik Komputer">Teknik Komputer</option>
+              </select>
             </div>
 
             <div class="col-sm">
               <label class="form-label">Email</label>
-              <input type="email" class="form-control validation0" name="email" id="valemailmahasiswa" onkeyup="cekisi()" required>
+              <input type="email" class="form-control validation0" name="email" id="valemaildosen" onkeyup="cekisi()" required>
             </div>
           </div>
 
           <div class="row g-3">
             <div class="col-md-9">
               <label class="form-label">Alamat</label>
-              <input type="text" class="form-control validation0" name="alamat" id="valalamatmahasiswa" onkeyup="cekisi()" required>
+              <input type="text" class="form-control validation0" name="alamat" id="valalamatdosen" onkeyup="cekisi()" required>
             </div>
 
             <div class="col-md">
               <label class="form-label">Nomor Handphone</label>
-              <input type="text" class="form-control validation0 justnumber" name="hp" id="valnhpmahasiswa" maxlength="15" onkeyup="cekisi()" required>
+              <input type="text" class="form-control validation0 justnumber" name="hp" id="valnhpdosen" maxlength="15" onkeyup="cekisi()" required>
             </div>
           </div>
 
           <div class="row g-3">
-            <div class="col-md-2">
-              <label class="form-label">Program Studi</label>
-              <select class="form-select validation0" name="programstudi" id="valprogramstudimahasiswa" onchange="cekisi()" required></select>
-            </div>
-
-            <div class="col-md-3">
-              <label class="form-label">Jurusan yang Diambil</label>
-              <select class="form-select validation0" name="jurusanambil" id="valjurusanambilmahasiswa" onchange="cekisi()" required></select>
-            </div>
-
-            <div class="col-md-2">
-              <label class="form-label">Semester</label>
-              <input type="text" readonly class="form-control-plaintext validation0" name="semester" id="valsemestermahasiswa" value="1">
-            </div>
-
-            <div class="col-md">
+            <div class="col-md-5">
               <label class="form-label">Foto</label>
-              <input type="file" accept=".png, .jpg, .jpeg" class="form-control validation0" name="foto" id="valfotomahasiswa" onchange="cekisi(); readURLPic(this)" required>
+              <input type="file" accept=".png, .jpg, .jpeg" class="form-control validation0" name="foto" id="valfotodosen" onchange="cekisi(); readURLPic(this)" required>
             </div>
           </div>
 
           <div class="row g-3">
             <div class="col-12">
-              <button class="btn btn-primary" id="btnrevdaftarmahasiswa" type="submit">Daftarkan</button>
+              <button class="btn btn-primary" id="btnrevdaftardosen" type="submit">Daftarkan</button>
             </div>
           </div>
 
@@ -317,13 +307,10 @@
                   <p>Tanggal Lahir : <span id="i4"></span></p>
                   <p>Status : <span id="i5"></span></p>
                   <p>Pendidikan Terakhir : <span id="i6"></span></p>
-                  <p>Jurusan Terakhir : <span id="i7"></span></p>
+                  <p>Jurusan : <span id="i7"></span></p>
                   <p>Email : <span id="i8"></span></p>
                   <p>Alamat : <span id="i9"></span></p>
                   <p>Nomor Handphone : <span id="i10"></span></p>
-                  <p>Program Studi : <span id="i11"></span></p>
-                  <p>Jurusan yang Diambil : <span id="i12"></span></p>
-                  <p>Semester : <span id="i13"></span></p>
                   <p>Foto :</p>
                   <p><img id="picurl"></p>
                 </div>
@@ -344,6 +331,6 @@
     <script src="jbvalidator.min.js"></script>
     <script src="justnumber.js"></script>
     <script src="readurlpic.js"></script>
-    <script src="master-function-daftarmahasiswa.js"></script>
+    <script src="master-function-daftardosen.js"></script>
   </body>
 </html>

@@ -204,6 +204,11 @@
 
         <form class="row g-3 needs-validation formclassm" novalidate>
           <div class="row g-3">
+            <div class="col-md-2">
+              <label class="form-label">Program Studi</label>
+              <select class="form-select validation0 validation0" name="programstudi" id="valprogramstudi" required onchange="cekisi()"></select>
+            </div>
+
             <div class="col-md-3">
               <label class="form-label">Jurusan</label>
               <select class="form-select validation0 validation0" name="jurusan" id="valjurusan" required onchange="cekisi()"></select>
@@ -222,7 +227,7 @@
 
           <div class="row g-3">
             <div class="col-12">
-              <button class="btn btn-primary" id="btnkelas" type="submit">Input ke Kelas</button>
+              <button class="btn btn-primary" id="btnkelas" type="submit">Input ke Daftar</button>
             </div>
           </div>
         </form>
@@ -234,11 +239,12 @@
             <tr>
               <th class="tablekelas deleterow" hidden>No</th>
               <th class="tablekelas">Kelas</th>
+              <th class="tablekelas">Jurusan</th>
               <th class="tablekelas">Nama Mahasiswa</th>
               <th class="tablekelas deleterow">Option</th>
             </tr>
           </thead>
-          <tbody class="table-secondary">
+          <tbody class="table-secondary addcolumn">
             <tr id="edittableclass">
               <td colspan="4" class="tablekelas" style="text-align: center;">Inputan masih kosong</td>
             </tr>
@@ -247,7 +253,7 @@
 
         <div class="col-12 checkproseskelas" hidden>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="checkproseskelas">
+            <input class="form-check-input" type="checkbox" id="checkproseskelas">
             <label class="form-check-label">Semua data sudah sesuai</label>
           </div>
         </div>
@@ -266,7 +272,6 @@
     <script src="bootstrap.bundle.min.js"></script>
     <script src="sidebars.js"></script>
     <script src="jbvalidator.min.js"></script>
-    <script src="justnumber.js"></script>
     <script src="master-function-membuatkelas.js"></script>
   </body>
 </html>

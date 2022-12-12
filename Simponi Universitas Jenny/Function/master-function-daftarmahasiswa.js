@@ -41,60 +41,83 @@ $(".pilihpendidikan").change(function () {
   
   else $(".pilihjurusan").empty();
   
+});
+
+// select program studi
+$("#valprogramstudimahasiswa").ready(function () {
+  $("#valprogramstudimahasiswa").empty();
+
+  $.ajax({
+    url:'/homepage-master-getstudyprogramadd',
+    type:'GET',
+    success: function (reply) {
+      $("#valprogramstudimahasiswa").append('<option value="" selected>Pilih</option>');
+      $.each(reply, function(i, v) {
+        $("#valprogramstudimahasiswa").append(`
+          <option value="` + v.id + `">` + v.study_program_name + `</option>
+        `);
+      });
+      $("#valprogramstudimahasiswa").append('</select>');
+      return true;
+    },
+    error: function (xhr, ajaxOptions, thrownError) {
+      return false;
+    }
   });
+});
 
 // select jurusan untuk mahasiswa
-$("#valjurusanambilmahasiswa").ready(function () {
+$("#valprogramstudimahasiswa").change(function () {
   $("#valjurusanambilmahasiswa").empty();
-    $.ajax({
-      url:'/homepage-master-getmajoradd',
-      type:'GET',
-      success: function (reply) {
-        $("#valjurusanambilmahasiswa").append('<option value="" selected>Pilih</option>');
-        $.each(reply, function(i, v) {
-          $("#valjurusanambilmahasiswa").append(`
-            <option value="` + v.id + `">` + v.major_name + `</option>
-          `);
-        });
-        $("#valjurusanambilmahasiswa").append('</select>');
-        return true;
-      },
-      error: function (xhr, ajaxOptions, thrownError) {
-        return false;
-      }
-    });
+  var programstudiid = $("#valprogramstudimahasiswa").val();
+  // console.log(programstudiid);
+
+  $.ajax({
+    url:'/homepage-master-getmajoradd',
+    type:'GET',
+    data: {programstudi: programstudiid},
+    success: function (reply) {
+      // console.log(reply);
+      $("#valjurusanambilmahasiswa").append('<option value="" selected>Pilih</option>');
+      $.each(reply, function(i, v) {
+        $("#valjurusanambilmahasiswa").append(`
+          <option value="` + v.id + `">` + v.major_name + `</option>
+        `);
+      });
+      $("#valjurusanambilmahasiswa").append('</select>');
+      return true;
+    },
+    error: function (xhr, ajaxOptions, thrownError) {
+      return false;
+    }
+  });
 });
 
 // membuat fungsi cek validasi (daftar mahasiswa baru)
 function cekisi() {
-
-  isikolom = true; // inisialisasi isikolom selalu bernilai true, jika ada yang kosong akan diperiksa di for loop dan di beri nilai false tanpa ada opsi untuk memberikan nilai true kembali di kolom setelahnya
+  isikolom = true;
+  phoneinpmhs = $('#valnhpmahasiswa').val().length < 11 ? false : true;
+  var x = $(".validation0");
   var isiformraw = $(".formdaftarmahasiswa").serializeArray();
+
+  // console.log(x);
 
   $.map(isiformraw, function(n, i) {
     isiformdone[n['name']] = n['value'];
   });
 
-  var x = $("form#formmahasiswa :input");
-
-
-  for (var i = 0; i < 14; i++) { // nilai 14 didapat dari 13 input didalam form + 1 button submit, karena 14 kita sudah tau kalau index ke-14 itu button submit, jadi looping jangan sampai index ke-14
+  for (var i = 0; i < 14; i++) {
     if ($(x[i]).val() == "" || $(x[i]).val() == null) {
       isikolom = false;
     } 
   }
-
-  if ($('#valnhpmahasiswa').val().length < 11 ) phoneinpmhs = false;
-  
-  else phoneinpmhs = true;
-
   // console.log('isikolom = '+isikolom);
   // console.log('phoneinpmhs = '+phoneinpmhs);
 }
 
 // button (daftar mahasiswa baru)
 $("#btnrevdaftarmahasiswa").click(function (e) {
-  phoneinpmhs = ($('#valnhpmahasiswa').val().length < 11 ) ? false : true;
+  var isistudi = $("#valprogramstudimahasiswa :selected").text();
   var isijurusanambil = $("#valjurusanambilmahasiswa :selected").text();
 
   // console.log(isijurusanambil);
@@ -112,8 +135,8 @@ $("#btnrevdaftarmahasiswa").click(function (e) {
       $('#i8').text(isiformdone.email);
       $('#i9').text(isiformdone.alamat);
       $('#i10').text(isiformdone.hp);
-      $('#i11').text(isijurusanambil);
-      $('#i12').text(isiformdone.programstudi);
+      $('#i11').text(isistudi);
+      $('#i12').text(isijurusanambil);
       $('#i13').text(isiformdone.semester);
 
       $('#staticBackdrop').modal('show');

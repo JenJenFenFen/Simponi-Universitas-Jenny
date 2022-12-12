@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 08, 2022 at 02:53 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: Dec 12, 2022 at 10:40 AM
+-- Server version: 10.4.25-MariaDB
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -62,6 +62,7 @@ CREATE TABLE `lecturer_identity` (
 
 CREATE TABLE `major` (
   `id` int(11) NOT NULL,
+  `study_program_id` int(11) NOT NULL,
   `major_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -69,10 +70,12 @@ CREATE TABLE `major` (
 -- Dumping data for table `major`
 --
 
-INSERT INTO `major` (`id`, `major_name`) VALUES
-(1, 'Teknik Informatika'),
-(2, 'Sistem Informasi'),
-(3, 'Teknik Komputer');
+INSERT INTO `major` (`id`, `study_program_id`, `major_name`) VALUES
+(1, 1, 'Teknik Informatika'),
+(2, 1, 'Sistem Informasi'),
+(3, 1, 'Teknik Komputer'),
+(4, 2, 'Teknik Informatika'),
+(5, 2, 'Sistem Informasi');
 
 -- --------------------------------------------------------
 
@@ -147,6 +150,25 @@ CREATE TABLE `student_identity` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `study_program`
+--
+
+CREATE TABLE `study_program` (
+  `id` int(11) NOT NULL,
+  `study_program_name` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `study_program`
+--
+
+INSERT INTO `study_program` (`id`, `study_program_name`) VALUES
+(1, 'S1'),
+(2, 'S2');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `task_lecturer`
 --
 
@@ -208,7 +230,8 @@ ALTER TABLE `lecturer_identity`
 -- Indexes for table `major`
 --
 ALTER TABLE `major`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `study_program_id` (`study_program_id`);
 
 --
 -- Indexes for table `material`
@@ -236,8 +259,17 @@ ALTER TABLE `schedule`
 ALTER TABLE `student_identity`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `nim` (`nim`),
+  ADD UNIQUE KEY `user_login_email_2` (`user_login_email`),
+  ADD UNIQUE KEY `nim_2` (`nim`),
   ADD KEY `user_login_email` (`user_login_email`),
   ADD KEY `major_id` (`major_id`);
+
+--
+-- Indexes for table `study_program`
+--
+ALTER TABLE `study_program`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `study_program_name` (`study_program_name`);
 
 --
 -- Indexes for table `task_lecturer`
@@ -281,7 +313,7 @@ ALTER TABLE `lecturer_identity`
 -- AUTO_INCREMENT for table `major`
 --
 ALTER TABLE `major`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `material`
@@ -305,7 +337,13 @@ ALTER TABLE `schedule`
 -- AUTO_INCREMENT for table `student_identity`
 --
 ALTER TABLE `student_identity`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `study_program`
+--
+ALTER TABLE `study_program`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `task_lecturer`
@@ -334,6 +372,12 @@ ALTER TABLE `class`
 --
 ALTER TABLE `lecturer_identity`
   ADD CONSTRAINT `lecturer_identity_ibfk_1` FOREIGN KEY (`user_login_email`) REFERENCES `user_login` (`email`);
+
+--
+-- Constraints for table `major`
+--
+ALTER TABLE `major`
+  ADD CONSTRAINT `major_ibfk_1` FOREIGN KEY (`study_program_id`) REFERENCES `study_program` (`id`);
 
 --
 -- Constraints for table `schedule`
