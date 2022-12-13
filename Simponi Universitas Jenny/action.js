@@ -95,16 +95,15 @@ app.post('/homepage-master-inputnewmhs', (req, res) => {
     const address = req.body.alamat;
     const handphone = req.body.hp;
     const takenmajor = req.body.jurusanambil;
-    const sp = req.body.programstudi;
     const smstr = req.body.semester;
     const photo = req.body.foto;
     const year = new Date().getFullYear();
     var numberjur = 0;
 
-    if (takenmajor == 1) {
+    if (takenmajor == 1 || takenmajor == 4) {
         numberjur = 25;
     }
-    else if (takenmajor == 2) {
+    else if (takenmajor == 2 || takenmajor == 5) {
         numberjur = 24;
     }
     else if (takenmajor == 3) {
@@ -121,17 +120,18 @@ app.post('/homepage-master-inputnewmhs', (req, res) => {
     });
 
     const syntax2 = `
-    INSERT INTO student_identity (user_login_email, nim, name, gender, country, date_birth, address, status, number_phone, last_education, major_last_education, major_id, study_program, semester, photo) 
+    INSERT INTO student_identity (user_login_email, nim, name, gender, country, date_birth, address, status, number_phone, last_education, major_last_education, major_id, semester, photo) 
     VALUES ( 
         '${emailm}',
         (CONCAT(${year}, ${numberjur})*10000) +
-        (SELECT nomor + 1 FROM (
-            SELECT COALESCE(
-                SUM(
-                    CASE
-                        WHEN major_id = '${takenmajor}' THEN 1
-                    END
-                ), 0) 
+            (SELECT nomor + 1 FROM (
+                SELECT COALESCE(
+                    SUM(
+                        CASE
+                            WHEN nim LIKE '${year}${numberjur}%' THEN 1
+                        END
+                    )
+                , 0) 
             nomor FROM student_identity) 
         alias),
         '${nama}',
@@ -144,20 +144,17 @@ app.post('/homepage-master-inputnewmhs', (req, res) => {
         '${pendidikant}',
         '${lastmajor}',
         '${takenmajor}',
-        '${sp}',
         '${smstr}',
         '${photo}'
     )`;
 
     db.query(syntax2, (error) => {
         if (error) console.log('Error: ' + error);
-        else {
-            console.log('Data student_identity berhasil diinput!');
-        } 
+        else console.log('Data student_identity berhasil diinput!');
     });
 });
 
-// HTML frontend untuk menampilkan select 'mahasiswa untuk penambahan kelas' - master
+// HTML frontend untuk menampilkan select 'mahasiswa' untuk penambahan kelas - master
 app.get('/homepage-master-getmhsadd', (req, res) => {
     const majorid = req.query.jurusan;
     const syntax = `
@@ -170,7 +167,95 @@ app.get('/homepage-master-getmhsadd', (req, res) => {
         if (error) console.log('Error: ' + error);
         else {
             res.send(result);
-            console.log(`Data 'mahasiswa' berhasil ditampilkan!`);
+            console.log(`Data 'Mahasiswa' berhasil ditampilkan!`);
+        }
+    });
+});
+
+// HTML mengirim data dosen ke database - master
+app.post('/homepage-master-inputnewdsn', (req, res) => {
+    const nama = req.body.namadosen;
+    const jk = req.body.gender;
+    const tempatlahir = req.body.tempatl;
+    const tanggallahir = req.body.tanggall;
+    const stts = req.body.status;
+    const pendidikant = req.body.pterakhir;
+    const lastmajor = req.body.jurusan;
+    const emaild = req.body.email;
+    const address = req.body.alamat;
+    const handphone = req.body.hp;
+    const photo = req.body.foto;
+    const year = new Date().getFullYear();
+    var numberdsn = 11;
+
+    const syntax1 = `
+        INSERT INTO user_login (email, password, rule_id) VALUES ('${emaild}', 'simponi123', 2)
+    `;
+
+    db.query(syntax1, (error) => {
+        if (error) console.log('Error: ' + error); 
+        else console.log('Data user_login berhasil diinput!');
+    });
+
+    const syntax2 = `
+    INSERT INTO lecturer_identity (user_login_email, nid, name, gender, country, date_birth, address, status, number_phone, last_education, major_last_education, photo) 
+    VALUES ( 
+        '${emaild}',
+        (CONCAT(${year}, ${numberdsn})*10000) +
+            (SELECT nomor + 1 FROM (
+                SELECT COALESCE(
+                    SUM(
+                        CASE
+                            WHEN nid LIKE '${year}${numberdsn}%' THEN 1
+                        END
+                    )
+                , 0) 
+            nomor FROM lecturer_identity) 
+        alias),
+        '${nama}',
+        '${jk}',
+        '${tempatlahir}',
+        '${tanggallahir}',
+        '${address}',
+        '${stts}',
+        '${handphone}',
+        '${pendidikant}',
+        '${lastmajor}',
+        '${photo}'
+    )`;
+
+    db.query(syntax2, (error) => {
+        if (error) console.log('Error: ' + error);
+        else console.log(`Data 'lecturer_identity' berhasil diinput!`);
+    });
+});
+
+// HTML frontend untuk menampilkan select 'mata kuliah' untuk penambahan mata kuliah - master
+app.get('/homepage-master-getmaterialadd', (req, res) => {
+    const syntax = `
+        SELECT * FROM material
+    `;
+
+    db.query(syntax, (error, result) => {
+        if (error) console.log('Error: ' + error);
+        else {
+            res.send(result);
+            console.log(`Data 'Mata Kuliah' berhasil ditampilkan!`);
+        }
+    });
+});
+
+// HTML frontend untuk menampilkan select 'dosen' untuk penambahan mata kuliah - master
+app.get('/homepage-master-getlectureradd', (req, res) => {
+    const syntax = `
+        SELECT id, name FROM lecturer_identity
+    `;
+
+    db.query(syntax, (error, result) => {
+        if (error) console.log('Error: ' + error);
+        else {
+            res.send(result);
+            console.log(`Data 'Dosen' berhasil ditampilkan!`);
         }
     });
 });

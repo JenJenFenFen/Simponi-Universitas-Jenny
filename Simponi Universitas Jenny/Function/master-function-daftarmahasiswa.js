@@ -57,7 +57,6 @@ $("#valprogramstudimahasiswa").ready(function () {
           <option value="` + v.id + `">` + v.study_program_name + `</option>
         `);
       });
-      $("#valprogramstudimahasiswa").append('</select>');
       return true;
     },
     error: function (xhr, ajaxOptions, thrownError) {
@@ -84,7 +83,6 @@ $("#valprogramstudimahasiswa").change(function () {
           <option value="` + v.id + `">` + v.major_name + `</option>
         `);
       });
-      $("#valjurusanambilmahasiswa").append('</select>');
       return true;
     },
     error: function (xhr, ajaxOptions, thrownError) {

@@ -9,6 +9,11 @@ $(function (){
         successClass: true,
         language: "https://emretulek.github.io/jbvalidator/dist/lang/en.json"
     });
+
+    // tooltip
+    $("body").tooltip({
+        selector: '[data-bs-toggle="tooltip"]'
+    });
 });
 
 // membuat fungsi cek validasi (membuat mata kuliah)
@@ -25,6 +30,52 @@ function cekisi() {
     }
     // console.log('isikolom = '+isikolom);
 }
+
+// select mata kuliah
+$("#valmkjadwal").ready(function () {
+    $("#valmkjadwal").empty();
+
+    $.ajax({
+        url: '/homepage-master-getmaterialadd',
+        type: 'GET',
+        success: function(reply) {
+            $("#valmkjadwal").append('<option value="" selected>Pilih</option>');
+
+            $.each(reply, function(i, v) {
+                $("#valmkjadwal").append(`
+                    <option value="`+ v.id +`">`+ v.material_name +`</option>
+                `);
+            });
+            return true;
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            return false;
+        }
+    });
+});
+
+// select dosen
+$("#valdosenjadwal").ready(function () {
+    $("#valdosenjadwal").empty();
+  
+    $.ajax ({
+      url: '/homepage-master-getlectureradd',
+      type: 'GET',
+      success: function(reply) {
+
+        $("#valdosenjadwal").append('<option value="" selected>Pilih</option>');
+        $.each(reply, function(i, v) {
+          $("#valdosenjadwal").append(`
+            <option value="` + v.id + `">` + v.name + `</option>
+          `);
+        });
+        return true;
+      },
+      error: function(xhr, ajaxOptions, thrownError) {
+        return false;
+      }
+    });
+  });
 
 // menginput hasil jadwal ke tabel (jadwal mata kuliah)
 $("#btnjadwal").click(function (e) {
@@ -80,6 +131,8 @@ $("#btnjadwal").click(function (e) {
             // console.log($(e.target));
             delete jadwallist[$(element.children('td')[0]).text()];
             element.remove();
+            // menghilangkan tooltip setelah dihapus
+            $(this).tooltip('hide');
 
             // console.log(jadwallist);
 
