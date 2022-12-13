@@ -9,4 +9,4 @@ My friend gave me a task like this so i can do it by myself first
 The inspiration for Simponi comes from my college, which is a web-program that helps students like check course schedule, 
 check course credits, check score, input task/homework, etc
 
-i made it using HTML, CSS, Bootstrap 5 for front-end and Jquery, Node.js, MariaDB for back-end
+i made it using HTML, CSS, Bootstrap 5, Jquery for front-end and Node.js, MariaDB for back-end
