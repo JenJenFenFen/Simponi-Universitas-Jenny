@@ -1,6 +1,6 @@
 // variabel global
-var isikolom = true;
-var classi = true;
+var isikolom = false;
+var classi = false;
 var kelaslist = {};
 
 // validasi (pastikan form class .needs-validation, atribut novalidate di div dan atribut require di setiap input)
@@ -25,16 +25,19 @@ $(function (){
 
 // membuat fungsi cek validasi (membuat kelas)
 function cekisi() {
-  isikolom = true;
-  classi = $("#valkelasinput").val().length < 4 ? false : true;
   var x = $(".validation0");
   
   // console.log(x);
 
-  for (var i = 0; i < 3; i++) {
-    if ($(x[i]).val() == '' || $(x[i]).val() == null) isikolom = false;
+  isikolom = true;
+  classi = $("#valkelasinput").val().length < 4 ? false : true;
+
+  for (var i = 0; i < 4; i++) {
+    if ($(x[i]).val() == '' || $(x[i]).val() == null) {
+      isikolom = false;
+    }
   }
-  // console.log('isi kolom = ' +isikolom);
+  console.log('isi kolom = ' +isikolom);
   // console.log('isi kelas = ' +classi);
 }
 
@@ -64,6 +67,7 @@ $("#valprogramstudi").ready(function () {
 $("#valprogramstudi").change(function () {
   var studiid = $("#valprogramstudi").val();
   $("#valjurusan").empty();
+  $("#valmahasiswainput").empty();
 
   $.ajax ({
     url: '/homepage-master-getmajoradd',
@@ -120,9 +124,6 @@ $("#btnkelas").click(function (e) {
   var mahasiswaid = $("#valmahasiswainput").val();
   var mahasiswatext = $("#valmahasiswainput :selected").text();
   // console.log(kelas, mahasiswa);
-
-  // console.log('isi kolom = ' +isikolom);
-  // console.log('isi kelas = ' +classi);
 
   // menambah colno
   if (isikolom) {

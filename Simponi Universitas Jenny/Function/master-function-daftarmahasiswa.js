@@ -1,6 +1,6 @@
 // variabel global
-var phoneinpmhs = true;
-var isikolom = true;
+var phoneinpmhs = false;
+var isikolom = false;
 var isiformdone = {};
 
 // validasi untuksemua dan nomor handphone (pastikan form class .needs-validation, atribut novalidate di div dan atribut require di setiap input)
@@ -93,8 +93,6 @@ $("#valprogramstudimahasiswa").change(function () {
 
 // membuat fungsi cek validasi (daftar mahasiswa baru)
 function cekisi() {
-  isikolom = true;
-  phoneinpmhs = $('#valnhpmahasiswa').val().length < 11 ? false : true;
   var x = $(".validation0");
   var isiformraw = $(".formdaftarmahasiswa").serializeArray();
 
@@ -104,11 +102,15 @@ function cekisi() {
     isiformdone[n['name']] = n['value'];
   });
 
+  phoneinpmhs = $('#valnhpmahasiswa').val().length < 11 ? false : true;
+
   for (var i = 0; i < 14; i++) {
     if ($(x[i]).val() == "" || $(x[i]).val() == null) {
       isikolom = false;
-    } 
+    }
+    else isikolom = true;
   }
+
   // console.log('isikolom = '+isikolom);
   // console.log('phoneinpmhs = '+phoneinpmhs);
 }
@@ -117,6 +119,9 @@ function cekisi() {
 $("#btnrevdaftarmahasiswa").click(function (e) {
   var isistudi = $("#valprogramstudimahasiswa :selected").text();
   var isijurusanambil = $("#valjurusanambilmahasiswa :selected").text();
+
+  // console.log('isikolom = '+isikolom);
+  // console.log('phoneinpmhs = '+phoneinpmhs);
 
   // console.log(isijurusanambil);
 
