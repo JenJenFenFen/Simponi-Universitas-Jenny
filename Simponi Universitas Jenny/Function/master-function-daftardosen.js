@@ -1,6 +1,6 @@
 // variabel global
-var phoneinpdsn = true;
-var isikolom = true;
+var phoneinpdsn = false;
+var isikolom = false;
 var isiformdone = {};
 
 // validasi (pastikan form class .needs-validation, atribut novalidate di div dan atribut require di setiap input)
@@ -20,8 +20,6 @@ $(function (){
 
 // membuat fungsi cek validasi (daftar mahasiswa baru)
 function cekisi() {
-  isikolom = true;
-  phoneinpdsn = $("#valnhpdosen").val().length < 11 ? false : true;
   var x = $(".validation0");
   var isiformraw = $(".formdaftardosen").serializeArray();
 
@@ -30,6 +28,9 @@ function cekisi() {
   $.map(isiformraw, function(n, i) {
     isiformdone[n['name']] = n['value'];
   });
+
+  isikolom = true;
+  phoneinpdsn = $("#valnhpdosen").val().length < 11 ? false : true;
 
   for (var i = 0; i < 11; i++) {
     if ($(x[i]).val() == "" || $(x[i]).val() == null) {

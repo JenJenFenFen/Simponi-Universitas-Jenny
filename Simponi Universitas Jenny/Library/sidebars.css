@@ -34,6 +34,10 @@ main {
   width: 260px;
 }
 
+.list1:hover {
+  background-color: #060af8;
+}
+
 .btn-toggle::before {
   width: 1.25em;
   line-height: 0;
@@ -61,8 +65,4 @@ main {
 
 .scrollarea {
   overflow-y: auto;
-}
-
-.list1:hover {
-  background-color: #060af8;
 }

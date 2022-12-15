@@ -260,6 +260,16 @@ app.get('/homepage-master-getlectureradd', (req, res) => {
     });
 });
 
+// proses kelas - master
+app.get('/homepage-master-inputnewclass', (req, res) => {
+    const classi = req.body.kelas;
+    const siswaid = req.body.mahasiswaid;
+
+    const addclass = `
+        INSERT INTO class (student_identity_id, class_name) VALUES (${siswaid}, ${classi})
+    `;
+});
+
 // HTML dosen
 app.get('/homepage-lecturer', (req, res) => {
     res.sendFile(path.join(__dirname, '/HTML/index-dosen.html'));

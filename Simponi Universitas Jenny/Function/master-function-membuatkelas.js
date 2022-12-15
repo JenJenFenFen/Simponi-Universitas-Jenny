@@ -37,7 +37,7 @@ function cekisi() {
       isikolom = false;
     }
   }
-  console.log('isi kolom = ' +isikolom);
+  // console.log('isi kolom = ' +isikolom);
   // console.log('isi kelas = ' +classi);
 }
 
@@ -116,14 +116,13 @@ $("#valjurusan").change(function () {
 });
 
 // menginput hasil kelas ke tabel (kelas untuk mahasiswa)
-$("#btnkelas").click(function (e) {
+$("#btninputkelas").click(function (e) {
   var colno = 1;
-  var kelas = $("#valkelasinput").val();
-  var jurusanid = $("#valjurusan").val();
+  var kelas = $("#valkelasinput").val().toUpperCase();
   var jurusantext = $("#valjurusan :selected").text();
   var mahasiswaid = $("#valmahasiswainput").val();
   var mahasiswatext = $("#valmahasiswainput :selected").text();
-  // console.log(kelas, mahasiswa);
+  // console.log(kelas, mahasiswaid);
 
   // menambah colno
   if (isikolom) {
@@ -153,15 +152,15 @@ $("#btnkelas").click(function (e) {
       `)
     
       // menyimpan isi dari tabel (objek)
-      kelaslist[colno.toString()] = {kelas, jurusanid, mahasiswaid};
-      // console.log(kelaslist);
+      kelaslist[colno.toString()] = {kelas, mahasiswaid};
+      console.log(kelaslist);
     
       // setelah menyimpan, kosongkan isi kecuali kelas
       $(".formclassm .validation1").val('');
       isikolom = false;
     
       // tombol untuk menghapus baris tabel ketika salah input
-      $("#" + colno + "_rowkelas .hapusbaris").click(function (e) {
+      $("#" + colno + "_rowkelas .hapusbaris").click(function () {
         var element = $("#" + colno + "_rowkelas .hapusbaris").parent().parent().parent();
         delete kelaslist[$(element.children('td')[0]).text()];
         element.remove();
@@ -197,3 +196,11 @@ $("#checkproseskelas").click(function () {
   
   else $("#proseskelas").attr("disabled", true);
 });
+
+// // proses kelas ke database
+// $("#proseskelas").click(function (e) {
+//   e.preventDefault();
+
+//   kelaslist.submit();
+  
+// });

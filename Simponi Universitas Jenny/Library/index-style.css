@@ -49,10 +49,6 @@
     -webkit-overflow-scrolling: touch;
 }
 
-.bdosen, .bmahasiswa, .udosen, .umahasiswa, .lmatakuliah, .mclass {
-    cursor: pointer;
-}
-
 .homepage-layer {
     text-align: center;
     margin: 0;
@@ -91,4 +87,12 @@ img {
     border-radius: 8px;
     width: 150px;
     height: 150px;
+}
+
+.stylespan {
+    font-weight: bolder;
+}
+
+#valkelasinput {
+    text-transform: uppercase;
 }

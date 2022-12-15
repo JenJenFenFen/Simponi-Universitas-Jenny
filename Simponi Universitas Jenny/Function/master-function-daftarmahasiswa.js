@@ -146,3 +146,16 @@ $("#btnrevdaftarmahasiswa").click(function (e) {
     }
   }
 });
+
+// spinner tombol daftarkan
+$("#btndaftarmahasiswa").click(function (e) {
+  e.preventDefault();
+
+  $("#btndaftarmahasiswa").attr('disabled', true);
+  $("#btndaftarmahasiswa").text('');
+  $("#btndaftarmahasiswa").append(`
+    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+  `);
+
+  $("#formmahasiswa").submit();
+});
