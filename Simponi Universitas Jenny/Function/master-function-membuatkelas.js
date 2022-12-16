@@ -153,10 +153,13 @@ $("#btninputkelas").click(function (e) {
     
       // menyimpan isi dari tabel (objek)
       kelaslist[colno.toString()] = {kelas, mahasiswaid};
-      console.log(kelaslist);
+      // console.log(kelaslist);
+
+      // menampuung isi kelaslist (objek) di input hidden dan dijadikan string
+      $("#isikelas").val(JSON.stringify(kelaslist));
     
       // setelah menyimpan, kosongkan isi kecuali kelas
-      $(".formclassm .validation1").val('');
+      $(".formdaftarclass .validation1").val('');
       isikolom = false;
     
       // tombol untuk menghapus baris tabel ketika salah input
@@ -196,11 +199,3 @@ $("#checkproseskelas").click(function () {
   
   else $("#proseskelas").attr("disabled", true);
 });
-
-// // proses kelas ke database
-// $("#proseskelas").click(function (e) {
-//   e.preventDefault();
-
-//   kelaslist.submit();
-  
-// });

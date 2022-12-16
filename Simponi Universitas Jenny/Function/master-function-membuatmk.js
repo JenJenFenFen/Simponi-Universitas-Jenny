@@ -32,6 +32,22 @@ function cekisi() {
     console.log(isikolom);
 }
 
+// select kelas
+$("#valkelasjadwal").ready(function () {
+    $("#valkelasjadwal").empty();
+
+    $.ajax({
+        url: '/homepage-master-getclassadd',
+        type: 'GET',
+        success: function(reply) {
+
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            return false;
+        }
+    });
+});
+
 // select mata kuliah
 $("#valmkjadwal").ready(function () {
     $("#valmkjadwal").empty();

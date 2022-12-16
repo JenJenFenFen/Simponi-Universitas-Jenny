@@ -3,6 +3,7 @@ const app = express();
 const bodyparser = require('body-parser');
 const path = require('path');
 const db = require('./connectiondb');
+const { json } = require('body-parser');
 
 app.use(bodyparser.urlencoded ({ 
     extended: false //kirim form dari html, pakai false 
@@ -261,13 +262,37 @@ app.get('/homepage-master-getlectureradd', (req, res) => {
 });
 
 // proses kelas - master
-app.get('/homepage-master-inputnewclass', (req, res) => {
-    const classi = req.body.kelas;
-    const siswaid = req.body.mahasiswaid;
+app.post('/homepage-master-inputnewclass', (req, res) => {
+    const dataraw = req.body.kelaslist;
+    const datajson = JSON.parse(dataraw);
 
-    const addclass = `
-        INSERT INTO class (student_identity_id, class_name) VALUES (${siswaid}, ${classi})
-    `;
+    for (const keys in datajson) {
+        const namakelas = datajson[keys]['kelas'];
+        const mahasiswaid = datajson[keys]['mahasiswaid'];
+
+        const addclass = `
+            INSERT INTO class (student_identity_id, class_name) VALUES ('${mahasiswaid}', UPPER('${namakelas}'))
+        `;
+
+        db.query(addclass, (error) => {
+            if (error) console.log('Error : ' +error);
+            else console.log(`Daftar 'kelas' berhasil diinput!`);
+        });
+    }
+});
+
+// HTML frontend untuk menampilkan select 'kelas' untuk penambahan mata kuliah - master
+app.get('/homepage-master-getclassadd', (req, res) => {
+    const kelas = `
+        SELECT DISTINCT class_name FROM class
+    `
+    db.query(kelas, (error, result) => {
+        if (error) console.log(error);
+        else {
+            res.send(result);
+            console.log(`Data 'Kelas' berhasil ditampilkan!`);
+        }
+    });
 });
 
 // HTML dosen
