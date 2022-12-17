@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2022 at 10:59 AM
+-- Generation Time: Dec 17, 2022 at 03:32 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -32,6 +32,19 @@ CREATE TABLE `class` (
   `student_identity_id` int(11) NOT NULL,
   `class_name` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `class`
+--
+
+INSERT INTO `class` (`id`, `student_identity_id`, `class_name`) VALUES
+(14, 52, 'TI11'),
+(15, 47, 'TI11'),
+(16, 49, 'TI11'),
+(17, 53, 'SI11'),
+(18, 51, 'SI11'),
+(19, 48, 'TK11'),
+(20, 50, 'TK11');
 
 -- --------------------------------------------------------
 
@@ -138,7 +151,8 @@ INSERT INTO `rule` (`id`, `rule_name`) VALUES
 CREATE TABLE `schedule` (
   `id` int(11) NOT NULL,
   `lecturer_identity_id` int(11) NOT NULL,
-  `class_id` int(11) NOT NULL,
+  `class` varchar(50) NOT NULL,
+  `material_id` int(11) NOT NULL,
   `day` varchar(20) NOT NULL,
   `clock` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -300,7 +314,8 @@ ALTER TABLE `rule`
 ALTER TABLE `schedule`
   ADD PRIMARY KEY (`id`),
   ADD KEY `lecturer_identity_id` (`lecturer_identity_id`),
-  ADD KEY `class_id` (`class_id`);
+  ADD KEY `class_id` (`class`),
+  ADD KEY `material_id` (`material_id`);
 
 --
 -- Indexes for table `student_identity`
@@ -351,7 +366,7 @@ ALTER TABLE `user_login`
 -- AUTO_INCREMENT for table `class`
 --
 ALTER TABLE `class`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `lecturer_identity`
@@ -434,7 +449,7 @@ ALTER TABLE `major`
 --
 ALTER TABLE `schedule`
   ADD CONSTRAINT `schedule_ibfk_3` FOREIGN KEY (`lecturer_identity_id`) REFERENCES `lecturer_identity` (`id`),
-  ADD CONSTRAINT `schedule_ibfk_4` FOREIGN KEY (`class_id`) REFERENCES `class` (`id`);
+  ADD CONSTRAINT `schedule_ibfk_5` FOREIGN KEY (`material_id`) REFERENCES `material` (`id`);
 
 --
 -- Constraints for table `student_identity`

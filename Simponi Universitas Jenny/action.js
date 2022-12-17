@@ -295,6 +295,11 @@ app.get('/homepage-master-getclassadd', (req, res) => {
     });
 });
 
+// proses mata kuliah - master
+app.post('/homepage-master-inputnewschedule', (req, res) => {
+    
+});
+
 // HTML dosen
 app.get('/homepage-lecturer', (req, res) => {
     res.sendFile(path.join(__dirname, '/HTML/index-dosen.html'));

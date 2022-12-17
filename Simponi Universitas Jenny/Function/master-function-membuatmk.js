@@ -40,7 +40,16 @@ $("#valkelasjadwal").ready(function () {
         url: '/homepage-master-getclassadd',
         type: 'GET',
         success: function(reply) {
+            $("#valkelasjadwal").append(`
+                <option value="">Pilih</option>
+            `);
 
+            $.each(reply, function (i, v) {
+                $("#valkelasjadwal").append(`
+                    <option value="`+ v.class_name +`">`+ v.class_name +`</option>
+                `);
+            });
+            return true;
         },
         error: function(xhr, ajaxOptions, thrownError) {
             return false;
@@ -102,7 +111,6 @@ $("#btnjadwal").click(function (e) {
     var mk = $("#valmkjadwal").val();
     var jam = $("#valjamjadwal").val();
     var dosen = $("#valdosenjadwal").val();
-    var kelasvalue = $("#valkelasjadwal :selected").text();
     var mkvalue = $("#valmkjadwal :selected").text();
     var dosenvalue = $("#valdosenjadwal :selected").text();
     // console.log(kelas, hari, mk, jam, dosen);
@@ -125,9 +133,9 @@ $("#btnjadwal").click(function (e) {
                 <td class="tablejadwal deleterow" style="text-align: center;" hidden>` + colno + `</td>
                 <td class="tablejadwal" style="text-align: center;">`+ kelas + `</td>
                 <td class="tablejadwal" style="text-align: center;">`+ hari + `</td>
-                <td class="tablejadwal">`+ mk + `</td>
+                <td class="tablejadwal">`+ mkvalue + `</td>
                 <td class="tablejadwal" style="text-align: center;">`+ jam + `</td>
-                <td class="tablejadwal">`+ dosen + `</td>
+                <td class="tablejadwal">`+ dosenvalue + `</td>
                 <td class="tablejadwal deleterow" style="text-align: center;"><div><button class="btn btn-dark hapusbaris" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Hapus" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                 <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
                 <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
