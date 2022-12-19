@@ -121,12 +121,12 @@
               <label class="form-label">Jam</label>
               <select class="form-select validation0 validation1" name="jam" id="valjamjadwal" onchange="cekisi()" required>
                 <option value="" selected>Pilih</option>
-                <option value="08.00">08.00</option>
-                <option value="10.00">10.00</option>
-                <option value="12.00">12.00</option>
-                <option value="14.00">14.00</option>
-                <option value="16.00">16.00</option>
-                <option value="19.00">19.00</option>
+                <option value="08:00">08.00</option>
+                <option value="10:00">10.00</option>
+                <option value="12:00">12.00</option>
+                <option value="14:00">14.00</option>
+                <option value="16:00">16.00</option>
+                <option value="19:00">19.00</option>
               </select>
             </div>
           </div>
@@ -173,6 +173,9 @@
               <label class="form-check-label">Semua data sudah sesuai</label>
             </div>
           </div>
+
+          <!-- menampung isi dari tabel diatas -->
+          <input type="hidden" id="isimk" name="jadwallist" value="jadwallist"> <!-- value diambil dari JQuery (variabel object) -->
 
           <br>
 

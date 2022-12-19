@@ -155,7 +155,7 @@ $("#btninputkelas").click(function (e) {
       kelaslist[colno.toString()] = {kelas, mahasiswaid};
       // console.log(kelaslist);
 
-      // menampuung isi kelaslist (objek) di input hidden dan dijadikan string
+      // menampung isi kelaslist (objek) di input hidden dan dijadikan string
       $("#isikelas").val(JSON.stringify(kelaslist));
     
       // setelah menyimpan, kosongkan isi kecuali kelas

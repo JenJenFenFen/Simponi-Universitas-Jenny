@@ -61,3 +61,16 @@ $("#btnrevdaftardosen").click(function (e) {
     }
   }
 });
+
+// spinner tombol daftarkan
+$("#btndaftardosen").click(function (e) {
+  e.preventDefault();
+
+  $("#btndaftardosen").attr('disabled', true);
+  $("#btndaftardosen").text('');
+  $("#btndaftardosen").append(`
+    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+  `);
+
+  $(".formdaftardosen").submit();
+});

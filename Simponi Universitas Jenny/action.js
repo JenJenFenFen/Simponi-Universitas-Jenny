@@ -3,7 +3,6 @@ const app = express();
 const bodyparser = require('body-parser');
 const path = require('path');
 const db = require('./connectiondb');
-const { json } = require('body-parser');
 
 app.use(bodyparser.urlencoded ({ 
     extended: false //kirim form dari html, pakai false 
@@ -11,7 +10,7 @@ app.use(bodyparser.urlencoded ({
 
 app.use(bodyparser.json());
 
-// koneksi ke file css dan js
+// koneksi ke file html, css, dan js
 app.use(express.static(path.join(__dirname, 'library')));
 app.use(express.static(path.join(__dirname, 'function')));
 
@@ -22,32 +21,32 @@ app.get('/homepage-master', (req, res) => {
 
 // HTML frontend master - add lecturer
 app.get('/homepage-master-addlecturer', (req, res) => {
-    res.sendFile(path.join(__dirname, '/HTML/index-master-daftardosen.html'))
+    res.sendFile(path.join(__dirname, '/HTML/index-master-daftardosen.html'));
 });
 
 // HTML frontend master - add student
 app.get('/homepage-master-addstudent', (req, res) => {
-    res.sendFile(path.join(__dirname, '/HTML/index-master-daftarmahasiswa.html'))
+    res.sendFile(path.join(__dirname, '/HTML/index-master-daftarmahasiswa.html'));
 });
 
 // HTML frontend master - update student
 app.get('/homepage-master-updatestudent', (req, res) => {
-    res.sendFile(path.join(__dirname, '/HTML/index-master-updatemahasiswa.html'))
+    res.sendFile(path.join(__dirname, '/HTML/index-master-updatemahasiswa.html'));
 });
 
 // HTML frontend master - update lecturer
 app.get('/homepage-master-updatelecturer', (req, res) => {
-    res.sendFile(path.join(__dirname, '/HTML/index-master-updatedosen.html'))
+    res.sendFile(path.join(__dirname, '/HTML/index-master-updatedosen.html'));
 });
 
 // HTML frontend master - add class
 app.get('/homepage-master-addclass', (req, res) => {
-    res.sendFile(path.join(__dirname, '/HTML/index-master-membuatkelas.html'))
+    res.sendFile(path.join(__dirname, '/HTML/index-master-membuatkelas.html'));
 });
 
 // HTML frontend master - add material schedule
 app.get('/homepage-master-addmaterialsch', (req, res) => {
-    res.sendFile(path.join(__dirname, '/HTML/index-master-membuatmk.html'))
+    res.sendFile(path.join(__dirname, '/HTML/index-master-membuatmk.html'));
 });
 
 // HTML frontend untuk menampilkan select 'program studi' - master
@@ -57,7 +56,7 @@ app.get('/homepage-master-getstudyprogramadd', (req, res) => {
     `;
 
     db.query(syntax, (error, result) => {
-        if (error) console.log('Error: ' + error);
+        if (error) console.log(error);
         else {
             res.send(result);
             console.log(`Data 'Program Studi' berhasil ditampilkan!`);
@@ -75,7 +74,7 @@ app.get('/homepage-master-getmajoradd', (req, res) => {
     // console.log(studyid);
 
     db.query(syntax, (error, result) => {
-        if (error) console.log('Error: ' + error);
+        if (error) console.log(error);
         else {
             res.send(result);
             console.log(`Data 'Jurusan yang Diambil' berhasil ditampilkan!`);
@@ -116,7 +115,7 @@ app.post('/homepage-master-inputnewmhs', (req, res) => {
     `;
 
     db.query(syntax1, (error) => {
-        if (error) console.log('Error: ' + error); 
+        if (error) console.log(error); 
         else console.log('Data user_login berhasil diinput!');
     });
 
@@ -150,9 +149,12 @@ app.post('/homepage-master-inputnewmhs', (req, res) => {
     )`;
 
     db.query(syntax2, (error) => {
-        if (error) console.log('Error: ' + error);
-        else console.log('Data student_identity berhasil diinput!');
+        if (error) console.log(error);
+        else {
+            console.log('Data student_identity berhasil diinput!');
+        }
     });
+    res.redirect('/homepage-master-addstudent');
 });
 
 // HTML frontend untuk menampilkan select 'mahasiswa' untuk penambahan kelas - master
@@ -165,7 +167,7 @@ app.get('/homepage-master-getmhsadd', (req, res) => {
     // console.log(majorid);
 
     db.query(syntax, (error, result) => {
-        if (error) console.log('Error: ' + error);
+        if (error) console.log(error);
         else {
             res.send(result);
             console.log(`Data 'Mahasiswa' berhasil ditampilkan!`);
@@ -194,7 +196,7 @@ app.post('/homepage-master-inputnewdsn', (req, res) => {
     `;
 
     db.query(syntax1, (error) => {
-        if (error) console.log('Error: ' + error); 
+        if (error) console.log(error); 
         else console.log('Data user_login berhasil diinput!');
     });
 
@@ -226,9 +228,10 @@ app.post('/homepage-master-inputnewdsn', (req, res) => {
     )`;
 
     db.query(syntax2, (error) => {
-        if (error) console.log('Error: ' + error);
+        if (error) console.log(error);
         else console.log(`Data 'lecturer_identity' berhasil diinput!`);
     });
+    res.redirect('/homepage-master-addlecturer');
 });
 
 // HTML frontend untuk menampilkan select 'mata kuliah' untuk penambahan mata kuliah - master
@@ -238,7 +241,7 @@ app.get('/homepage-master-getmaterialadd', (req, res) => {
     `;
 
     db.query(syntax, (error, result) => {
-        if (error) console.log('Error: ' + error);
+        if (error) console.log(error);
         else {
             res.send(result);
             console.log(`Data 'Mata Kuliah' berhasil ditampilkan!`);
@@ -253,7 +256,7 @@ app.get('/homepage-master-getlectureradd', (req, res) => {
     `;
 
     db.query(syntax, (error, result) => {
-        if (error) console.log('Error: ' + error);
+        if (error) console.log(error);
         else {
             res.send(result);
             console.log(`Data 'Dosen' berhasil ditampilkan!`);
@@ -275,17 +278,19 @@ app.post('/homepage-master-inputnewclass', (req, res) => {
         `;
 
         db.query(addclass, (error) => {
-            if (error) console.log('Error : ' +error);
+            if (error) console.log(error);
             else console.log(`Daftar 'kelas' berhasil diinput!`);
         });
     }
+    res.redirect('/homepage-master-addclass');
 });
 
 // HTML frontend untuk menampilkan select 'kelas' untuk penambahan mata kuliah - master
 app.get('/homepage-master-getclassadd', (req, res) => {
     const kelas = `
         SELECT DISTINCT class_name FROM class
-    `
+    `;
+
     db.query(kelas, (error, result) => {
         if (error) console.log(error);
         else {
@@ -297,7 +302,32 @@ app.get('/homepage-master-getclassadd', (req, res) => {
 
 // proses mata kuliah - master
 app.post('/homepage-master-inputnewschedule', (req, res) => {
-    
+    const dataraw = req.body.jadwallist;
+    const datajson = JSON.parse(dataraw);
+
+    for (const keys in datajson) {
+        const kelas = datajson[keys]['kelas'];
+        const hari = datajson[keys]['hari'];
+        const matakuliah = datajson[keys]['mk'];
+        const jam = datajson[keys]['jam'];
+        const dosen = datajson[keys]['dosen'];
+
+        const addmk = `
+            INSERT INTO schedule (lecturer_identity_id, class_name, material_id, day, clock) VALUES (
+                '${dosen}',
+                '${kelas}',
+                '${matakuliah}',
+                '${hari}',
+                '${jam}'
+            )
+        `;
+
+        db.query(addmk, (error) => {
+            if (error) console.log(error);
+            else console.log(`Daftar 'Mata Kuliah' berhasil diinput!`);
+        });
+    }
+    res.redirect('/homepage-master-addmaterialsch');
 });
 
 // HTML dosen

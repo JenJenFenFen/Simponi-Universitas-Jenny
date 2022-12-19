@@ -29,7 +29,7 @@ function cekisi() {
             isikolom = false;
         }
     }
-    console.log(isikolom);
+    // console.log(isikolom);
 }
 
 // select kelas
@@ -146,6 +146,9 @@ $("#btnjadwal").click(function (e) {
         // menyimpan isi dari tabel (objek)
         jadwallist[colno.toString()] = {kelas, hari, mk, jam, dosen};
         // console.log(jadwallist);
+
+        // menampung isi jadwallist (objek) di input hidden dan dijadikan string
+        $("#isimk").val(JSON.stringify(jadwallist));
 
         // setelah menyimpan, kosongkan isi kecuali kelas dan hari
         $(".formjadwalmk .validation1").val('');
