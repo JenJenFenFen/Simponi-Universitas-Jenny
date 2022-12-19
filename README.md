@@ -7,4 +7,4 @@ I know that i need a lot more learning to do, whence i made this project. Any in
 
 The insipiration comes from my university's web app that helps students to check course schedule, course credit, input homework/assignment, and others.
 
-i made it using HTML, CSS, Bootstrap 5, Jquery for front-end and Node.js, MariaDB for back-end.
+i made it using HTML, CSS, Bootstrap 5, Jquery for front-end and Node.js, MariaDB or MySql for back-end.
