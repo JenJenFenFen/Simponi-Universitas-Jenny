@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 17, 2022 at 03:32 AM
+-- Generation Time: Dec 23, 2022 at 10:54 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -75,7 +75,8 @@ CREATE TABLE `lecturer_identity` (
 INSERT INTO `lecturer_identity` (`id`, `user_login_email`, `nid`, `name`, `gender`, `country`, `date_birth`, `address`, `status`, `number_phone`, `last_education`, `major_last_education`, `photo`) VALUES
 (1, 'derry.alamsyah@gmail.com', 2022110001, 'Derry Alamsyah', 'Laki-Laki', 'Palembang', '1975-12-12', 'Jl. KHA Rasyid Siddik', 'Menikah', '082282017085', 'S3', 'Teknik Informatika', 0x466f746f2d526578792e6a7067),
 (2, 'tinalia@gmail.com', 2022110002, 'Tinalia', 'Perempuan', 'Palembang', '1965-10-04', 'Jl. KM 12', 'Menikah', '082282017085', 'S2', 'Teknik Informatika', 0x466f746f2d4a656e6e792832292e6a706567),
-(3, 'yohanes1305@gmail.com', 2022110003, 'Yohanes', 'Laki-Laki', 'Palembang', '1984-05-13', 'Jl. Rajawali No 15', 'Belum Menikah', '082282017085', 'S2', 'Sistem Informasi', 0x466f746f2d4b6576696e2e6a7067);
+(3, 'yohanes1305@gmail.com', 2022110003, 'Yohanes', 'Laki-Laki', 'Palembang', '1984-05-13', 'Jl. Rajawali No 15', 'Belum Menikah', '082282017085', 'S2', 'Sistem Informasi', 0x466f746f2d4b6576696e2e6a7067),
+(8, 'willyly@gmail.com', 2022110004, 'Willy', 'Laki-Laki', 'Palembang', '1988-05-13', 'Jl. Kemangis No 9', 'Menikah', '082282017085', 'S2', 'Teknik Informatika', 0x466f746f2d526578792e6a7067);
 
 -- --------------------------------------------------------
 
@@ -151,11 +152,25 @@ INSERT INTO `rule` (`id`, `rule_name`) VALUES
 CREATE TABLE `schedule` (
   `id` int(11) NOT NULL,
   `lecturer_identity_id` int(11) NOT NULL,
-  `class` varchar(50) NOT NULL,
+  `class_name` varchar(50) NOT NULL,
   `material_id` int(11) NOT NULL,
   `day` varchar(20) NOT NULL,
   `clock` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `schedule`
+--
+
+INSERT INTO `schedule` (`id`, `lecturer_identity_id`, `class_name`, `material_id`, `day`, `clock`) VALUES
+(9, 1, 'TI11', 2, 'Senin', '12:00:00'),
+(10, 2, 'TI11', 4, 'Senin', '16:00:00'),
+(11, 2, 'TI11', 5, 'Senin', '19:00:00'),
+(12, 1, 'SI11', 3, 'Rabu', '10:00:00'),
+(13, 2, 'SI11', 4, 'Kamis', '08:00:00'),
+(14, 2, 'SI11', 5, 'Kamis', '14:00:00'),
+(15, 2, 'TK11', 5, 'Sabtu', '10:00:00'),
+(16, 3, 'TK11', 1, 'Sabtu', '16:00:00');
 
 -- --------------------------------------------------------
 
@@ -268,6 +283,7 @@ INSERT INTO `user_login` (`email`, `password`, `rule_id`) VALUES
 ('rockyne@gmail.com', 'simponi123', 3),
 ('rusdie@gmail.com', 'simponi123', 3),
 ('tinalia@gmail.com', 'simponi123', 2),
+('willyly@gmail.com', 'simponi123', 2),
 ('yohanes1305@gmail.com', 'simponi123', 2);
 
 --
@@ -314,7 +330,7 @@ ALTER TABLE `rule`
 ALTER TABLE `schedule`
   ADD PRIMARY KEY (`id`),
   ADD KEY `lecturer_identity_id` (`lecturer_identity_id`),
-  ADD KEY `class_id` (`class`),
+  ADD KEY `class_id` (`class_name`),
   ADD KEY `material_id` (`material_id`);
 
 --
@@ -326,6 +342,8 @@ ALTER TABLE `student_identity`
   ADD UNIQUE KEY `user_login_email_2` (`user_login_email`),
   ADD UNIQUE KEY `nim_2` (`nim`),
   ADD UNIQUE KEY `user_login_email_3` (`user_login_email`),
+  ADD UNIQUE KEY `nim_3` (`nim`),
+  ADD UNIQUE KEY `user_login_email_4` (`user_login_email`),
   ADD KEY `user_login_email` (`user_login_email`),
   ADD KEY `major_id` (`major_id`);
 
@@ -366,13 +384,13 @@ ALTER TABLE `user_login`
 -- AUTO_INCREMENT for table `class`
 --
 ALTER TABLE `class`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `lecturer_identity`
 --
 ALTER TABLE `lecturer_identity`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `major`
@@ -396,13 +414,13 @@ ALTER TABLE `rule`
 -- AUTO_INCREMENT for table `schedule`
 --
 ALTER TABLE `schedule`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `student_identity`
 --
 ALTER TABLE `student_identity`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
 
 --
 -- AUTO_INCREMENT for table `study_program`

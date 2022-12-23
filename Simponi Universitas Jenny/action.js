@@ -56,7 +56,7 @@ app.get('/homepage-master-getstudyprogramadd', (req, res) => {
     `;
 
     db.query(syntax, (error, result) => {
-        if (error) console.log(error);
+        if (error) console.log('' +error);
         else {
             res.send(result);
             console.log(`Data 'Program Studi' berhasil ditampilkan!`);
@@ -74,7 +74,7 @@ app.get('/homepage-master-getmajoradd', (req, res) => {
     // console.log(studyid);
 
     db.query(syntax, (error, result) => {
-        if (error) console.log(error);
+        if (error) console.log('' +error);
         else {
             res.send(result);
             console.log(`Data 'Jurusan yang Diambil' berhasil ditampilkan!`);
@@ -110,51 +110,97 @@ app.post('/homepage-master-inputnewmhs', (req, res) => {
         numberjur = 23;
     }
 
-    const syntax1 = `
-        INSERT INTO user_login (email, password, rule_id) VALUES ('${emailm}', 'simponi123', 3)
+    console.log(nama, emailm, handphone);
+
+    // const syntax1 = `
+    //     INSERT INTO user_login (email, password, rule_id) VALUES ('${emailm}', 'simponi123', 3)
+    // `;
+
+    const syntax = `
+        INSERT INTO user_login (email, password, rule_id) VALUES ('${emailm}', 'simponi123', 3);
+
+        INSERT INTO student_identity (user_login_email, nim, name, gender, country, date_birth, address, status, number_phone, last_education, major_last_education, major_id, semester, photo) 
+        VALUES ( 
+            '${emailm}',
+            (CONCAT(${year}, ${numberjur})*10000) +
+                (SELECT nomor + 1 FROM (
+                    SELECT COALESCE(
+                        SUM(
+                            CASE
+                                WHEN nim LIKE '${year}${numberjur}%' THEN 1
+                            END
+                        )
+                    , 0) 
+                nomor FROM student_identity) 
+            alias),
+            '${nama}',
+            '${jk}',
+            '${tempatlahir}',
+            '${tanggallahir}',
+            '${address}',
+            '${stts}',
+            '${handphone}',
+            '${pendidikant}',
+            '${lastmajor}',
+            '${takenmajor}',
+            '${smstr}',
+            '${photo}'
+        );
     `;
 
-    db.query(syntax1, (error) => {
-        if (error) console.log(error); 
-        else console.log('Data user_login berhasil diinput!');
-    });
+    // db.query(syntax, (error) => {
+    //     if (error) {
+    //         console.log('' +error);
+    //         res.status(400).send('' +error);
+    //         // res.redirect('/homepage-master-addstudent');
+    //     } 
+    //     else {
+    //         console.log('Data user_login berhasil diinput!');
+    //         // res.redirect('/homepage-master-addstudent');
+    //     }
+    // });
 
-    const syntax2 = `
-    INSERT INTO student_identity (user_login_email, nim, name, gender, country, date_birth, address, status, number_phone, last_education, major_last_education, major_id, semester, photo) 
-    VALUES ( 
-        '${emailm}',
-        (CONCAT(${year}, ${numberjur})*10000) +
-            (SELECT nomor + 1 FROM (
-                SELECT COALESCE(
-                    SUM(
-                        CASE
-                            WHEN nim LIKE '${year}${numberjur}%' THEN 1
-                        END
-                    )
-                , 0) 
-            nomor FROM student_identity) 
-        alias),
-        '${nama}',
-        '${jk}',
-        '${tempatlahir}',
-        '${tanggallahir}',
-        '${address}',
-        '${stts}',
-        '${handphone}',
-        '${pendidikant}',
-        '${lastmajor}',
-        '${takenmajor}',
-        '${smstr}',
-        '${photo}'
-    )`;
+    // const syntax2 = `
+    // INSERT INTO student_identity (user_login_email, nim, name, gender, country, date_birth, address, status, number_phone, last_education, major_last_education, major_id, semester, photo) 
+    // VALUES ( 
+    //     '${emailm}',
+    //     (CONCAT(${year}, ${numberjur})*10000) +
+    //         (SELECT nomor + 1 FROM (
+    //             SELECT COALESCE(
+    //                 SUM(
+    //                     CASE
+    //                         WHEN nim LIKE '${year}${numberjur}%' THEN 1
+    //                     END
+    //                 )
+    //             , 0) 
+    //         nomor FROM student_identity) 
+    //     alias),
+    //     '${nama}',
+    //     '${jk}',
+    //     '${tempatlahir}',
+    //     '${tanggallahir}',
+    //     '${address}',
+    //     '${stts}',
+    //     '${handphone}',
+    //     '${pendidikant}',
+    //     '${lastmajor}',
+    //     '${takenmajor}',
+    //     '${smstr}',
+    //     '${photo}'
+    // )`;
 
-    db.query(syntax2, (error) => {
-        if (error) console.log(error);
-        else {
-            console.log('Data student_identity berhasil diinput!');
-        }
-    });
-    res.redirect('/homepage-master-addstudent');
+    // db.query(syntax2, (error) => {
+    //     if (error) {
+    //         console.log('' +error);
+    //         res.status(400).send('' +error);
+    //         res.redirect('/homepage-master-addstudent');
+    //     }
+    //     else {
+    //         console.log('Data student_identity berhasil diinput!');
+    //         res.status(200).send('Data Mahasiswa berhasil diinput!!!');
+    //         res.redirect('/homepage-master-addstudent');
+    //     }
+    // });
 });
 
 // HTML frontend untuk menampilkan select 'mahasiswa' untuk penambahan kelas - master
@@ -167,7 +213,7 @@ app.get('/homepage-master-getmhsadd', (req, res) => {
     // console.log(majorid);
 
     db.query(syntax, (error, result) => {
-        if (error) console.log(error);
+        if (error) console.log('' +error);
         else {
             res.send(result);
             console.log(`Data 'Mahasiswa' berhasil ditampilkan!`);
@@ -196,7 +242,7 @@ app.post('/homepage-master-inputnewdsn', (req, res) => {
     `;
 
     db.query(syntax1, (error) => {
-        if (error) console.log(error); 
+        if (error) console.log('' +error); 
         else console.log('Data user_login berhasil diinput!');
     });
 
@@ -228,7 +274,7 @@ app.post('/homepage-master-inputnewdsn', (req, res) => {
     )`;
 
     db.query(syntax2, (error) => {
-        if (error) console.log(error);
+        if (error) console.log('' +error);
         else console.log(`Data 'lecturer_identity' berhasil diinput!`);
     });
     res.redirect('/homepage-master-addlecturer');
@@ -241,7 +287,7 @@ app.get('/homepage-master-getmaterialadd', (req, res) => {
     `;
 
     db.query(syntax, (error, result) => {
-        if (error) console.log(error);
+        if (error) console.log('' +error);
         else {
             res.send(result);
             console.log(`Data 'Mata Kuliah' berhasil ditampilkan!`);
@@ -256,7 +302,7 @@ app.get('/homepage-master-getlectureradd', (req, res) => {
     `;
 
     db.query(syntax, (error, result) => {
-        if (error) console.log(error);
+        if (error) console.log('' +error);
         else {
             res.send(result);
             console.log(`Data 'Dosen' berhasil ditampilkan!`);
@@ -278,7 +324,7 @@ app.post('/homepage-master-inputnewclass', (req, res) => {
         `;
 
         db.query(addclass, (error) => {
-            if (error) console.log(error);
+            if (error) console.log('' +error);
             else console.log(`Daftar 'kelas' berhasil diinput!`);
         });
     }
@@ -292,7 +338,7 @@ app.get('/homepage-master-getclassadd', (req, res) => {
     `;
 
     db.query(kelas, (error, result) => {
-        if (error) console.log(error);
+        if (error) console.log('' +error);
         else {
             res.send(result);
             console.log(`Data 'Kelas' berhasil ditampilkan!`);
@@ -323,7 +369,7 @@ app.post('/homepage-master-inputnewschedule', (req, res) => {
         `;
 
         db.query(addmk, (error) => {
-            if (error) console.log(error);
+            if (error) console.log('' +error);
             else console.log(`Daftar 'Mata Kuliah' berhasil diinput!`);
         });
     }

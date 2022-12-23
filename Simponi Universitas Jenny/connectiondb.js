@@ -8,7 +8,8 @@ const db = mysql.createConnection({
     host: host, 
     user: user, 
     password: password,  
-    database: database
+    database: database,
+    multipleStatements: true
 });
 
 db.connect((error) => {

@@ -102,13 +102,13 @@ function cekisi() {
     isiformdone[n['name']] = n['value'];
   });
 
+  isikolom = true;
   phoneinpmhs = $('#valnhpmahasiswa').val().length < 11 ? false : true;
 
   for (var i = 0; i < 14; i++) {
     if ($(x[i]).val() == "" || $(x[i]).val() == null) {
       isikolom = false;
     }
-    else isikolom = true;
   }
 
   // console.log('isikolom = '+isikolom);
@@ -151,11 +151,26 @@ $("#btnrevdaftarmahasiswa").click(function (e) {
 $("#btndaftarmahasiswa").click(function (e) {
   e.preventDefault();
 
+  $("#formmahasiswa").submit();
+
   $("#btndaftarmahasiswa").attr('disabled', true);
   $("#btndaftarmahasiswa").text('');
   $("#btndaftarmahasiswa").append(`
     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
   `);
 
-  $("#formmahasiswa").submit();
+  // menangkap error or success dari server (database)
+  $.ajax({
+    url: '/homepage-master-inputnewmhs',
+    type: 'POST',
+    success: function(reply) {
+      console.log(reply);
+      // if () {
+
+      // }
+    },
+    error: function (xhr, ajaxOptions, thrownError) {
+      return false;
+    }
+  });
 });
