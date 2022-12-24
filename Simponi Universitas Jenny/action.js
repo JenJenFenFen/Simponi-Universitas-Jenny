@@ -112,10 +112,6 @@ app.post('/homepage-master-inputnewmhs', (req, res) => {
 
     console.log(nama, emailm, handphone);
 
-    // const syntax1 = `
-    //     INSERT INTO user_login (email, password, rule_id) VALUES ('${emailm}', 'simponi123', 3)
-    // `;
-
     const syntax = `
         INSERT INTO user_login (email, password, rule_id) VALUES ('${emailm}', 'simponi123', 3);
 
@@ -157,48 +153,6 @@ app.post('/homepage-master-inputnewmhs', (req, res) => {
     //     else {
     //         console.log('Data user_login berhasil diinput!');
     //         // res.redirect('/homepage-master-addstudent');
-    //     }
-    // });
-
-    // const syntax2 = `
-    // INSERT INTO student_identity (user_login_email, nim, name, gender, country, date_birth, address, status, number_phone, last_education, major_last_education, major_id, semester, photo) 
-    // VALUES ( 
-    //     '${emailm}',
-    //     (CONCAT(${year}, ${numberjur})*10000) +
-    //         (SELECT nomor + 1 FROM (
-    //             SELECT COALESCE(
-    //                 SUM(
-    //                     CASE
-    //                         WHEN nim LIKE '${year}${numberjur}%' THEN 1
-    //                     END
-    //                 )
-    //             , 0) 
-    //         nomor FROM student_identity) 
-    //     alias),
-    //     '${nama}',
-    //     '${jk}',
-    //     '${tempatlahir}',
-    //     '${tanggallahir}',
-    //     '${address}',
-    //     '${stts}',
-    //     '${handphone}',
-    //     '${pendidikant}',
-    //     '${lastmajor}',
-    //     '${takenmajor}',
-    //     '${smstr}',
-    //     '${photo}'
-    // )`;
-
-    // db.query(syntax2, (error) => {
-    //     if (error) {
-    //         console.log('' +error);
-    //         res.status(400).send('' +error);
-    //         res.redirect('/homepage-master-addstudent');
-    //     }
-    //     else {
-    //         console.log('Data student_identity berhasil diinput!');
-    //         res.status(200).send('Data Mahasiswa berhasil diinput!!!');
-    //         res.redirect('/homepage-master-addstudent');
     //     }
     // });
 });
