@@ -151,26 +151,25 @@ $("#btnrevdaftarmahasiswa").click(function (e) {
 $("#btndaftarmahasiswa").click(function (e) {
   e.preventDefault();
 
-  $("#formmahasiswa").submit();
-
   $("#btndaftarmahasiswa").attr('disabled', true);
   $("#btndaftarmahasiswa").text('');
   $("#btndaftarmahasiswa").append(`
     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
   `);
 
-  // menangkap error or success dari server (database)
+  $("#formmahasiswa").submit();
+});
+
+$("#formmahasiswa").submit(function (e) {
+  e.preventDefault();
   $.ajax({
     url: '/homepage-master-inputnewmhs',
     type: 'POST',
     success: function(reply) {
       console.log(reply);
-      // if () {
-
-      // }
     },
     error: function (xhr, ajaxOptions, thrownError) {
-      return false;
+      
     }
   });
 });

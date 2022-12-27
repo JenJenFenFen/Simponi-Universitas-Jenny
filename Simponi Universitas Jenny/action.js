@@ -64,6 +64,8 @@ app.get('/homepage-master-getstudyprogramadd', (req, res) => {
     });
 });
 
+app.set('views', '/html');
+
 // HTML frontend untuk menampilkan select 'jurusan yang diambil' - master
 app.get('/homepage-master-getmajoradd', (req, res) => {
     const studyid = req.query.programstudi;
@@ -110,7 +112,7 @@ app.post('/homepage-master-inputnewmhs', (req, res) => {
         numberjur = 23;
     }
 
-    console.log(nama, emailm, handphone);
+    console.log(nama, emailm);
 
     const syntax = `
         INSERT INTO user_login (email, password, rule_id) VALUES ('${emailm}', 'simponi123', 3);
@@ -148,12 +150,10 @@ app.post('/homepage-master-inputnewmhs', (req, res) => {
         if (error) {
             console.log('' +error);
             res.status(400).send('' +error);
-            res.redirect('/homepage-master-addstudent');
         } 
         else {
             console.log(`Data 'Mahasiswa' berhasil diinput!!!`);
             res.status(200).send(`Data 'Mahasiswa' berhasil diinput!!!`);
-            res.redirect('/homepage-master-addstudent');
         }
     });
 });
