@@ -144,17 +144,18 @@ app.post('/homepage-master-inputnewmhs', (req, res) => {
         );
     `;
 
-    // db.query(syntax, (error) => {
-    //     if (error) {
-    //         console.log('' +error);
-    //         res.status(400).send('' +error);
-    //         // res.redirect('/homepage-master-addstudent');
-    //     } 
-    //     else {
-    //         console.log('Data user_login berhasil diinput!');
-    //         // res.redirect('/homepage-master-addstudent');
-    //     }
-    // });
+    db.query(syntax, (error) => {
+        if (error) {
+            console.log('' +error);
+            res.status(400).send('' +error);
+            res.redirect('/homepage-master-addstudent');
+        } 
+        else {
+            console.log(`Data 'Mahasiswa' berhasil diinput!!!`);
+            res.status(200).send(`Data 'Mahasiswa' berhasil diinput!!!`);
+            res.redirect('/homepage-master-addstudent');
+        }
+    });
 });
 
 // HTML frontend untuk menampilkan select 'mahasiswa' untuk penambahan kelas - master
