@@ -20,36 +20,43 @@ app.set('view engine', 'ejs');
 // HTML frontend master
 app.get('/homepage-master', (req, res) => {
     res.render('index-master-homepage');
+    console.log('Masuk ke halaman homepage master');
 });
 
 // HTML frontend master - add lecturer
 app.get('/homepage-master-addlecturer', (req, res) => {
-    res.sendFile(path.join(__dirname, '/HTML/index-master-daftardosen.html'));
+    res.render('index-master-daftardosen');
+    console.log('Masuk ke halaman daftar dosen master');
 });
 
 // HTML frontend master - add student
 app.get('/homepage-master-addstudent', (req, res) => {
-    res.sendFile(path.join(__dirname, '/HTML/index-master-daftarmahasiswa.html'));
+    res.render('index-master-daftarmahasiswa');
+    console.log('Masuk ke halaman daftar mahasiswa master');
 });
 
 // HTML frontend master - update student
 app.get('/homepage-master-updatestudent', (req, res) => {
-    res.sendFile(path.join(__dirname, '/HTML/index-master-updatemahasiswa.html'));
+    res.render('index-master-updatemahasiswa');
+    console.log('Masuk ke halaman update mahasiswa master');
 });
 
 // HTML frontend master - update lecturer
 app.get('/homepage-master-updatelecturer', (req, res) => {
-    res.sendFile(path.join(__dirname, '/HTML/index-master-updatedosen.html'));
+    res.render('index-master-updatedosen');
+    console.log('Masuk ke halaman update dosen master');
 });
 
 // HTML frontend master - add class
 app.get('/homepage-master-addclass', (req, res) => {
-    res.sendFile(path.join(__dirname, '/HTML/index-master-membuatkelas.html'));
+    res.render('index-master-membuatkelas');
+    console.log('Masuk ke halaman membuat kelas master');
 });
 
 // HTML frontend master - add material schedule
 app.get('/homepage-master-addmaterialsch', (req, res) => {
-    res.sendFile(path.join(__dirname, '/HTML/index-master-membuatmk.html'));
+    res.render('index-master-membuatmk');
+    console.log('Masuk ke halaman mata kuliah master');
 });
 
 // HTML frontend untuk menampilkan select 'program studi' - master
@@ -334,12 +341,14 @@ app.post('/homepage-master-inputnewschedule', (req, res) => {
 
 // HTML dosen
 app.get('/homepage-lecturer', (req, res) => {
-    res.sendFile(path.join(__dirname, '/HTML/index-dosen.html'));
+    res.render('index-dosen');
+    console.log('Masuk ke halaman homepage dosen');
 });
 
 // HTML mahasiswa
 app.get('/homepage-student', (req, res) => {
-    res.sendFile(path.join(__dirname, '/HTML/index-mahasiswa.html'));
+    res.render('index-mahasiswa');
+    console.log('Masuk ke halaman homepage mahasiswa');
 });
 
 module.exports = app;
