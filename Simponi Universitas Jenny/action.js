@@ -1,8 +1,11 @@
 const express = require('express');
 const app = express();
+
 const bodyparser = require('body-parser');
 const path = require('path');
 const db = require('./connectiondb');
+
+
 
 app.use(bodyparser.urlencoded ({ 
     extended: false //kirim form dari html, pakai false 
@@ -10,13 +13,15 @@ app.use(bodyparser.urlencoded ({
 
 app.use(bodyparser.json());
 
-// koneksi ke file html, css, dan js
-app.use(express.static(path.join(__dirname, 'library')));
-app.use(express.static(path.join(__dirname, 'function')));
+// koneksi ke file css, dan js
+app.use(express.static('library'));
+app.use(express.static('function'));
+
+
 
 // HTML frontend master
 app.get('/homepage-master', (req, res) => {
-    res.sendFile(path.join(__dirname, '/HTML/index-master-homepage.html'));
+    res.render('index-master-homepage');
 });
 
 // HTML frontend master - add lecturer
