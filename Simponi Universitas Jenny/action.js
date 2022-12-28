@@ -1,11 +1,8 @@
 const express = require('express');
 const app = express();
-
 const bodyparser = require('body-parser');
 const path = require('path');
 const db = require('./connectiondb');
-
-
 
 app.use(bodyparser.urlencoded ({ 
     extended: false //kirim form dari html, pakai false 
@@ -17,7 +14,8 @@ app.use(bodyparser.json());
 app.use(express.static('library'));
 app.use(express.static('function'));
 
-
+app.set('views', './html');
+app.set('view engine', 'ejs');
 
 // HTML frontend master
 app.get('/homepage-master', (req, res) => {
@@ -68,8 +66,6 @@ app.get('/homepage-master-getstudyprogramadd', (req, res) => {
         }
     });
 });
-
-app.set('views', '/html');
 
 // HTML frontend untuk menampilkan select 'jurusan yang diambil' - master
 app.get('/homepage-master-getmajoradd', (req, res) => {
